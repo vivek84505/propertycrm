@@ -41,7 +41,7 @@
                                     <div class="col-8 text-right">
                                         <span> Today income </span>
                                         <!-- Icon -->
-                                        <h2 class="widget-content--text">$ 5000</h2>
+                                        <h2 class="widget-content--text">$ 4,232</h2>
                                     </div>
                                 </div>
                             </div>

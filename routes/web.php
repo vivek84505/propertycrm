@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+ 
 
-/*
+ /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -13,4 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'DashboardControlller@index');
+Route::get('/', 'LoginController@index')->name('login');
+Route::post('/loginprocess', 'LoginController@loginprocess')->name('loginprocess');
+Route::get('/logout', 'LoginController@logout')->name('logout');
+
+ 
+Route::middleware([loginliddleware::class])->group(function () {
+
+    Route::get('/dashboard', 'DashboardControlller@index')->name('dashboard');
+
+
+});
+ 
+
+  

@@ -14,6 +14,7 @@
         </span>
     </a>
 
+    
     <!-- Trigger -->
     <div class="top-trigger">
         <span></span>
@@ -37,17 +38,7 @@
         <!-- Profile Data -->
         <div class="profile-data">
             <!-- Profile User Details -->
-            <div class="profile-user--details" style="background-image: url({{ URL::asset('public/img/thumbnails-img/profile-bg.jpg') }});">
-                <!-- Thumb -->
-                <div class="profile---thumb-det">
-                    <img src="{{ URL::asset('public/img/member-img/member-2.jpg') }}" alt="">
-                </div>
-                <!-- Profile Text -->
-                <div class="profile---text-details">
-                    <h6>Mark Smith</h6>
-                    <a href="dashboard-1.html">mark.ste@gmail.com</a>
-                </div>
-            </div>
+           
             <!-- Profile List Data -->
             <a class="profile-list--data" href="#">
                 <!-- Profile icon -->
@@ -93,14 +84,14 @@
                 </div>
             </a>
             <!-- Profile List Data -->
-            <a class="profile-list--data" href="#">
+            <a class="profile-list--data" href="{{route('logout')}}">
                 <!-- Profile icon -->
                 <div class="profile--list-icon">
                     <i class="fa fa-sign-out text-danger" aria-hidden="true"></i>
                 </div>
                 <!-- Profile Text -->
                 <div class="notification--list-body-text profile">
-                    <h6>Sign-out</h6>
+                     <h6>Logout</h6>  
                 </div>
             </a>
         </div>

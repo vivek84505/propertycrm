@@ -42,6 +42,8 @@
                                         <span> Today income </span>
                                         <!-- Icon -->
                                         <h2 class="widget-content--text">$ 4,232</h2>
+
+                                        
                                     </div>
                                 </div>
                             </div>

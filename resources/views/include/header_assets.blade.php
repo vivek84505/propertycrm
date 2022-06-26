@@ -6,8 +6,12 @@
 
 <!-- Responsive Stylesheet -->
 <link rel="stylesheet" href="{{ URL::asset('public/css/responsive.css') }}">
- 
 
+<link rel="stylesheet" href="{{ URL::asset('public/css/alertifycss/alertify.css') }}">
+<link rel="stylesheet" href="{{ URL::asset('public/css/alertifycss/alertify.min.css') }}">
+ 
+   <!-- Loader -->
+                      <div style="display:none" id="loader" class="loader"></div>
 
 
 

@@ -31,7 +31,7 @@ class LoginController extends Controller
         }  
 
 
-          return View::make('login');
+          return View::make('users.login');
     }
 
 

@@ -18,7 +18,7 @@ class DashboardControlller extends Controller
     public function index(){
     
 
-        return View::make('dashboard');
+        return View::make('dashboard.dashboard');
     }
 
 }

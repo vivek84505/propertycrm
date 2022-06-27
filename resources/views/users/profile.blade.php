@@ -81,6 +81,7 @@
                         <div class="row">
                             <div class="col">
                                 <!-- Information -->
+                                <div class="col-md-10">
                                 <div class="card-- bg-boxshadow mb-50">
                                     <div class="card--body">
                                         <div class="row mb-2">
@@ -158,6 +159,7 @@
 
                                         </div>
                                     </div>
+                                </div>
                                 </div>
                             </div>
 

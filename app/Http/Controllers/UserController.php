@@ -15,7 +15,11 @@ use Session;
 class UserController extends Controller
 {
     //
+    public function index(){
 
+        return View::make('users.users_management');
+
+    }
     public function  profile(){
       $userdata = [];  
       $user_id = Session::get("userdata")['user_id'];  
@@ -33,7 +37,7 @@ class UserController extends Controller
     //   echo "<pre>";
     //   print_r($userdata);die;
       
-      return View::make('profile',compact('userdata'));
+      return View::make('users.profile',compact('userdata'));
 
     }
 }

@@ -29,7 +29,7 @@
                     
                     
                     <li><a href="{{route('dashboard')}}"><i class="icon_genius"></i> Dashboard </a></li>
-                    <li><a href="widgets.html"><i class="icon_genius"></i> Users Management </a></li>
+                    <li><a href="{{route('users')}}"><i class="icon_genius"></i> Users Management </a></li>
                     
                     
                 </ul>

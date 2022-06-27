@@ -19,10 +19,14 @@ Route::get('/', 'LoginController@index')->name('login');
 Route::post('/loginprocess', 'LoginController@loginprocess')->name('loginprocess');
 Route::get('/logout', 'LoginController@logout')->name('logout');
 
+
  
 Route::middleware([loginliddleware::class])->group(function () {
 
     Route::get('/dashboard', 'DashboardControlller@index')->name('dashboard');
+
+    Route::get('/profile', 'UserController@profile')->name('profile');
+
 
 
 });

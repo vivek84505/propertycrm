@@ -33,14 +33,14 @@
     <div class="topbar-profile">
         <!-- Thumb -->
         <div class="user---thumb">
-            <img src="{{ URL::asset('public/img/member-img/member-5.jpg') }}" alt="">
+            <img src="{{ URL::asset('public/img/no-user.jpg') }}" alt="">
         </div>
         <!-- Profile Data -->
         <div class="profile-data">
             <!-- Profile User Details -->
            
             <!-- Profile List Data -->
-            <a class="profile-list--data" href="#">
+            <a class="profile-list--data" href="{{route('profile')}}">
                 <!-- Profile icon -->
                 <div class="profile--list-icon">
                     <i class="fa fa-user" aria-hidden="true"></i>

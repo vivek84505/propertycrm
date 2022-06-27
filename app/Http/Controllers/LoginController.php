@@ -59,8 +59,11 @@ class LoginController extends Controller
             $user = Auth::user();
             $data = array(
                 "user_id" => $user->user_id,
+                "firstname" => $user->firstname,
+                "lastname" => $user->lastname,
                 "email" => $user->email,
-                "user_role" => $user->user_role,
+                "mobile" => $user->mobile,
+                "userrole" => $user->userrole,
                 "authentication" => true
 
             );

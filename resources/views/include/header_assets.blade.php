@@ -9,15 +9,18 @@
 
 <link rel="stylesheet" href="{{ URL::asset('public/css/alertifycss/alertify.css') }}">
 <link rel="stylesheet" href="{{ URL::asset('public/css/alertifycss/alertify.min.css') }}">
+<link rel="stylesheet" href="{{ URL::asset('public/assets/css/jquery.dataTables.min.css') }}">
  
    <!-- Loader -->
-                      <div style="display:none" id="loader" class="loader"></div>
+   <div style="display:none" id="loader" class="loader"></div>
+
+   <!-- csrf token -->
+   <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
 
 
 
 
-
-
+ 
 
  
  

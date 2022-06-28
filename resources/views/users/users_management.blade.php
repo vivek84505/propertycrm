@@ -73,6 +73,14 @@
 
                                                 <div class="col-sm-5"><input type="email" name="email" id="email" class="form-control" name="password"></div>
                                             </div>
+
+                                            <div class="ap-line-dashed"></div>
+                                            <div class="form-group row"><label class="col-sm-2 col-form-label">Mobile</label>
+
+                                                <div class="col-sm-5"><input type="email" name="mobile" id="mobile" class="form-control" name="password"></div>
+                                            </div>
+
+
                                             <div class="ap-line-dashed"></div>
                                             <div class="form-group row"><label class="col-sm-2 col-form-label">User Role</label>
 
@@ -118,51 +126,19 @@
 
                                         <!-- Table -->
                                         <div class="table-responsive">
-                                            <table class="table table-striped">
+                                            <table class="table table-striped" id="users_table">
                                                 <thead>
                                                     <tr>
-                                                        <th></th>
-                                                        <th>Project </th>
-                                                        <th>Completed </th>
-                                                        <th>Task</th>
-                                                        <th>Date</th>
+                                                      
+                                                        <th>User Name </th>
+                                                        <th>Email </th>
+                                                        <th>Mobile</th>
+                                                        <th>Role</th>
                                                         <th>Action</th>
                                                     </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td><input type="checkbox" checked="" class="i-checks" name="input[]"></td>
-                                                        <td>Project<small>This is example of project</small></td>
-                                                        <td><span class="pie">0.52/1.561</span></td>
-                                                        <td>20%</td>
-                                                        <td>Jul 14, 2013</td>
-                                                        <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><input type="checkbox" class="i-checks" name="input[]"></td>
-                                                        <td>Alpha project</td>
-                                                        <td><span class="pie">6,9</span></td>
-                                                        <td>40%</td>
-                                                        <td>Jul 16, 2013</td>
-                                                        <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><input type="checkbox" class="i-checks" name="input[]"></td>
-                                                        <td>Betha project</td>
-                                                        <td><span class="pie">3,1</span></td>
-                                                        <td>75%</td>
-                                                        <td>Jul 18, 2013</td>
-                                                        <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><input type="checkbox" class="i-checks" name="input[]"></td>
-                                                        <td>Gamma project</td>
-                                                        <td><span class="pie">4,9</span></td>
-                                                        <td>18%</td>
-                                                        <td>Jul 22, 2013</td>
-                                                        <td><a href="#"><i class="fa fa-check text-navy"></i></a></td>
-                                                    </tr>
-                                                </tbody>
+                                                   <tbody>
+                                                    </tbody>                                            
+                                                </thead>                                              
                                             </table>
                                         </div>
                                     </div>
@@ -181,7 +157,7 @@
 
 
                      @include('include/footer');
-
+                     
          
 
         </div>
@@ -193,5 +169,58 @@
     @include('include.footer_assets');
 
 </body>
+<!-- ajax: "{{route('usersgetall')}}", -->
+<script>
+
+$(document).ready(function(){
+
+    // DataTable
+      var token = $('#token').val();
+      
+        $.ajax({
+            type:"POST",
+            url: "{{ route('usersgetall') }}",
+            data: { "_token": token },
+            dataType: 'json',
+            beforeSend:function(){
+                $("#loader").show();
+            },
+            success: function(res){
+              console.log('res=========>',res);
+              html = "";
+              if(res.length > 0){
+                html+="<tr>";
+                for(i=0;i<res.length;i++){
+                    html += '<td>'+res[0].firstname+ ' '+ res[0].lastname + '</td>';
+                    html += '<td>'+res[0].email+'</td>';
+                    html += '<td>'+res[0].mobile+'</td>';
+                    html += '<td>'+res[0].userrole+'</td>';
+                    html += '<td>Action</td>';
+                }
+                
+                html+="</tr>";
+
+              }
+              else{
+                html = 'No records found vivek'
+              }
+                
+              
+            
+              $("#users_table tbody").append(html);
+
+
+           },
+           complete:function(){
+               $("#loader").hide();
+           }
+        }); 
+
+});
+
+ 
+ 
+
+</script>
 
 </html>

@@ -17,9 +17,13 @@ class UserController extends Controller
     //
     public function index(){
 
+       
+        
         return View::make('users.users_management');
 
     }
+
+
     public function  profile(){
       $userdata = [];  
       $user_id = Session::get("userdata")['user_id'];  
@@ -40,5 +44,25 @@ class UserController extends Controller
       return View::make('users.profile',compact('userdata'));
 
     }
+
+    public function getuserAll(Request $request){
+      
+        $response = [];
+        
+        $user = new UserModel();   
+        $userdata = $user->getuserAll();
+
+        if(!empty($userdata)){
+            $response = $userdata;
+        }
+
+        
+
+        return response()->json($response);
+
+    }
+
+
+
 }
  

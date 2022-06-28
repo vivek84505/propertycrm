@@ -46,10 +46,31 @@ class UserModel extends Authenticatable
     ];
 
     public function getuserbyid($user_id){
-      
-        $res = User::select('firstname','lastname','email','mobile','userrole','createddate','createdby')->where('user_id', $user_id)->first();
+        $res = [];
+
+        $userdata = User::select('firstname','lastname','email','mobile','userrole','createddate','createdby')->where('user_id', $user_id)->first();
         // $res = User->where('user_id', $user_id)->first();
+        if(!empty($userdata)){
+            $res = $userdata;
+        }
+        
         return $res;
+    }
+
+    public function getuserAll(){
+        $response = [];
+
+        $userdata = User::select('firstname','lastname','email','mobile','userrole','createddate','createdby')->get();
+         
+
+        if(!empty($userdata)){
+            $response = $userdata;
+        }
+
+        return $response;
+       
+       
+
     }
 
 

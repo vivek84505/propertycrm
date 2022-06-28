@@ -40,17 +40,26 @@
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="dashboard-1.html">Users Management</a></li>
+                              
                              </ol>
+                             <button data-toggle="collapse" data-target="#demo"class="btn btn-primary btn-sm btn-lg float-right" >Add User</button></br>
                         </nav>
                     </div>
                 </div>
 
+            
+
                  <!-- Wrapper -->
                  <div class="wrapper wrapper-content">
                     <div class="container-fluid">
+                    <div id="demo" class="collapse" >
                     <div class="row">
-                            <div class="col-lg-12">
-                                <div class="ibox bg-boxshadow mb-50">
+
+                  
+                       
+                            <div  class="col-lg-12">
+                           
+                                <div  class="ibox bg-boxshadow mb-50">
                                     <!-- Title -->
                                     <div class="ibox-title basic-form mb-30">
                                         <h5> Add New User  </h5>
@@ -107,6 +116,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         </div>
 
 
@@ -191,10 +201,16 @@ $(document).ready(function(){
               if(res.length > 0){
                 html+="<tr>";
                 for(i=0;i<res.length;i++){
-                    html += '<td>'+res[0].firstname+ ' '+ res[0].lastname + '</td>';
-                    html += '<td>'+res[0].email+'</td>';
-                    html += '<td>'+res[0].mobile+'</td>';
-                    html += '<td>'+res[0].userrole+'</td>';
+
+                    var username = res[0].firstname +' '+res[0].lastname;
+                    var email = res[0].email || '';
+                    var mobile = res[0].mobile || '';
+                    var userrole = res[0].userrole || '';
+
+                    html += '<td>'+ username + '</td>';
+                    html += '<td>'+ email + '</td>';
+                    html += '<td>'+ mobile + '</td>';
+                    html += '<td>'+ username + '</td>';                    
                     html += '<td>Action</td>';
                 }
                 
@@ -202,7 +218,7 @@ $(document).ready(function(){
 
               }
               else{
-                html = 'No records found vivek'
+                html += "<td >No Record Found</td>"
               }
                 
               

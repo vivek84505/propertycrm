@@ -10,6 +10,10 @@
 <link rel="stylesheet" href="{{ URL::asset('public/css/alertifycss/alertify.css') }}">
 <link rel="stylesheet" href="{{ URL::asset('public/css/alertifycss/alertify.min.css') }}">
 <link rel="stylesheet" href="{{ URL::asset('public/assets/css/jquery.dataTables.min.css') }}">
+
+<link rel="stylesheet" href="{{ URL::asset('public/css/plugins/sweet-alert-css/sweetalert.min.css') }}">
+
+
  
    <!-- Loader -->
    <div style="display:none" id="loader" class="loader"></div>

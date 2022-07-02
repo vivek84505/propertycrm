@@ -16,7 +16,9 @@
 
 </head>
 <style>
-
+.error{
+    color:red;
+}
 body {
  
 
@@ -125,8 +127,7 @@ $(document).ready(function() {
         },        
         submitHandler: function(form,e) {
             e.preventDefault();
-            console.log('Form submitted');
-            $.ajax({
+             $.ajax({
                 type: 'POST',
                 url: "{{route('loginprocess')}}",
                 dataType: "html",

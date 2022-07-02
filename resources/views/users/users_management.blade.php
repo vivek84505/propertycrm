@@ -66,11 +66,15 @@
                                     </div>
                                     <!-- Ibox-content -->
                                     <div class="ibox-content">
-                                        <form method="get">
+                                        <form id="adduser_form">
                                             <div class="form-group  row"><label class="col-sm-2 col-form-label">Firstname</label>
                                                 <div class="col-sm-5"> <input type="text" name="firstname" id="firstname" class="form-control"></div>
                                             </div>
                                             <!-- Line -->
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+
+
+
                                             <div class="ap-line-dashed"></div>
                                             <div class="form-group row"><label class="col-sm-2 col-form-label">Last Name</label>
                                                 <div class="col-sm-5"><input type="text" name="lastname" id="lastname" class="form-control">  
@@ -86,7 +90,7 @@
                                             <div class="ap-line-dashed"></div>
                                             <div class="form-group row"><label class="col-sm-2 col-form-label">Mobile</label>
 
-                                                <div class="col-sm-5"><input type="email" name="mobile" id="mobile" class="form-control" name="password"></div>
+                                                <div class="col-sm-5"><input type="text" name="mobile" id="mobile" class="form-control" name="password"></div>
                                             </div>
 
 
@@ -94,7 +98,7 @@
                                             <div class="form-group row"><label class="col-sm-2 col-form-label">User Role</label>
 
                                                 <div class="col-sm-5">
-                                                    <select   name="user_role" id="user_role"  class="form-control"> 
+                                                    <select   name="userrole" id="userrole"  class="form-control"> 
                                                            <option value="">Select Role </option>             
                                                            <option value="superadmin"> Super Admin </option>             
                                                            <option value="admin"> Admin </option>             
@@ -133,24 +137,10 @@
                                     </div>
                                     <div class="ibox-content">
                                         
+                                      <div id="userlist">
 
-                                        <!-- Table -->
-                                        <div class="table-responsive">
-                                            <table class="table table-striped" id="users_table">
-                                                <thead>
-                                                    <tr>
-                                                      
-                                                        <th>User Name </th>
-                                                        <th>Email </th>
-                                                        <th>Mobile</th>
-                                                        <th>Role</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                   <tbody>
-                                                    </tbody>                                            
-                                                </thead>                                              
-                                            </table>
-                                        </div>
+                                      </div>      
+                                      
                                     </div>
                                 </div>
                             </div>
@@ -182,61 +172,127 @@
 <!-- ajax: "{{route('usersgetall')}}", -->
 <script>
 
+    
 $(document).ready(function(){
+    
+    getuserlist();
 
-    // DataTable
-      var token = $('#token').val();
-      
-        $.ajax({
-            type:"POST",
-            url: "{{ route('usersgetall') }}",
-            data: { "_token": token },
-            dataType: 'json',
-            beforeSend:function(){
-                $("#loader").show();
-            },
-            success: function(res){
-              console.log('res=========>',res);
-              html = "";
-              if(res.length > 0){
-                html+="<tr>";
-                for(i=0;i<res.length;i++){
-
-                    var username = res[0].firstname +' '+res[0].lastname;
-                    var email = res[0].email || '';
-                    var mobile = res[0].mobile || '';
-                    var userrole = res[0].userrole || '';
-
-                    html += '<td>'+ username + '</td>';
-                    html += '<td>'+ email + '</td>';
-                    html += '<td>'+ mobile + '</td>';
-                    html += '<td>'+ username + '</td>';                    
-                    html += '<td>Action</td>';
-                }
-                
-                html+="</tr>";
-
-              }
-              else{
-                html += "<td >No Record Found</td>"
-              }
-                
-              
-            
-              $("#users_table tbody").append(html);
-
-
-           },
-           complete:function(){
-               $("#loader").hide();
-           }
-        }); 
-
+   
 });
 
- 
+function getuserlist(){
+   
+     var token = $('#token').val();
+      
+      $.ajax({
+          type:"POST",
+          url: "{{ route('usersgetall') }}",
+          data: { "_token": token },
+          dataType: 'json',
+          beforeSend:function(){
+              $("#loader").show();
+          },
+          success: function(res){
+             
+           
+            if(res.html){
+
+                $("#userlist").html(res.html);
+
+            }
+
+
+         },
+         complete:function(){
+             $("#loader").hide();
+         }
+      }); 
+}
+
  
 
+</script>
+
+
+<script>
+    $(document).ready(function() {
+    $("#adduser_form").validate({
+        rules: {
+            firstname: {
+                required: true
+            },
+            lastname: {
+                required: true
+            },
+            email: {
+                required: true,
+                email:true
+            },
+            mobile: {
+                required: true
+            },
+            userrole: {
+                required: true
+            }
+        },
+        messages: {
+            firstname: {
+                required: "Firstname is required"
+            },
+            lastname: {
+                required: "Lastname is required"
+            },
+            email: {
+                required: "Email is required"
+                
+            },
+            mobile: {
+                required:  "Mobile is required"
+            },
+            userrole: {
+                required:  "User Role is required"
+            }           
+             
+        },        
+        submitHandler: function(form,e) {
+            e.preventDefault();
+            console.log('Form submitted');
+            $.ajax({
+                type: 'POST',
+                url: "{{route('useradd')}}",
+                dataType: "html",
+                data: $('#adduser_form').serialize(),
+                beforeSend: function() {
+
+                    $("#loader").show();
+                },               
+                success: function(result) {
+
+                    result = JSON.parse(result);
+                   
+                    if(result.status === 'success'){
+
+                        alertify.success(result.returnmsg);                      
+
+                    }
+                    else if (result.status === 'fail'){
+                        alertify.error(result.returnmsg);
+                    } 
+
+                    getuserlist();
+                },
+                complete: function() {
+                    $("#loader").hide();
+                },
+                error : function(error) {
+
+                }
+            });
+            return false;
+        }
+    });
+
+});
 </script>
 
 </html>

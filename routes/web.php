@@ -23,11 +23,15 @@ Route::get('/logout', 'LoginController@logout')->name('logout');
  
 Route::middleware([loginliddleware::class])->group(function () {
 
+    //Dashboard Routes
     Route::get('/dashboard', 'DashboardControlller@index')->name('dashboard');
 
+    // User Routes
     Route::get('/profile', 'UserController@profile')->name('profile');
     Route::get('/users', 'UserController@index')->name('users');
     Route::post('/usersgetall', 'UserController@getuserAll')->name('usersgetall');
+    Route::post('/useradd', 'UserController@userAdd')->name('useradd');
+    Route::post('/userdelete', 'UserController@userDelete')->name('userdelete');
 
 
 

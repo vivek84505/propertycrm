@@ -2433,6 +2433,7 @@ textarea:focus {
     min-width: 130px;
     border-radius: 0;
     font-size: 14px;
+   
 }
 
 .middle-box {
@@ -5206,7 +5207,7 @@ iframe {
 
 .education_rating > i {
     color: #FFE924;
-    margin-right: ;
+    
 }
 
 .rating-number {
@@ -5216,8 +5217,7 @@ iframe {
 
 .education_time > a {
     color: #333;
-    margin-right: ;
-}
+ }
 
 .education_time > a > i {
     margin-right: 5px;
@@ -5424,3 +5424,7 @@ iframe {
     background: url('../img/loader.gif') 
                 50% 50% no-repeat rgb(249,249,249);
   }
+
+  .error{
+    color:red;
+}

@@ -27,7 +27,7 @@
       @include('include/header');
 
         <!-- ###### Layout Container Area ###### -->
-        <div class="layout-container-area mt-70">
+        
             <!-- Side Menu Area -->
            @include('include/sidebar');
            
@@ -111,7 +111,8 @@
 
                                             <div class="form-group mb-0 row">
                                                 <div class="col-12">
-                                                    <button class="btn btn-danger btn-sm mr-10" type="clear">Clear</button>
+                                                    <button class="btn btn-danger btn-sm mr-10" type="clear"  >Clear</button>
+
                                                     <button class="btn btn-primary btn-sm" type="submit">Save changes</button>
                                                 </div>
                                             </div>
@@ -153,14 +154,14 @@
             </div>
                  
 
-                 
+    
 
 
                      @include('include/footer');
                      
          
 
-        </div>
+        
     </div>
 
    
@@ -198,6 +199,7 @@ function getuserlist(){
             if(res.html){
 
                 $("#userlist").html(res.html);
+                $("#main-content").css({ overflow:"auto" });
 
             }
 
@@ -272,12 +274,15 @@ function getuserlist(){
                    
                     if(result.status === 'success'){
 
-                        alertify.success(result.returnmsg);                      
+                        alertify.success(result.returnmsg);    
+                                
 
                     }
                     else if (result.status === 'fail'){
                         alertify.error(result.returnmsg);
                     } 
+
+                    $('#adduser_form')[0].reset();
 
                     getuserlist();
                 },

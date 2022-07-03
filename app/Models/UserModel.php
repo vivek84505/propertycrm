@@ -6,14 +6,15 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use DB;
 class UserModel extends Authenticatable
 {
     use HasFactory, Notifiable;
 
     protected $table = 'users';
     protected $primaryKey = 'user_id';
-
+ 
+  
 
     /**
      * The attributes that are mass assignable.
@@ -45,14 +46,26 @@ class UserModel extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getuserbyid($user_id){
+    public function getuserbyid($payload){
         $res = [];
+        $user = new UserModel();  
+       
+        $query = DB::table('users');
 
-        $userdata = User::select('firstname','lastname','email','mobile','userrole','createddate','createdby')->where('user_id', $user_id)->first();
-         
-        //  echo "<pre>";
-        //  print_r($userdata);die;
+        if(isset($payload['email']) && !empty($payload['email']))
+            $query->where('email', $payload['email']);
 
+        if(isset($payload['mobile']) && !empty($payload['mobile']))
+        $query->where('mobile', $payload['mobile']);
+
+        if(isset($payload['user_id']) && !empty($payload['user_id']))
+        $query->where('user_id', $payload['user_id']);
+
+
+        $userdata = $query->get();
+        
+        
+        
 
         if(!empty($userdata)){
             $res = $userdata;
@@ -64,7 +77,7 @@ class UserModel extends Authenticatable
     public function getuserAll(){
         $response = [];
 
-        $userdata = User::select('user_id','firstname','lastname','email','mobile','userrole','createddate','createdby')->get();
+        $userdata = User::select('user_id','firstname','lastname','email','mobile','userrole','created_at','createdby')->get();
          
         
         if(!empty($userdata)){
@@ -83,6 +96,57 @@ class UserModel extends Authenticatable
         
     }
 
+    public function checExistinguser($payload){
+
+       
+        $res = [];
+        $user = new UserModel();  
+       
+        $query = DB::table('users');
+
+        
+
+        if(isset($payload['email']) && !empty($payload['email'])){
+            
+            $query->where('email', $payload['email']);
+        }
+          
+        
+        if(isset($payload['mobile']) && !empty($payload['mobile'])){  
+            
+            $query->orwhere('mobile', $payload['mobile']); 
+        }
+       
+
+         
+       
+      
+        $userdata = $query->get();
+        
+         
+        if(!empty($userdata)){
+            $res = json_decode(json_encode($userdata), true); 
+        }
+
+        
+        return $res;
+
+    }
+
+
+    public function userEdit($payload){
+
+       $userid = $payload['user_id'];
+
+       if(isset($payload['user_id'])){
+         unset($payload['user_id']);
+       }
+
+       $payload['password'] = bcrypt($payload['mobile']);
+       $res = User::where('user_id',$userid)->update($payload);
+       return $res; 
+
+    }
     public function userAdd($payload){
         // echo "<pre>";
         // print_r($payload);die;

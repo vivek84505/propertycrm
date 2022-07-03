@@ -24,7 +24,8 @@ class LoginController extends Controller
 
 
     public function index(){
-       
+    //    echo bcrypt('123');die;
+        
         if(!empty(Session::get("userdata"))){
             
             return redirect('/dashboard');
@@ -44,14 +45,7 @@ class LoginController extends Controller
         if(isset($payload['_token'])){
             unset($payload['_token']);
         }
-        // $payload['password'] = bcrypt($payload['password']);
- 
-        // $user = new UserModel();
-        // $res= $user->insert($payload);
-
-        // echo "<pre>";
-        // print_r($res);
-        // die;
+        
       
 
         if(Auth::attempt($payload))

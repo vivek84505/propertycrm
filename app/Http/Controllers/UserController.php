@@ -32,8 +32,8 @@ class UserController extends Controller
       $userdata = [];  
       $user_id = Session::get("userdata")['user_id'];  
       $user = new UserModel();
-   
-      $res = $user->getuserbyid($user_id);
+      $payload['user_id'] = $user_id;  
+      $res = $user->getuserbyid($payload);
       
     
       if(!empty($res)){
@@ -62,12 +62,40 @@ class UserController extends Controller
 
         }
 
-        // $result = [];
-    //   echo "<pre>";
-    //   print_r($result);die;
+      
        $returnHtml = view('users.userlist')->with('result',$result)->render();
 
         return response()->json(array('html'=>$returnHtml));
+
+
+    }
+
+    public function getuserById(Request $request){
+      
+        $response = [];
+        $user = new UserModel(); 
+       
+        $payload = $request->all();
+        $user_id = $payload['userid'];
+        if(isset($payload['_token'])){
+            unset($payload['_token']);
+        }
+       
+        
+        $userdata =  $user->getuserbyid( ['user_id' => $user_id] );
+
+        if(!empty($userdata)){
+            // $response = $userdata;
+           $response = json_decode(json_encode($userdata), true);
+
+        }
+
+        // echo "<pre>";
+        // echo "User data response";
+        // print_r($response);die;
+ 
+    // $response = [];
+       return response()->json($response); 
 
 
     }
@@ -109,7 +137,7 @@ class UserController extends Controller
         
         if(isset(Session::get('userdata')['email'])){
             $payload['createdby'] = Session::get('userdata')['email'];
-            $payload['createddate'] = date("Y-m-d H:i:s", strtotime('now'));
+            $payload['created_at'] = date("Y-m-d H:i:s", strtotime('now'));
         }
 
 
@@ -120,6 +148,122 @@ class UserController extends Controller
         return response()->json($response); 
 
     }
+
+
+    public function userEdit (Request $request){
+        $response = [];
+        $existing_data_email = [];
+        $existing_data_mobile = [];
+        $user = new UserModel(); 
+        
+        $payload = $request->all();
+ 
+       
+        if(isset($payload['_token'])){
+            unset($payload['_token']);
+        }
+
+        if(isset($payload['firstname']) && $payload['firstname'] == '' ){
+            $response['status'] = 'fail';
+            $response['returnmsg'] = 'Firstname is required';
+            return response()->json($response); 
+        }
+
+        if(isset($payload['lastname']) && $payload['lastname'] == '' ){
+            $response['status'] = 'fail';
+            $response['returnmsg'] = 'Lastname is required';
+            return response()->json($response); 
+        }
+        
+        if(isset($payload['email']) && $payload['email'] == '' ){
+            $response['status'] = 'fail';
+            $response['returnmsg'] = 'Email is required';
+            return response()->json($response); 
+        }
+
+        if(isset($payload['mobile']) && $payload['mobile'] == '' ){
+            $response['status'] = 'fail';
+            $response['returnmsg'] = 'Mobile Number is required';
+            return response()->json($response); 
+        }
+
+        if(isset($payload['userrole']) && $payload['userrole'] == '' ){
+            $response['status'] = 'fail';
+            $response['returnmsg'] = 'User Role is required';
+            return response()->json($response); 
+        }
+
+        // echo "<pre>";
+        // print_r($payload);die;
+
+        //Checking existing email 
+        $existing_result_email = $user->checExistinguser( [ 'email' => $payload['email']]);
+
+        
+        if(!empty($existing_result_email)){          
+            $existing_data_email = json_decode(json_encode($existing_result_email[0]), true);           
+        }
+         
+        
+        if(!empty($existing_data_email)){
+           
+            if( $existing_data_email['user_id'] != $payload['user_id']){
+                $response['status'] = 'fail';
+                $response['returnmsg'] = 'User with same email alredy exists!';
+                return response()->json($response); 
+              }
+         }
+          
+          
+            //Checking existing Mobile
+          $existing_result_mobile = $user->checExistinguser( [ 'mobile' => $payload['mobile']]);
+
+        
+
+          if(!empty($existing_result_mobile)){          
+            $existing_data_mobile = json_decode(json_encode($existing_result_mobile[0]), true);           
+          }
+          
+          
+          if(!empty($existing_data_mobile)){
+           
+             if( $existing_data_mobile['user_id'] != $payload['user_id']){
+                $response['status'] = 'fail';
+                $response['returnmsg'] = 'User with same mobile alredy exists!';
+                return response()->json($response); 
+              }
+          }
+          
+          
+         
+
+
+      
+         
+       
+        
+        if(isset(Session::get('userdata')['email'])){
+            $payload['lastmodifiedby'] = Session::get('userdata')['email'];
+            $payload['updated_at'] = date("Y-m-d H:i:s", strtotime('now'));
+           
+        }
+
+        //  echo "<pre>";
+        //  echo "before update";
+        // print_r($payload);
+        // die;
+
+        $res = $user->userEdit($payload);
+        if($res == 1){
+
+            $response['status'] = 'success';
+            $response['returnmsg'] = 'User Updated Succesfully!';
+        }
+       
+        return response()->json($response); 
+
+    }
+
 
     public function userDelete (Request $request){
         $response = [];

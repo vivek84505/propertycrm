@@ -31,7 +31,9 @@ Route::middleware([loginliddleware::class])->group(function () {
     Route::get('/users', 'UserController@index')->name('users');
     Route::post('/usersgetall', 'UserController@getuserAll')->name('usersgetall');
     Route::post('/useradd', 'UserController@userAdd')->name('useradd');
+    Route::post('/useredit', 'UserController@userEdit')->name('useredit');
     Route::post('/userdelete', 'UserController@userDelete')->name('userdelete');
+    Route::post('/getuserbyid', 'UserController@getuserById')->name('getuserbyid');
 
 
 

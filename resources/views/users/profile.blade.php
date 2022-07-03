@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<?php 
+   
+  $userdata = $userdata[0];
+?>
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Colors">
@@ -90,8 +93,8 @@
                                             </div>
                                             <div class="col-8">
                                                 <?php 
-                                                         if($userdata['createddate'])
-                                                         $registered_date = date('d-m-Y', strtotime($userdata['createddate']));
+                                                         if($userdata['created_at'])
+                                                         $registered_date = date('d-m-Y', strtotime($userdata['created_at']));
                                                 ?>
                                                 <p class="mb-0"> {{ $registered_date  ?? '' }} </p>
                                             </div>

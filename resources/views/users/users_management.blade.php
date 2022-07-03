@@ -199,8 +199,7 @@ function getuserlist(){
             if(res.html){
 
                 $("#userlist").html(res.html);
-                $("#main-content").css({ overflow:"auto" });
-
+ 
             }
 
 

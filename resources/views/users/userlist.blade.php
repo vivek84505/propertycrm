@@ -1,13 +1,13 @@
   <!-- Table -->
   
-                                        <div class="table-responsive">
+                            <div class="table-responsive">
                                             <table class="table table-striped" id="users_table">
                                                 <thead>
                                                     <tr>
                                                       
-                                                        <th>User Name </th>
+                                                        <!-- <th>User Name </th>
                                                         <th>Email </th>
-                                                        <th>Mobile</th>
+                                                        <th>Mobile</th> -->
                                                         <th>Role</th>
                                                         <th class="text-right">Action</th>
                                                     </tr>
@@ -15,9 +15,9 @@
                                                        @if(!empty($result))
                                                             @foreach($result as $res)
                                                                 <tr>
-                                                                    <td>  {{  $res['firstname'] }}  </td>
+                                                                    <!-- <td>  {{  $res['firstname'] }} {{  $res['lastname'] }}   </td>
                                                                     <td>  {{  $res['email']  }}   </td>
-                                                                    <td>  {{  $res['mobile']  }}  </td>
+                                                                    <td>  {{  $res['mobile']  }}  </td> -->
                                                                     <td>  {{  $res['userrole']  }}  </td>
                                                                     <td class="text-right" >
                                                                     <div class="btn-group">

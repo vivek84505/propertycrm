@@ -5430,7 +5430,10 @@ iframe {
 }
 
 .space {
-    width: 4px;
+    width: 0px;
     height: auto;
     display: inline-block;
-  }
+    margin-right: -13px;
+}
+
+

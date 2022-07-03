@@ -5,9 +5,9 @@
                                                 <thead>
                                                     <tr>
                                                       
-                                                        <!-- <th>User Name </th>
-                                                        <th>Email </th>
-                                                        <th>Mobile</th> -->
+                                                        <th>User Name </th>
+                                                        <th>Email </th> 
+                                                        <th>Mobile</th>
                                                         <th>Role</th>
                                                         <th class="text-right">Action</th>
                                                     </tr>
@@ -15,17 +15,17 @@
                                                        @if(!empty($result))
                                                             @foreach($result as $res)
                                                                 <tr>
-                                                                    <!-- <td>  {{  $res['firstname'] }} {{  $res['lastname'] }}   </td>
-                                                                    <td>  {{  $res['email']  }}   </td>
-                                                                    <td>  {{  $res['mobile']  }}  </td> -->
+                                                                    <td>  {{  $res['firstname'] }} {{  $res['lastname'] }}   </td>
+                                                                    <td>  {{  $res['email']  }}   </td> 
+                                                                    <td>  {{  $res['mobile']  }}  </td> 
                                                                     <td>  {{  $res['userrole']  }}  </td>
                                                                     <td class="text-right" >
                                                                     <div class="btn-group">
                                                                     
-                                                                    <button class="btn btn-info btn-sm edituser" value="{{ $res['user_id'] }}" type="button" >Edit</button>
+                                                                    <button class="btn m-2 btn-xs rounded-0 btn-info edituser" value="{{ $res['user_id'] }}" type="button" >Edit</button>
  
                                                                     <div class="space"></div>                                                                 
-                                                                    <button class="btn btn-danger btn-sm deleteuser " value="{{ $res['user_id'] }}" color-white"> Delete </button>
+                                                                    <button class="btn m-2 btn-xs rounded-0 btn-danger deleteuser " value="{{ $res['user_id'] }}" color-white"> Delete </button>
                                                                        
                                                                        
                                                                      </div>

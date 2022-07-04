@@ -130,7 +130,7 @@
                                         </div>
 
                                        
-                                        <a href="#" class="btn btn-primary btn-round">  Change Password </a> &nbsp;
+                                        <a href="#" class="btn btn-primary btn-round changepassword">  Change Password </a> &nbsp;
 
                                        
                                     </div>
@@ -190,11 +190,159 @@
         </div>
     </div>
 
+
+
+    <!-- User List Model --> 
+        <!-- Modal -->
+        <div class="modal fade" id="changepasswordModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalCenterTitle">Change Password</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span></button>
+                                    </div>
+                                    <!-- Modal Body -->
+                        <div class="modal-body">
+                             <form  id="changepasswordform" >
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <input type="hidden" id="user_id" name="user_id" class="edit_user_id" value="{{ Session::get('userdata')['user_id'] }}">
+                            
+                                    <div class="row">
+                                                    <div class="form-group col-md-12">
+                                                        <label class="control-label">Current Password</label>
+                                                        <div>
+                                                            <input type="password" name="current_password" id="current_password"  class="form-control input-lg"  value="">
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-group col-md-12 ">
+                                                        <label class="control-label">New password</label>
+                                                            <div>
+                                                                <input type="password" name="new_password" id="new_password"  class="form-control input-lg"  value="">
+                                                            </div>
+                                                    </div>
+                                            
+                                            
+                                                    <div class="form-group col-md-12 ">
+                                                        <label class="control-label">Confirm password</label>
+                                                        <div>
+                                                            <input type="password" name="confirm_password" id="confirm_password"  class="form-control input-lg"  value="">
+                                                        </div>
+                                                    </div>
+ 
+                        
+                                </div>
+                                <!-- Modal Footer -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                            
+                                </div>
+                                </div>
+                               
+
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+
    
 
     <!-- jQuery 2.2.4 -->
     @include('include.footer_assets');
 
 </body>
+
+<script>
+$(document).ready(function() {
+    $("#changepasswordform").validate({
+        rules: {
+            current_password: {
+                required: true
+            },
+            new_password: {
+                required: true
+            },
+            confirm_password: {
+                required: true,
+                equalTo : "#new_password"
+               
+            } 
+        },
+        messages: {
+            current_password: {
+                required: "Current password is required."
+            },
+            new_password: {
+                required: "New password is required."
+            },
+            confirm_password: {
+                required: "Confirm password is required.",
+                equalTo : "New password and confirm password mismatch."
+                
+            }   
+        },        
+        submitHandler: function(form,e) {
+            e.preventDefault();
+            console.log('Form submitted');
+            $.ajax({
+                type: 'POST',
+                url: "{{route('changepassword')}}",
+                dataType: "html",
+                data: $('#changepasswordform').serialize(),
+                beforeSend: function() {
+
+                    $("#loader").show();
+                },               
+                success: function(result) {
+
+                    result = JSON.parse(result);
+                     
+
+                    if(result.status === 'success'){
+
+                        swal("Password Changed!", result.returnmsg, 'success');
+
+                        setTimeout(
+                        function() {
+                            window.location.href = "{{route('logout')}}";
+                        }, 2000); 
+                        // alertify.success(result.returnmsg);    
+                    }
+                    else if (result.status === 'fail'){
+
+                        swal("Password change failed!",  result.returnmsg, 'error');
+                        // alertify.error(result.returnmsg);
+                    } 
+ 
+                    
+                },
+                complete: function() {
+                    $("#loader").hide();
+                },
+                error : function(error) {
+
+                }
+            });
+            return false;
+        }
+    });
+
+});
+</script>
+
+<script>    
+//Edit User JS
+$('.changepassword').on('click',function(){
+    
+    $('#changepasswordModel').modal('show');
+});
+</script>
+
 
 </html>

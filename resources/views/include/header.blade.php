@@ -50,39 +50,7 @@
                     <h6>My profile</h6>
                 </div>
             </a>
-            <!-- Profile List Data -->
-            <a class="profile-list--data" href="#">
-                <!-- Profile icon -->
-                <div class="profile--list-icon">
-                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                </div>
-                <!-- Profile Text -->
-                <div class="notification--list-body-text profile">
-                    <h6>Messages</h6>
-                </div>
-            </a>
-            <!-- Profile List Data -->
-            <a class="profile-list--data" href="#">
-                <!-- Profile icon -->
-                <div class="profile--list-icon">
-                    <i class="fa fa-cog" aria-hidden="true"></i>
-                </div>
-                <!-- Profile Text -->
-                <div class="notification--list-body-text profile">
-                    <h6>Account settings</h6>
-                </div>
-            </a>
-            <!-- Profile List Data -->
-            <a class="profile-list--data" href="#">
-                <!-- Profile icon -->
-                <div class="profile--list-icon">
-                    <i class="fa fa-life-ring" aria-hidden="true"></i>
-                </div>
-                <!-- Profile Text -->
-                <div class="notification--list-body-text profile">
-                    <h6>Support</h6>
-                </div>
-            </a>
+            
             <!-- Profile List Data -->
             <a class="profile-list--data" href="{{route('logout')}}">
                 <!-- Profile icon -->

@@ -34,6 +34,7 @@ Route::middleware([loginliddleware::class])->group(function () {
     Route::post('/useredit', 'UserController@userEdit')->name('useredit');
     Route::post('/userdelete', 'UserController@userDelete')->name('userdelete');
     Route::post('/getuserbyid', 'UserController@getuserById')->name('getuserbyid');
+    Route::post('/changepassword', 'UserController@changepassword')->name('changepassword');
 
 
 

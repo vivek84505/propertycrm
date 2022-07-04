@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use DB;
+use Hash;
+
+
 class UserModel extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -142,11 +145,16 @@ class UserModel extends Authenticatable
          unset($payload['user_id']);
        }
 
-       $payload['password'] = bcrypt($payload['mobile']);
+       if(isset($payload['mobile']) && !empty($payload['mobile'])){
+            $payload['password'] = bcrypt($payload['mobile']);
+       }
+      
        $res = User::where('user_id',$userid)->update($payload);
        return $res; 
 
     }
+
+
     public function userAdd($payload){
         // echo "<pre>";
         // print_r($payload);die;
@@ -182,24 +190,51 @@ class UserModel extends Authenticatable
                 $Modelresponse['status'] = 'success';
                 $Modelresponse['returnmsg'] = 'User Added Succesfully';
             }
-            
-            
-            
+             
 
-        }
-
-        // echo "<pre>";
-        // echo "Modelresponse";
-        // print_r($Modelresponse);
-
-        // die;
-
+        } 
+       
         return $Modelresponse;
-       
-       
+        
 
     }
 
+
+
+    public function changePassword($payload){
+ 
+ 
+        if(isset($payload['password']) && !empty($payload['password'])){
+             $payload['password'] = bcrypt($payload['password']);
+        }
+       
+        $res = User::where('user_id',$payload['user_id'])->update($payload);
+        return $res; 
+ 
+     }
+
+
+     public function getuserpassword($user_id){
+
+        $response = [];
+        $user = new UserModel();   
+       
+          $userdata =  User::select('*')->where('user_id', $user_id)->first();
+       
+         $data = json_decode(json_encode($userdata), true); 
+
+        echo "userdata";
+        echo "<pre>";
+        print_r($data);die;
+
+        if(!empty($userdata)){
+            $response = $userdata;
+        } 
+        return $response;
+    }
+
+
+  
 
 
 }

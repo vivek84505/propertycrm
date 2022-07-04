@@ -75,7 +75,7 @@
                                                     <div class="form-group col-md-6 ">
                                                         <label class="control-label">Email</label>
                                                         <div>
-                                                            <input type="text" name="email" id="email"  class="form-control input-lg edit_email"  value="">
+                                                            <input type="email" name="email" id="email"  class="form-control input-lg edit_email"  value="">
                                                         </div>
                                                     </div>
 
@@ -88,7 +88,7 @@
 
 
                                             <div class="form-group col-md-6 ">
-                                                <label class="control-label">Lastname</label>
+                                                <label class="control-label">User Role </label>
                                                     <div>
                                                         <select name="userrole" id="userrole" class="form-control input-lg edit_userrole" >
                                                             <option value="">Select Role </option>

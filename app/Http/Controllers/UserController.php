@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 
+ 
 use Illuminate\Http\Request;
 use View;
 use Redirect;
@@ -299,7 +300,86 @@ class UserController extends Controller
 
     }
 
+    public function changepassword(Request $request){
 
+      
+
+
+        $response = [];
+        $currentUserPayload = [];
+        $payload = $request->all();
+        $user = new UserModel();
+        
+        // echo "<pre>";
+        // print_r($payload); die;
+
+        if(isset($payload['_token'])){
+            unset($payload['_token']);
+        }
+
+        if($payload['current_password'] == '' ){
+            $response['status'] = 'fail';
+            $response['returnmsg'] = 'Current Password is required';
+            return response()->json($response); 
+        }
+
+        if($payload['new_password'] == '' ){
+            $response['status'] = 'fail';
+            $response['returnmsg'] = 'New Password is required';
+            return response()->json($response); 
+        }
+
+        if($payload['confirm_password'] == '' ){
+            $response['status'] = 'fail';
+            $response['returnmsg'] = 'Confirm Password is required';
+            return response()->json($response); 
+        }
+
+        
+
+        if( isset($payload['current_password']) && !empty($payload['current_password']) ){
+            
+            $currentUserPayload['email'] =  Session::get('userdata')['email'];
+            $currentUserPayload['password'] = $payload['current_password'];
+            
+            if(!Auth::attempt($currentUserPayload)){
+
+                $response['status'] = 'fail';
+                $response['returnmsg'] = 'Current Password is incorrect';
+                return response()->json($response); 
+            }
+          
+        }
+
+
+
+        if(isset($payload['new_password']) && isset($payload['confirm_password']) ){
+            if($payload['new_password'] != $payload['confirm_password']){
+                $response['status'] = 'fail';
+                $response['returnmsg'] = 'New password and confirm password mismatch.';
+                return response()->json($response); 
+            }
+           
+        }
+       
+
+        $changepassword_payload['password'] = $payload['new_password'];
+        $changepassword_payload['user_id'] = $payload['user_id'];
+         
+       
+        $res = $user->changePassword($changepassword_payload); 
+        if($res == 1){
+
+            $response['status'] = 'success';
+            $response['returnmsg'] = 'Password Updated Succesfully!';
+        }
+
+
+
+
+        return response()->json($response); 
+
+    }
 
 }
  

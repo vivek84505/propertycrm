@@ -10,13 +10,14 @@ use DB;
 use Hash;
 
 
-class UserModel extends Authenticatable
+class LeadSourceModel extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    protected $table = 'users';
-    protected $primaryKey = 'user_id';
- 
+    protected $table = 'tbl_leadsourcemaster';
+    protected $primaryKey = 'leadsourceid';
+    public $timestamps = false;
+
   
 
     /**
@@ -49,25 +50,15 @@ class UserModel extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getuserbyid($payload){
+    public function getleadsourcebyid($payload){
         $res = [];
         $user = new UserModel();  
        
-        $query = DB::table('users');
-
-        if(isset($payload['email']) && !empty($payload['email']))
-            $query->where('email', $payload['email']);
-
-        if(isset($payload['mobile']) && !empty($payload['mobile']))
-        $query->where('mobile', $payload['mobile']);
-
-        if(isset($payload['user_id']) && !empty($payload['user_id']))
-        $query->where('user_id', $payload['user_id']);
-
-
+        $query = DB::table('tbl_leadsourcemaster');
+       
+        if(isset($payload['leadsourceid']) && !empty($payload['leadsourceid']))
+        $query->where('leadsourceid', $payload['leadsourceid']);
         $userdata = $query->get();
-        
-        
         
 
         if(!empty($userdata)){
@@ -77,14 +68,14 @@ class UserModel extends Authenticatable
         return $res;
     }
 
-    public function getuserAll(){
+    public function leadsourceAll(){
         $response = [];
 
-        $userdata = User::select('user_id','firstname','lastname','email','mobile','userrole','created_at','createdby')->get();
+        $leadsourcedata = LeadSourceModel::select('leadsourceid','leadsource','isactive','createdby','createddate','lastmodifiedby','lastmodifieddate')->get();
          
-        
-        if(!empty($userdata)){
-            $response = $userdata;
+       
+        if(!empty($leadsourcedata)){
+            $response = $leadsourcedata;
         }
 
         return $response;
@@ -93,13 +84,12 @@ class UserModel extends Authenticatable
     }
 
 
-    public function userDelete($user_id){
+    public function leadsourcDelete($leadsourceid){
 
-         return $deleteResult = User::where('user_id',$user_id)->delete(); 
-        
+        return $deleteResult = LeadSourceModel::where('leadsourceid',$leadsourceid)->delete(); 
     }
 
-    public function checExistinguser($payload){
+    public function checExistingleadsource($payload){
 
        
         $res = [];
@@ -137,48 +127,45 @@ class UserModel extends Authenticatable
     }
 
 
-    public function userEdit($payload){
+    public function leadsourceEdit($payload){
 
-       $userid = $payload['user_id'];
+       $leadsourceid = $payload['leadsourceid'];
 
-       if(isset($payload['user_id'])){
-         unset($payload['user_id']);
+       if(isset($payload['leadsourceid'])){
+         unset($payload['leadsourceid']);
        }
-
-       if(isset($payload['mobile']) && !empty($payload['mobile'])){
-            $payload['password'] = bcrypt($payload['mobile']);
-       }
+       
+       
+    
+       $res = LeadSourceModel::where('leadsourceid',$leadsourceid)->update($payload);
+       
       
-       $res = User::where('user_id',$userid)->update($payload);
+      
        return $res; 
 
     }
 
 
-    public function userAdd($payload){
+    public function leadsourceAdd($payload){
         // echo "<pre>";
         // print_r($payload);die;
         $Modelresponse = [];
-        $existing_userdata = [];
-        $sqlQueryResult =  User::select('email','mobile')->where('email', $payload['email'])->orWhere('mobile', $payload['mobile'])->first();
+        $existing_leadsourcedata = [];
+        $sqlQueryResult =  LeadSourceModel::select('leadsource')->where('leadsource', $payload['leadsource'])->first();
         
         if(!empty($sqlQueryResult)){
-            $existing_userdata = json_decode(json_encode($sqlQueryResult), true);
+            $existing_leadsourcedata = json_decode(json_encode($sqlQueryResult), true);
 
-            if($payload['email'] === $existing_userdata['email'] ){
+            if($payload['leadsource'] === $existing_leadsourcedata['leadsource'] ){
                 $Modelresponse['status'] = 'fail';
-                $Modelresponse['returnmsg'] = 'User with this email already exists';
-            }
-
-            if($payload['mobile'] === $existing_userdata['mobile'] ){
-                $Modelresponse['status'] = 'fail';
-                $Modelresponse['returnmsg'] = 'User with this Mobile already exists';
+                $Modelresponse['returnmsg'] = 'This Lead Source already exists';
             } 
+            
         } else
         {
-            $payload['password'] = bcrypt($payload['mobile']);
-            $user = new UserModel();
-            $res= $user->insert($payload);
+            
+            $leadsource = new LeadSourceModel();
+            $res= $leadsource->insert($payload);
            
             if(!$res){
 
@@ -188,7 +175,7 @@ class UserModel extends Authenticatable
             else{
                 
                 $Modelresponse['status'] = 'success';
-                $Modelresponse['returnmsg'] = 'User Added Succesfully';
+                $Modelresponse['returnmsg'] = 'Lead Source Added Succesfully';
             }
              
 
@@ -213,25 +200,7 @@ class UserModel extends Authenticatable
  
      }
 
-
-    //  public function getuserpassword($user_id){
-
-    //     $response = [];
-    //     $user = new UserModel();   
-       
-    //       $userdata =  User::select('*')->where('user_id', $user_id)->first();
-       
-    //      $data = json_decode(json_encode($userdata), true); 
-
-      
-
-    //     if(!empty($userdata)){
-    //         $response = $userdata;
-    //     } 
-    //     return $response;
-    // }
-
-
+ 
   
 
 

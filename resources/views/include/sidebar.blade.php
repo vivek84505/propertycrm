@@ -19,13 +19,11 @@
             <!-- Nav Start -->
             <div class="classynav">
                 <ul>
-                    <!-- <li><a href="#"><i class="icon_drive"></i> Dashboards</a>
+                    <li><a href="#"><i class="icon_drive"></i> Master</a>
                         <ul class="dropdown">
-                            <li><a href="dashboard-1.html">- Dashboard - 1</a></li>
-                            <li><a href="dashboard-2.html">- Dashboard - 2</a></li>
-                            <li><a href="dashboard-3.html">- Dashboard - 3</a></li>
+                            <li><a href="{{route('leadsource')}}">Lead Source master</a></li>                            
                         </ul>
-                    </li> -->
+                    </li>
                     
                     
                     <li><a href="{{route('dashboard')}}"><i class="icon_genius"></i> Dashboard </a></li>

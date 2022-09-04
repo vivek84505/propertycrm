@@ -37,6 +37,14 @@ Route::middleware([loginliddleware::class])->group(function () {
     Route::post('/changepassword', 'UserController@changepassword')->name('changepassword');
 
 
+    // Lead Source Routes
+     Route::get('/leadsource', 'LeadSourceController@index')->name('leadsource');
+     Route::post('/leadsourcegetall', 'LeadSourceController@leadsourceAll')->name('leadsourcegetall');
+     Route::post('/getleadsourcebyid', 'LeadSourceController@getleadsourceById')->name('getleadsourcebyid');
+     Route::post('/leadsourceedit', 'LeadSourceController@leadsourceEdit')->name('leadsourceedit');
+     Route::post('/leadsourcdelete', 'LeadSourceController@leadsourcDelete')->name('leadsourcdelete');
+     Route::post('/leadsourceadd', 'LeadSourceController@leadsourceAdd')->name('leadsourceadd');
+
 
 });
  

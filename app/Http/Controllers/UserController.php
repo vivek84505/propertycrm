@@ -24,7 +24,7 @@ class UserController extends Controller
 
         
 
-        return View::make('users.users_management');
+        return View::make('users.view');
 
     }
 
@@ -64,7 +64,7 @@ class UserController extends Controller
         }
 
       
-       $returnHtml = view('users.userlist')->with('result',$result)->render();
+       $returnHtml = view('users.list')->with('result',$result)->render();
 
         return response()->json(array('html'=>$returnHtml));
 

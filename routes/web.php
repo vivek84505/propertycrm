@@ -46,6 +46,15 @@ Route::middleware([loginliddleware::class])->group(function () {
      Route::post('/leadsourceadd', 'LeadSourceController@leadsourceAdd')->name('leadsourceadd');
 
 
+     // Lead Status Routes
+     Route::get('/leadstatus', 'LeadStatusController@index')->name('leadstatus');
+     Route::post('/leadstatusgetall', 'LeadStatusController@leadstatusgetAll')->name('leadstatusgetall');
+     Route::post('/leadstatusadd', 'LeadStatusController@leadstatusaddAdd')->name('leadstatusadd');
+     Route::post('/getleadstatusbyid', 'LeadStatusController@getleadstatusById')->name('getleadstatusbyid');
+     Route::post('/leadstatusedit', 'LeadStatusController@leadstatusEdit')->name('leadstatusedit');
+     Route::post('/leadstatusdelete', 'LeadStatusController@leadstatusDelete')->name('leadstatusdelete');
+
+
 });
  
 

@@ -186,22 +186,7 @@ class LeadSourceModel extends Authenticatable
 
     }
 
-
-
-    public function changePassword($payload){
  
- 
-        if(isset($payload['password']) && !empty($payload['password'])){
-             $payload['password'] = bcrypt($payload['password']);
-        }
-       
-        $res = User::where('user_id',$payload['user_id'])->update($payload);
-        return $res; 
- 
-     }
-
- 
-  
 
 
 }

@@ -146,7 +146,8 @@ $(document).ready(function() {
     $("#leadsourceeditform").validate({
         rules: {
             leadsource: {
-                required: true
+                required: true,
+                maxlength:30
             },
             isactive: {
                 required: true

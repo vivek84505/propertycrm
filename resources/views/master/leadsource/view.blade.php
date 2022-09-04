@@ -189,7 +189,8 @@ function getleadsourcelist(){
     $("#addleadsource_form").validate({
         rules: {
             leadsource: {
-                required: true
+                required: true,
+                maxlength:30
             } 
         },
         messages: {

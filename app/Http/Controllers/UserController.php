@@ -40,7 +40,7 @@ class UserController extends Controller
       if(!empty($res)){
           
         $userdata = json_decode(json_encode($res), true);
-       
+       //
       }
  
     //   echo "<pre>";

@@ -56,6 +56,19 @@ Route::middleware([loginliddleware::class])->group(function () {
      Route::post('/leadstatusdelete', 'LeadStatusController@test')->name('test');
 
 
+      // Customer Routes
+    Route::get('/customers', 'CustomerController@index')->name('customers');
+    Route::post('/customersgetall', 'CustomerController@getcustomersAll')->name('customersgetall');
+    Route::post('/customersadd', 'CustomerController@customerAdd')->name('customeradd');
+    Route::post('/customersedit', 'CustomerController@customersEdit')->name('customeredit');
+    Route::post('/customersdelete', 'CustomerController@customersDelete')->name('customersdelete');
+    Route::post('/getcustomersbyid', 'CustomerController@customersById')->name('getcustomersbyid');
+ 
+
+     // Customer Routes
+    Route::post('/getdistrictbystateid', 'AjaxController@getdistrictbystateid')->name('getdistrictbystateid');
+    
+
 });
  
 

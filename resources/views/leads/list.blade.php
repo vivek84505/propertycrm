@@ -16,18 +16,17 @@
                                                        @if(!empty($result))
                                                             @foreach($result as $res)
                                                                 <tr>
-                                                                    <td>  {{  $res['customerid']  }}   </td> 
+                                                                    <td>  {{  $res['leadid']  }}   </td> 
                                                                     <td>  {{  $res['firstname'] }} {{  $res['lastname'] }}   </td>
                                                                     <td>  {{  $res['email']  }}   </td> 
                                                                     <td>  {{  $res['mobile']  }}  </td> 
                                                                     <td>  {{  $res['city']  }}  </td>
                                                                     <td class="text-right" >
                                                                     <div class="btn-group">
-                                                                    
-                                                                    <button class="btn m-2 btn-xs rounded-0 btn-info editcustomer" value="{{ $res['customerid'] }}" type="button" >Edit</button>
  
-                                                                    <div class="space"></div>                                                                 
-                                                                    <button class="btn m-2 btn-xs rounded-0 btn-danger deletecustomer " value="{{ $res['customerid'] }}" color-white"> Delete </button>
+                                                                    <a target="_blank" href="{{ route('leadsedit', ['leadid'=>$res['leadid'] ]) }}" class="btn m-2 btn-xs rounded-0 btn-primary "> Edit </a>
+                                                                    </div>                                                                 
+                                                                    <button class="btn m-2 btn-xs rounded-0 btn-danger deletecustomer " value="{{ $res['leadid'] }}" color-white"> Delete </button>
                                                                        
                                                                        
                                                                      </div>
@@ -43,7 +42,7 @@
 
   <!-- User List Model --> 
         <!-- Modal -->
-        <div class="modal fade" id="customereditModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal fade" id="leadeditModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -55,7 +54,7 @@
                         <div class="modal-body">
                              <form  id="customereditform" >
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <input type="hidden" id="customerid" name="customerid" class="edit_customerid" value="">
+                                    <input type="hidden" id="leadid" name="leadid" class="edit_leadid" value="">
                             
                                     <div class="row">
                                                     <div class="form-group col-md-6">
@@ -151,33 +150,33 @@
 
 <script>    
 //Edit User JS
-$('.editcustomer').on('click',function(){
+$('.editlead').on('click',function(){
     
    
-    var customerid = $(this).attr('value');
+    var leadid = $(this).attr('value');
     var token = $('#token').val();           
-    var url = "{{ route('getcustomersbyid') }}";  
-    var payload = { "_token": token , "customerid":customerid};
+    var url = "{{ route('leadbyid') }}";  
+    var payload = { "_token": token , "leadid":leadid};
 
     $.post(url, payload, function(response){
         
         if(response.length > 0 ){
-           let customerdata = response[0];
-            console.log("customerdata=======>",customerdata);
-            $('.edit_customerid').val(customerdata.customerid);
-            $('.edit_firstname').val(customerdata.firstname);
-            $('.edit_lastname').val(customerdata.lastname);
-            $('.edit_email').val(customerdata.email);
-            $('.edit_mobile').val(customerdata.mobile);
-            $('.edit_state').val(customerdata.state);
-            $('.edit_city').val(customerdata.city);
-            $('.edit_website').val(customerdata.website);
+           let leaddata = response[0];
+            console.log("leaddata=======>",leaddata);
+            $('.edit_leadid').val(leaddata.leadid);
+            $('.edit_firstname').val(leaddata.firstname);
+            $('.edit_lastname').val(leaddata.lastname);
+            $('.edit_email').val(leaddata.email);
+            $('.edit_mobile').val(leaddata.mobile);
+            $('.edit_state').val(leaddata.state);
+            $('.edit_city').val(leaddata.city);
+            $('.edit_website').val(leaddata.website);
 
             //Adding Dynamic District dropdown on Pageload 
         
         var token = $('#token').val();
-        var state_id = customerdata.state; 
-    $.post("{{ route('getdistrictbystateid') }}", { "_token": token ,"state_id":customerdata.state}, function(response){
+        var state_id = leaddata.state; 
+    $.post("{{ route('getdistrictbystateid') }}", { "_token": token ,"state_id":leaddata.state}, function(response){
         
         
         response = JSON.parse(response);
@@ -189,7 +188,7 @@ $('.editcustomer').on('click',function(){
                      $.each(response,function(key,val){
  
      
-                        if(customerdata.district === val.district_id ){
+                        if(leaddata.district === val.district_id ){
                             html += '<option value="'+ val.district_id +' " selected >'+ val.district_name +'</option>';
                     
                         }
@@ -210,7 +209,7 @@ $('.editcustomer').on('click',function(){
  
             
  
-            $('#customereditModel').modal('show');
+            $('#leadeditModel').modal('show');
         }
         else{
              alert("Customer Details Not Found!")
@@ -225,84 +224,8 @@ $('.editcustomer').on('click',function(){
 
 <script>
 $(document).ready(function() {
-    $("#customereditform").validate({
-        rules: {
-            firstname: {
-                required: true
-            },
-            lastname: {
-                required: true
-            },
-            email: {
-                required: true,
-                email:true
-            },
-            mobile: {
-                required: true
-            },
-            userrole: {
-                required: true
-            }
-        },
-        messages: {
-            firstname: {
-                required: "Firstname is required"
-            },
-            lastname: {
-                required: "Lastname is required"
-            },
-            email: {
-                required: "Email is required"
-                
-            },
-            mobile: {
-                required:  "Mobile is required"
-            },
-            userrole: {
-                required:  "User Role is required"
-            }           
-             
-        },        
-        submitHandler: function(form,e) {
-            e.preventDefault();
-            console.log('Form submitted');
-            $.ajax({
-                type: 'POST',
-                url: "{{route('customeredit')}}",
-                dataType: "html",
-                data: $('#customereditform').serialize(),
-                beforeSend: function() {
 
-                    $("#loader").show();
-                },               
-                success: function(result) {
-
-                    result = JSON.parse(result);
-                   
-                    if(result.status === 'success'){
-
-                        alertify.success(result.returnmsg);    
-                                
-
-                    }
-                    else if (result.status === 'fail'){
-                        alertify.error(result.returnmsg);
-                    } 
-
-                     
-
-                    getcustomerlist();
-                },
-                complete: function() {
-                    $("#loader").hide();
-                },
-                error : function(error) {
-
-                }
-            });
-            return false;
-        }
-    });
+   
 
 });
 </script>
@@ -314,12 +237,12 @@ $(document).ready(function() {
 // Delete User JS
 $('.deletecustomer').on('click', function () {
         
-    var customerid = $(this).attr('value');
+    var leadid = $(this).attr('value');
     var token = $('#token').val();           
 
         swal({
             title: "Are you sure?",
-            text: "You Want to Delete this Client!",
+            text: "You Want to Delete this Lead!",
             type: "warning",
             showCancelButton: true,
             confirmButtonColor: "#DD6B55",
@@ -330,8 +253,8 @@ $('.deletecustomer').on('click', function () {
            
              $.ajax({
                 type:"POST",              
-                url: "{{ route('customersdelete') }}",                
-                data: { "_token": token , "customerid":customerid },
+                url: "{{ route('leaddelete') }}",                
+                data: { "_token": token , "leadid":leadid },
                 dataType: 'json',
                 beforeSend:function(){
                     $("#loader").show();

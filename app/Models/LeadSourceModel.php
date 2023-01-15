@@ -71,7 +71,7 @@ class LeadSourceModel extends Authenticatable
     public function leadsourceAll(){
         $response = [];
 
-        $leadsourcedata = LeadSourceModel::select('leadsourceid','leadsource','isactive','createdby','createddate','lastmodifiedby','lastmodifieddate')->get();
+        $leadsourcedata = LeadSourceModel::select('leadsourceid','leadsource','isactive','createdby','createddate','lastmodifiedby','lastmodifieddate')->get()->toArray();
          
        
         if(!empty($leadsourcedata)){

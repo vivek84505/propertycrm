@@ -57,12 +57,14 @@ Route::middleware([loginliddleware::class])->group(function () {
 
 
       // Customer Routes
-    Route::get('/customers', 'CustomerController@index')->name('customers');
-    Route::post('/customersgetall', 'CustomerController@getcustomersAll')->name('customersgetall');
-    Route::post('/customersadd', 'CustomerController@customerAdd')->name('customeradd');
-    Route::post('/customersedit', 'CustomerController@customersEdit')->name('customeredit');
-    Route::post('/customersdelete', 'CustomerController@customersDelete')->name('customersdelete');
-    Route::post('/getcustomersbyid', 'CustomerController@customersById')->name('getcustomersbyid');
+    Route::get('/leads', 'LeadController@index')->name('leads');
+    Route::post('/leadsgetall', 'LeadController@getleadsAll')->name('leadsgetall');
+    Route::post('/leadadd', 'LeadController@leadAdd')->name('leadadd');
+    Route::get('/leadsedit/{leadid}', 'LeadController@leadEdit')->name('leadsedit');
+    Route::get('student-detail/{id}/{parameter}',[LeadController::class,'detail'])->name('student.detail');
+
+    Route::post('/leadsdelete', 'LeadController@leadDelete')->name('leaddelete');
+    Route::post('/getleadbyid', 'LeadController@leadById')->name('leadbyid');
  
 
      // Customer Routes

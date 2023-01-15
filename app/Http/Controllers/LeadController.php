@@ -8,12 +8,12 @@ use Illuminate\Http\Request;
 use View;
 use Redirect;
 use Auth;
-use App\Models\CustomerModel;
+use App\Models\LeadModel;
 use Response;
 use Session;
 
 
-class CustomerController extends Controller
+class LeadController extends Controller
 {
     //
     public function index(){
@@ -22,54 +22,55 @@ class CustomerController extends Controller
         // print_r(Session::get('userdata')['email']);die;
         // Session::get('userdata');
         $states = Helper::getStateAll();
-         
-
-        return View::make('customers.view')->with('states',$states);
+        $leadSourceData = Helper::getLeadSourceAll(); 
+        
+      
+        return View::make('leads.view')->with(['states'=> $states , 'leadSourceData'=> $leadSourceData ]);
 
     }
 
 
    
 
-    public function getcustomersAll(Request $request){
+    public function getleadsAll(Request $request){
       
         $result = [];
         
-        $customer = new CustomerModel();   
-        $customerdata = $customer->getcustomersAll();
+        $lead = new LeadModel();   
+        $leaddata = $lead->getleadsAll();
 
-        if(!empty($customerdata)){
+        if(!empty($leaddata)){
             // $response = $userdata;
-           $result = json_decode(json_encode($customerdata), true);
+           $result = json_decode(json_encode($leaddata), true);
 
         }
 
         $states = Helper::getStateAll();
       
-       $returnHtml = view('customers.list')->with(['result' => $result , 'states' => $states])->render();
+       $returnHtml = view('leads.list')->with(['result' => $result , 'states' => $states])->render();
 
         return response()->json(array('html'=>$returnHtml));
 
 
     }
 
-    public function customersById(Request $request){
+    public function leadById(Request $request){
       
         $response = [];
-        $customer = new CustomerModel(); 
+        $lead = new LeadModel(); 
        
         $payload = $request->all();
-        $customerid = $payload['customerid'];
+        $leadid = $payload['leadid'];
         if(isset($payload['_token'])){
             unset($payload['_token']);
         }
        
         
-        $userdata =  $customer->getcustomerbyid( ['customerid' => $customerid] );
+        $leaddata =  $lead->getleadbyid( ['leadid' => $leadid] );
 
-        if(!empty($userdata)){
+        if(!empty($leaddata)){
             // $response = $userdata;
-           $response = json_decode(json_encode($userdata), true);
+           $response = json_decode(json_encode($leaddata), true);
 
         }
 
@@ -83,13 +84,26 @@ class CustomerController extends Controller
 
     }
 
-    public function customerAdd (Request $request){
+    public function leadAdd (Request $request){
         $response = [];
-        $user = new CustomerModel(); 
+        $user = new LeadModel(); 
        
         $payload = $request->all();
-        
-       
+        $units_interested_in = [];
+        if(!empty($payload['units_interested_in'])){
+            $unitlen = count($payload['units_interested_in']);
+            for($i=0; $i<$unitlen; $i++ ){
+                $unit = explode('-',$payload['units_interested_in'][$i]);
+                $obj = (Object) array($unit[0] => $unit[1]);
+                $units_interested_in[$i] = $obj; 
+            }
+        }
+        $units_interested_in = json_encode($units_interested_in);
+        $payload['units_interested_in'] = $units_interested_in; 
+        // var_dump($units_interested_in);
+    //         echo "<pre>";
+    //    echo json_encode($units_interested_in);
+    //     die;
         if(isset($payload['_token'])){
             unset($payload['_token']);
         }
@@ -137,7 +151,7 @@ class CustomerController extends Controller
 
         
 
-        $response = $user->customerAdd($payload);
+        $response = $user->leadAdd($payload);
 
         // echo "<pre>";
         // echo "payload";
@@ -149,13 +163,34 @@ class CustomerController extends Controller
         return response()->json($response); 
 
     }
+public function detail(Request $request){
+    $id = $request->id;
+    $parameter = $request->parameter;
+  }
 
+    public function leadEdit (Request $request){
+        
+        $lead = new LeadModel(); 
 
-    public function customersEdit (Request $request){
+        $leadid = $request->leadid;  
+        $leaddata =  $lead->getleadbyid( ['leadid' => $leadid] );
+        
+        // echo "<pre>";
+        // print_r($leaddata);die;
+        //  dd($leaddata);
+        
+        $states = Helper::getStateAll();
+        $leadSourceData = Helper::getLeadSourceAll(); 
+        
+      
+        return View::make('leads.edit')->with(['leaddata'=> $leaddata , 'states'=> $states , 'leadSourceData'=> $leadSourceData ]);
+
+        
+        dd($request->all());
         $response = [];
         $existing_data_email = [];
         $existing_data_mobile = [];
-        $user = new CustomerModel(); 
+        $user = new LeadModel(); 
         
         $payload = $request->all();
         // echo "<pre>";
@@ -196,7 +231,7 @@ class CustomerController extends Controller
         // print_r($payload);die;
 
         //Checking existing email 
-        $existing_result_email = $user->checExistingcustomer( [ 'email' => $payload['email']]);
+        $existing_result_email = $user->checExistinglead( [ 'email' => $payload['email']]);
 
         
         if(!empty($existing_result_email)){          
@@ -206,16 +241,16 @@ class CustomerController extends Controller
         
         if(!empty($existing_data_email)){
            
-            if( $existing_data_email['customerid'] != $payload['customerid']){
+            if( $existing_data_email['leadid'] != $payload['leadid']){
                 $response['status'] = 'fail';
-                $response['returnmsg'] = 'Customer with same email alredy exists!';
+                $response['returnmsg'] = 'lead with same email alredy exists!';
                 return response()->json($response); 
               }
          }
           
           
             //Checking existing Mobile
-          $existing_result_mobile = $user->checExistingcustomer( [ 'mobile' => $payload['mobile']]);
+          $existing_result_mobile = $user->checExistinglead( [ 'mobile' => $payload['mobile']]);
 
         
 
@@ -226,9 +261,9 @@ class CustomerController extends Controller
           
           if(!empty($existing_data_mobile)){
            
-             if( $existing_data_mobile['customerid'] != $payload['customerid']){
+             if( $existing_data_mobile['leadid'] != $payload['leadid']){
                 $response['status'] = 'fail';
-                $response['returnmsg'] = 'Customer with same mobile alredy exists!';
+                $response['returnmsg'] = 'lead with same mobile alredy exists!';
                 return response()->json($response); 
               }
           }
@@ -247,11 +282,11 @@ class CustomerController extends Controller
         // print_r($payload);
         // die;
 
-        $res = $user->customerEdit($payload);
+        $res = $user->leadEdit($payload);
         if($res == 1){
 
             $response['status'] = 'success';
-            $response['returnmsg'] = 'Client Updated Succesfully!';
+            $response['returnmsg'] = 'Lead Updated Succesfully!';
         }
        
         return response()->json($response); 
@@ -259,26 +294,26 @@ class CustomerController extends Controller
     }
 
 
-    public function customersDelete (Request $request){
+    public function leadDelete (Request $request){
         $response = [];
         $payload = $request->all();
-        $customer = new CustomerModel(); 
+        $lead = new LeadModel(); 
         
         if(isset($payload['_token'])){
             unset($payload['_token']);
         }
  
  
-        $res = $customer->customerDelete($payload['customerid']);
+        $res = $lead->leadDelete($payload['leadid']);
 
         if($res == 1){
 
             $response['status'] = 'success';
-            $response['returnmsg'] = 'Client Deleted!';
+            $response['returnmsg'] = 'Lead Deleted!';
         }
         else{
             $response['status'] = 'fail';
-            $response['returnmsg'] = 'Error in deleting Client Something went wrong!';
+            $response['returnmsg'] = 'Error in deleting Lead Something went wrong!';
         }
 
          
@@ -286,86 +321,7 @@ class CustomerController extends Controller
 
     }
 
-    public function changepassword(Request $request){
-
-      
-
-
-        $response = [];
-        $currentUserPayload = [];
-        $payload = $request->all();
-        $user = new CustomerModel();
-        
-        // echo "<pre>";
-        // print_r($payload); die;
-
-        if(isset($payload['_token'])){
-            unset($payload['_token']);
-        }
-
-        if($payload['current_password'] == '' ){
-            $response['status'] = 'fail';
-            $response['returnmsg'] = 'Current Password is required';
-            return response()->json($response); 
-        }
-
-        if($payload['new_password'] == '' ){
-            $response['status'] = 'fail';
-            $response['returnmsg'] = 'New Password is required';
-            return response()->json($response); 
-        }
-
-        if($payload['confirm_password'] == '' ){
-            $response['status'] = 'fail';
-            $response['returnmsg'] = 'Confirm Password is required';
-            return response()->json($response); 
-        }
-
-        
-
-        if( isset($payload['current_password']) && !empty($payload['current_password']) ){
-            
-            $currentUserPayload['email'] =  Session::get('userdata')['email'];
-            $currentUserPayload['password'] = $payload['current_password'];
-            
-            if(!Auth::attempt($currentUserPayload)){
-
-                $response['status'] = 'fail';
-                $response['returnmsg'] = 'Current Password is incorrect';
-                return response()->json($response); 
-            }
-          
-        }
-
-
-
-        if(isset($payload['new_password']) && isset($payload['confirm_password']) ){
-            if($payload['new_password'] != $payload['confirm_password']){
-                $response['status'] = 'fail';
-                $response['returnmsg'] = 'New password and confirm password mismatch.';
-                return response()->json($response); 
-            }
-           
-        }
-       
-
-        $changepassword_payload['password'] = $payload['new_password'];
-        $changepassword_payload['user_id'] = $payload['user_id'];
-         
-       
-        $res = $user->changePassword($changepassword_payload); 
-        if($res == 1){
-
-            $response['status'] = 'success';
-            $response['returnmsg'] = 'Password Updated Succesfully!';
-        }
-
-
-
-
-        return response()->json($response); 
-
-    }
+    
 
 }
  

@@ -29,8 +29,13 @@
                     
                     <li><a href="{{route('dashboard')}}"><i class="icon_genius"></i> Dashboard </a></li>
                     <li><a href="{{route('users')}}"><i class="icon_genius"></i> Users Management </a></li>
-                    <li><a href="{{route('customers')}}"><i class="icon_genius"></i> Customers </a></li>
-
+ 
+                    <li><a href="#"><i class="icon_drive"></i> Leads Management</a>
+                        <ul class="dropdown">
+                            <li><a href="{{route('leads')}}"> Add Leads </a></li>                            
+                                                      
+                        </ul>
+                    </li>
                     
                 </ul>
             </div>

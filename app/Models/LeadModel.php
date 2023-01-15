@@ -10,13 +10,13 @@ use DB;
 use Hash;
 
 
-class CustomerModel extends Authenticatable
+class LeadModel extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    protected $table = 'tbl_customer';
-    protected $primaryKey = 'customerid';
- 
+    protected $table = 'tbl_leadmaster';
+    protected $primaryKey = 'leadid';
+    
   
 
     /**
@@ -46,15 +46,17 @@ class CustomerModel extends Authenticatable
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'email_verified_at' => 'datetime'
+         
     ];
 
-    public function getcustomerbyid($payload){
+    public function getleadbyid($payload){
         $res = [];
-        $customerdata = [];
-        $customer = new CustomerModel();  
+        $leaddata = [];
+        $lead = new LeadModel();  
+        
        
-        $query = DB::table('tbl_customer');
+        $query = DB::table('tbl_leadmaster');
 
         if(isset($payload['email']) && !empty($payload['email']))
             $query->where('email', $payload['email']);
@@ -62,26 +64,26 @@ class CustomerModel extends Authenticatable
         if(isset($payload['mobile']) && !empty($payload['mobile']))
         $query->where('mobile', $payload['mobile']);
 
-        if(isset($payload['customerid']) && !empty($payload['customerid']))
-        $query->where('customerid', $payload['customerid']);
+        if(isset($payload['leadid']) && !empty($payload['leadid']))
+        $query->where('leadid', $payload['leadid']);
 
 
-        $customerdata = $query->get();
+        $leaddata = $query->get()->first();
         
         
         
 
-        if(!empty($customerdata)){
-            $res = $customerdata;
+        if(!empty($leaddata)){
+            $res = $leaddata;
         }
         
         return $res;
     }
 
-    public function getcustomersAll(){
+    public function getleadsAll(){
         $response = [];
 
-        $userdata = CustomerModel::select('customerid','firstname','lastname','email','mobile','alt_mobile','state','address','city','pincode','created_at','createdby')->where('isdeleted','0')->get();
+        $userdata = LeadModel::select('leadid','firstname','lastname','email','mobile','alt_mobile','state','address','city','created_at','createdby')->where('isdeleted','0')->get();
          
         
         if(!empty($userdata)){
@@ -94,22 +96,22 @@ class CustomerModel extends Authenticatable
     }
 
 
-    public function customerDelete($customerid){
+    public function leadDelete($leadid){
 
-        $payload['customerid'] = $customerid;
+        $payload['leadid'] = $leadid;
         $payload['isdeleted'] = 1;
        
-         return $deleteResult = CustomerModel::where('customerid',$customerid)->update($payload);
+         return $deleteResult = LeadModel::where('leadid',$leadid)->update($payload);
         
     }
 
-    public function checExistingcustomer($payload){
+    public function checExistinglead($payload){
 
        
         $res = [];
-        $user = new CustomerModel();  
+        $user = new LeadModel();  
        
-        $query = DB::table('tbl_customer');
+        $query = DB::table('tbl_leadmaster');
 
         
 
@@ -128,11 +130,11 @@ class CustomerModel extends Authenticatable
          
        
       
-        $customerdata = $query->get();
+        $leaddata = $query->get();
         
          
-        if(!empty($customerdata)){
-            $res = json_decode(json_encode($customerdata), true); 
+        if(!empty($leaddata)){
+            $res = json_decode(json_encode($leaddata), true); 
         }
 
         
@@ -141,50 +143,47 @@ class CustomerModel extends Authenticatable
     }
 
 
-    public function customerEdit($payload){
+    public function leadEdit($payload){
 
-       $customerid = $payload['customerid'];
+       $leadid = $payload['leadid'];
 
-       if(isset($payload['customerid'])){
-         unset($payload['customerid']);
+       if(isset($payload['leadid'])){
+         unset($payload['leadid']);
        }
  
       
-       $res = CustomerModel::where('customerid',$customerid)->update($payload);
+       $res = LeadModel::where('leadid',$leadid)->update($payload);
        return $res; 
 
     }
 
 
-    public function customerAdd($payload){
+    public function leadAdd($payload){
         // echo "<pre>";
         // print_r($payload);die;
         $Modelresponse = [];
-        $existing_userdata = [];
-        $sqlQueryResult =  CustomerModel::select('email','mobile')->where('email', $payload['email'])->orWhere('mobile', $payload['mobile'])->first();
+        $existing_leaddata = [];
+
+         
+       
+        //  $sqlQueryResult =  LeadModel::select('email','mobile')->where('email', $payload['email'])->orWhere('mobile', $payload['mobile'])->where('isdeleted', '1')->first();
         
-        if(!empty($sqlQueryResult)){
-            $existing_userdata = json_decode(json_encode($sqlQueryResult), true);
+        // if(!empty($sqlQueryResult)){
+        //     $existing_leaddata = json_decode(json_encode($sqlQueryResult), true);
 
-            if($payload['email'] === $existing_userdata['email'] ){
-                $Modelresponse['status'] = 'fail';
-                $Modelresponse['returnmsg'] = 'Customer with this email already exists';
-            }
+        //     if($payload['email'] === $existing_leaddata['email'] ){
+        //         $Modelresponse['status'] = 'fail';
+        //         $Modelresponse['returnmsg'] = 'lead with this email already exists';
+        //     }
 
-            if($payload['mobile'] === $existing_userdata['mobile'] ){
-                $Modelresponse['status'] = 'fail';
-                $Modelresponse['returnmsg'] = 'User with this Mobile already exists';
-            } 
-        } else
-        {
+        //     if($payload['mobile'] === $existing_leaddata['mobile'] ){
+        //         $Modelresponse['status'] = 'fail';
+        //         $Modelresponse['returnmsg'] = 'lead with this Mobile already exists';
+        //     } 
+        // }  
             
-        //       echo "<pre>";
-        // echo "payload from Model";
-        // print_r($payload);
-        // die;
-
-
-            $user = new CustomerModel();
+            
+            $user = new LeadModel();
             $res= $user->insert($payload);
            
             if(!$res){
@@ -195,12 +194,10 @@ class CustomerModel extends Authenticatable
             else{
                 
                 $Modelresponse['status'] = 'success';
-                $Modelresponse['returnmsg'] = 'Customer Added Succesfully';
+                $Modelresponse['returnmsg'] = 'lead Added Succesfully';
             }
              
-
-        } 
-       
+ 
         return $Modelresponse;
         
 

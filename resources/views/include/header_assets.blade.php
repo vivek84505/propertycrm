@@ -13,7 +13,7 @@
 
 <link rel="stylesheet" href="{{ URL::asset('public/css/plugins/sweet-alert-css/sweetalert.min.css') }}">
 
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/1.1.2/css/bootstrap-multiselect.css" integrity="sha512-tlP4yGOtHdxdeW9/VptIsVMLtgnObNNr07KlHzK4B5zVUuzJ+9KrF86B/a7PJnzxEggPAMzoV/eOipZd8wWpag==" crossorigin="anonymous" referrerpolicy="no-referrer" />
  
    <!-- Loader -->
    <div style="display:none" id="loader" class="loader"></div>

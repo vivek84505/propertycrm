@@ -3,6 +3,7 @@
 namespace App\Helpers;
 use App\Models\StateModel;
 use App\Models\DistrictModel;
+use App\Models\LeadSourceModel;
 
 use Arr;
 class Helper
@@ -26,6 +27,29 @@ class Helper
         } 
 
         return $statesAll; 
+    }
+
+
+
+    public static function getLeadSourceAll($type = '')
+    {
+        $leadsourceAll = [];
+
+        $leadsource = new LeadSourceModel();
+      
+        
+        if($type == 'dropdown'){
+
+              $leadsourceAll = $leadsource->leadsourceAll();
+              $leadsourceAll = Arr::pluck($leadsourceAll,'leadsourceid','leadsource');
+        }
+        else{
+            
+            $leadsourceAll = $leadsource->leadsourceAll();
+             
+        } 
+
+        return $leadsourceAll; 
     }
 
 

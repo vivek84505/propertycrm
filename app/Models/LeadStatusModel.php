@@ -71,7 +71,7 @@ class LeadStatusModel extends Authenticatable
     public function leadstatusAll(){
         $response = [];
 
-        $leadstatusdata = LeadStatusModel::select('leadstatusid','leadstatus','isactive','createdby','createddate','lastmodifiedby','lastmodifieddate')->get();
+        $leadstatusdata = LeadStatusModel::select('leadstatusid','leadstatus','isactive','createdby','createddate','lastmodifiedby','lastmodifieddate')->get()->toArray();
          
        
         if(!empty($leadstatusdata)){

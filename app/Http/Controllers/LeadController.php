@@ -9,9 +9,10 @@ use View;
 use Redirect;
 use Auth;
 use App\Models\LeadModel;
+use App\Models\LeadLogModel;
 use Response;
 use Session;
-
+use Carbon\Carbon;
 
 class LeadController extends Controller
 {
@@ -19,7 +20,7 @@ class LeadController extends Controller
     public function index(){
 
         // echo "<pre>";
-        // print_r(Session::get('userdata')['email']);die;
+        // print_r( Session::get('userdata'));die;
         // Session::get('userdata');
         $states = Helper::getStateAll();
         $leadSourceData = Helper::getLeadSourceAll(); 
@@ -100,10 +101,7 @@ class LeadController extends Controller
         }
         $units_interested_in = json_encode($units_interested_in);
         $payload['units_interested_in'] = $units_interested_in; 
-        // var_dump($units_interested_in);
-    //         echo "<pre>";
-    //    echo json_encode($units_interested_in);
-    //     die;
+         
         if(isset($payload['_token'])){
             unset($payload['_token']);
         }
@@ -149,54 +147,35 @@ class LeadController extends Controller
             $payload['created_at'] = date("Y-m-d H:i:s", strtotime('now'));
         }
 
-        
+        $payload['leadstatus'] = '1';
 
         $response = $user->leadAdd($payload);
 
-        // echo "<pre>";
-        // echo "payload";
-        // print_r($response);
-        // die;
-        // echo "<pre>";
-        // print_r($response);
-        // die;
+         
         return response()->json($response); 
 
     }
-public function detail(Request $request){
-    $id = $request->id;
-    $parameter = $request->parameter;
-  }
 
-    public function leadEdit (Request $request){
-        
-        $lead = new LeadModel(); 
 
-        $leadid = $request->leadid;  
-        $leaddata =  $lead->getleadbyid( ['leadid' => $leadid] );
-        
-        // echo "<pre>";
-        // print_r($leaddata);die;
-        //  dd($leaddata);
-        
-        $states = Helper::getStateAll();
-        $leadSourceData = Helper::getLeadSourceAll(); 
-        
-      
-        return View::make('leads.edit')->with(['leaddata'=> $leaddata , 'states'=> $states , 'leadSourceData'=> $leadSourceData ]);
-
-        
-        dd($request->all());
+    public function leadEditSave (Request $request){
         $response = [];
-        $existing_data_email = [];
-        $existing_data_mobile = [];
         $user = new LeadModel(); 
-        
-        $payload = $request->all();
-        // echo "<pre>";
-        // print_r($payload);
-        // die;
        
+        $payload = $request->all();
+        
+
+        $units_interested_in = [];
+        if(!empty($payload['units_interested_in'])){
+            $unitlen = count($payload['units_interested_in']);
+            for($i=0; $i<$unitlen; $i++ ){
+                $unit = explode('-',$payload['units_interested_in'][$i]);
+                $obj = (Object) array($unit[0] => $unit[1]);
+                $units_interested_in[$i] = $obj; 
+            }
+        }
+        $units_interested_in = json_encode($units_interested_in);
+        $payload['units_interested_in'] = $units_interested_in; 
+         
         if(isset($payload['_token'])){
             unset($payload['_token']);
         }
@@ -204,93 +183,174 @@ public function detail(Request $request){
         if(isset($payload['firstname']) && $payload['firstname'] == '' ){
             $response['status'] = 'fail';
             $response['returnmsg'] = 'Firstname is required';
-            return response()->json($response); 
         }
 
         if(isset($payload['lastname']) && $payload['lastname'] == '' ){
             $response['status'] = 'fail';
             $response['returnmsg'] = 'Lastname is required';
-            return response()->json($response); 
         }
         
         if(isset($payload['email']) && $payload['email'] == '' ){
             $response['status'] = 'fail';
             $response['returnmsg'] = 'Email is required';
-            return response()->json($response); 
         }
 
         if(isset($payload['mobile']) && $payload['mobile'] == '' ){
             $response['status'] = 'fail';
             $response['returnmsg'] = 'Mobile Number is required';
-            return response()->json($response); 
         }
 
-         
-
-        // echo "<pre>";
-        // print_r($payload);die;
-
-        //Checking existing email 
-        $existing_result_email = $user->checExistinglead( [ 'email' => $payload['email']]);
-
-        
-        if(!empty($existing_result_email)){          
-            $existing_data_email = json_decode(json_encode($existing_result_email[0]), true);           
+         if(isset($payload['state']) && $payload['state'] == '' ){
+            $response['status'] = 'fail';
+            $response['returnmsg'] = 'state is required';
         }
-         
-        
-        if(!empty($existing_data_email)){
-           
-            if( $existing_data_email['leadid'] != $payload['leadid']){
-                $response['status'] = 'fail';
-                $response['returnmsg'] = 'lead with same email alredy exists!';
-                return response()->json($response); 
-              }
-         }
-          
-          
-            //Checking existing Mobile
-          $existing_result_mobile = $user->checExistinglead( [ 'mobile' => $payload['mobile']]);
 
-        
+         if(isset($payload['district']) && $payload['district'] == '' ){
+            $response['status'] = 'fail';
+            $response['returnmsg'] = 'District required';
+        }
 
-          if(!empty($existing_result_mobile)){          
-            $existing_data_mobile = json_decode(json_encode($existing_result_mobile[0]), true);           
-          }
-          
-          
-          if(!empty($existing_data_mobile)){
-           
-             if( $existing_data_mobile['leadid'] != $payload['leadid']){
-                $response['status'] = 'fail';
-                $response['returnmsg'] = 'lead with same mobile alredy exists!';
-                return response()->json($response); 
-              }
-          }
-           
-         
-       
+
+         if(isset($payload['city']) && $payload['city'] == '' ){
+            $response['status'] = 'fail';
+            $response['returnmsg'] = 'City is required';
+        }
         
         if(isset(Session::get('userdata')['email'])){
-            $payload['lastmodifiedby'] = Session::get('userdata')['email'];
-            $payload['updated_at'] = date("Y-m-d H:i:s", strtotime('now'));
-           
+            $payload['createdby'] = Session::get('userdata')['email'];
+            $payload['created_at'] = date("Y-m-d H:i:s", strtotime('now'));
         }
 
-        //  echo "<pre>";
-        //  echo "before update";
-        // print_r($payload);
-        // die;
+        // echo "<pre>";
+        // echo "payload";
+        // print_r($payload); die;
 
-        $res = $user->leadEdit($payload);
-        if($res == 1){
+        $response = $user->leadEditSave($payload);
 
-            $response['status'] = 'success';
-            $response['returnmsg'] = 'Lead Updated Succesfully!';
-        }
-       
+        
         return response()->json($response); 
 
+    }
+
+
+
+    public function leadremarkAdd (Request $request){
+        $response = [];
+        $leadlog = new LeadLogModel(); 
+       
+        $payload = $request->all();
+        $payload['createdby'] = SESSION::get('userdata')['email'];
+        
+         
+        
+        if(isset($payload['_token'])){
+            unset($payload['_token']);
+        }
+
+        
+        
+
+
+        if(isset($payload['logtext']) && $payload['logtext'] == '' ){
+            $response['status'] = 'fail';
+            $response['returnmsg'] = 'Lead Remark is required';
+        }
+        
+
+          
+        
+        if(isset(Session::get('userdata')['email'])){
+            $payload['createdby'] = Session::get('userdata')['email'];
+            $payload['userid'] = Session::get('userdata')['user_id'];
+            $payload['createddate'] = date("Y-m-d H:i:s", strtotime('now'));
+        }
+
+        
+
+        $response = $leadlog->leadRemarkAdd($payload);
+
+        
+        return response()->json($response); 
+
+    }
+
+
+
+public function detail(Request $request){
+    $id = $request->id;
+    $parameter = $request->parameter;
+  }
+
+
+  public function getleadloglist(Request $request){
+
+    $res = [];
+    $lead = new LeadLogModel();     
+    $leadid = $request->leadid;
+
+    $leadlogdata = $lead->getleadloglist( ['leadid' => $leadid] );
+
+    if(!empty($leadlogdata)){
+        $res['status'] = 'success';
+        $res['data'] = $leadlogdata;        
+    }
+    else{
+         $res['status'] = 'fail';
+        $res['data'] = [];      
+    }
+
+     return response()->json($res); 
+
+
+  }
+    public function leadEdit (Request $request){
+        
+        $lead = new LeadModel(); 
+
+        $leadid = $request->leadid;  
+        $leaddata =  $lead->getleadbyid( ['leadid' => $leadid] );
+         
+
+        if(!empty($leaddata->units_interested_in)){
+            $leaddata->next_followup_date = date("Y-m-d", strtotime($leaddata->next_followup_date));
+        }
+
+        // echo $leaddata->next_followup_date;  die;
+
+        if(!empty($leaddata->units_interested_in)){
+            $tempunits = [];
+            $leaddata->units_interested_in = json_decode($leaddata->units_interested_in);
+            
+            foreach($leaddata->units_interested_in  as $unit){
+                $unit = (array)$unit;
+                $key = key($unit);
+                $val = $unit[$key];
+                if(!empty($key) && !empty($val)){
+                    $tempunits[] = $key .'-'.$val;
+                }
+ 
+            } 
+        }
+        
+        if(!empty($tempunits)){
+
+            $leaddata->units_interested_in = $tempunits;
+        }
+       
+
+        
+
+        $states = Helper::getStateAll();
+        $districts = Helper::getDestrictsAll($leaddata->state);
+        $leadSourceData = Helper::getLeadSourceAll(); 
+        $customerBudget = Helper::getCustomerBudget();
+        $leadStatusAll = Helper::getleadStatusAll();
+        
+        // echo "<pre>";
+        // print_r($leadStatusAll);die;
+
+        return View::make('leads.edit')->with(['leadStatusAll'=> $leadStatusAll,'customerBudget'=> $customerBudget,'districts'=> $districts, 'leaddata'=> $leaddata , 'states'=> $states , 'leadSourceData'=> $leadSourceData ]);
+ 
     }
 
 

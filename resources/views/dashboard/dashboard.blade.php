@@ -23,12 +23,12 @@
       @include('include/header');
 
         <!-- ###### Layout Container Area ###### -->
-        <div class="layout-container-area mt-70">
+        <div class="layout-container-area mt-75">
             <!-- Side Menu Area -->
            @include('include/sidebar');
            
             <!-- Layout Container -->
-            <div class="layout-container sidemenu-container mt-100">
+            <div class="layout-container sidemenu-container">
                 <div class="container-fluid">
                     <div class="row justify-content-center">
                         <div class="col-sm-6 col-lg-3">

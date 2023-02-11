@@ -5483,3 +5483,13 @@ iframe {
     display: inline-block;
     margin-right: -13px;
 }
+
+.leadsubmitbutton {
+    margin-left: 300px !important;
+}
+
+.leadeditbutton {
+    margin-left: 460px !important;
+}
+
+ 

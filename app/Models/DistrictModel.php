@@ -6,7 +6,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use DB;
+use Illuminate\Support\Facades\DB;
+
+ 
 use Hash;
 
 
@@ -90,66 +92,38 @@ class DistrictModel extends Authenticatable
     }
 
 
-    public function userDelete($user_id){
-
-         return $deleteResult = User::where('user_id',$user_id)->delete(); 
-        
-    }
-
-    public function checExistinguser($payload){
-
-       
+      public function getDistrictsAll($statid = ''){
+        $response = [];
+        $districts = DistrictModel::query();
+         
         $res = [];
-        $user = new UserModel();  
        
-        $query = DB::table('users');
-
-        
-
-        if(isset($payload['email']) && !empty($payload['email'])){
-            
-            $query->where('email', $payload['email']);
-        }
-          
-        
-        if(isset($payload['mobile']) && !empty($payload['mobile'])){  
-            
-            $query->orwhere('mobile', $payload['mobile']); 
-        }
+        $districts = []; 
        
+        $query = DB::table('tbl_district');
 
+        if(isset($statid) && !empty($statid))
+            $query->where('state_id', $statid)->orderBy('createddate', 'DESC')->get()->toArray();
+ 
+
+        $districts = $query->get();
          
-       
-      
-        $userdata = $query->get();
-        
-         
-        if(!empty($userdata)){
-            $res = json_decode(json_encode($userdata), true); 
-        }
 
+        if(!empty($districts)){
+            $res = $districts;
+        }
         
         return $res;
 
     }
 
 
-    public function userEdit($payload){
+    
 
-       $userid = $payload['user_id'];
+     
 
-       if(isset($payload['user_id'])){
-         unset($payload['user_id']);
-       }
 
-       if(isset($payload['mobile']) && !empty($payload['mobile'])){
-            $payload['password'] = bcrypt($payload['mobile']);
-       }
-      
-       $res = User::where('user_id',$userid)->update($payload);
-       return $res; 
-
-    }
+   
 
 
     public function userAdd($payload){

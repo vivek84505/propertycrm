@@ -57,7 +57,7 @@ class LeadModel extends Authenticatable
         
        
         $query = DB::table('tbl_leadmaster');
-
+ 
         if(isset($payload['email']) && !empty($payload['email']))
             $query->where('email', $payload['email']);
 
@@ -159,28 +159,10 @@ class LeadModel extends Authenticatable
 
 
     public function leadAdd($payload){
-        // echo "<pre>";
-        // print_r($payload);die;
+       
         $Modelresponse = [];
         $existing_leaddata = [];
 
-         
-       
-        //  $sqlQueryResult =  LeadModel::select('email','mobile')->where('email', $payload['email'])->orWhere('mobile', $payload['mobile'])->where('isdeleted', '1')->first();
-        
-        // if(!empty($sqlQueryResult)){
-        //     $existing_leaddata = json_decode(json_encode($sqlQueryResult), true);
-
-        //     if($payload['email'] === $existing_leaddata['email'] ){
-        //         $Modelresponse['status'] = 'fail';
-        //         $Modelresponse['returnmsg'] = 'lead with this email already exists';
-        //     }
-
-        //     if($payload['mobile'] === $existing_leaddata['mobile'] ){
-        //         $Modelresponse['status'] = 'fail';
-        //         $Modelresponse['returnmsg'] = 'lead with this Mobile already exists';
-        //     } 
-        // }  
             
             
             $user = new LeadModel();
@@ -204,39 +186,27 @@ class LeadModel extends Authenticatable
     }
 
 
+    public function leadEditSave($payload){
+ 
+        $response = [];
+        $res = LeadModel::where('leadid',$payload['leadid'])->update($payload);
+        
+        if(!$res){
 
-    public function changePassword($payload){
- 
- 
-        if(isset($payload['password']) && !empty($payload['password'])){
-             $payload['password'] = bcrypt($payload['password']);
+            $response['status'] = 'fail';
+            $response['returnmsg'] = 'Something Went Wrong';
         }
-       
-        $res = User::where('user_id',$payload['user_id'])->update($payload);
-        return $res; 
+        else{
+
+            $response['status'] = 'success';
+            $response['returnmsg'] = 'lead Updated Succesfully';
+        }
+        
+        return $response; 
+
+    }
+
  
-     }
-
-
-    //  public function getuserpassword($user_id){
-
-    //     $response = [];
-    //     $user = new UserModel();   
-       
-    //       $userdata =  User::select('*')->where('user_id', $user_id)->first();
-       
-    //      $data = json_decode(json_encode($userdata), true); 
-
-      
-
-    //     if(!empty($userdata)){
-    //         $response = $userdata;
-    //     } 
-    //     return $response;
-    // }
-
-
-  
 
 
 }

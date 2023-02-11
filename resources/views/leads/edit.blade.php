@@ -1,4 +1,4 @@
- 
+
 
 
 <!DOCTYPE html>
@@ -26,15 +26,15 @@
       @include('include/header');
 
         <!-- ###### Layout Container Area ###### -->
-        <div class="layout-container-area mt-70">
+        <div class="layout-container-area mt-25">
             <!-- Side Menu Area -->
            @include('include/sidebar');
            
             <!-- Layout Container -->
-            <div class="layout-container sidemenu-container mt-100">
+            <div class="layout-container sidemenu-container">
                 <div class="container-fluid">
                     <div class="row justify-content-center"> 
-                        <div class="col-7">
+                        <div class="col-12">
                             <!-- Product List Area -->
                             <div class="product-list--area mb-80 bg-boxshadow">
                                 <div class="ibox-content">
@@ -43,9 +43,11 @@
                                             <h5 class="title-- mb-30">Edit Lead </h5>
                                         </div>
                                         
-                                        <form id="addcustomer_form" >
+                                        <form id="lead_edit_form" >
                                             <div class="row">
-                                                 
+                                              <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+
+                                                <input type="hidden" name="leadid" id="leadid" value="{{ $leaddata->leadid ?? '' }}" >
                                                 <div class="col-sm-6">
                                                         <label class="col-form-label">Firstname</label>
                                                         <input type="text" name="firstname" id="firstname" class="form-control" value="{{ $leaddata->firstname ?? '' }}" >
@@ -90,6 +92,17 @@
                                              
                                                 <label class="col-form-label">District</label>                                                
                                                 <select name="district" id="district" class="form-control"  >
+                                                     <option value=""> Select District </option>
+
+                                                         @foreach($districts as $district )
+                                                            
+                                                            @if($district->district_id == $leaddata->district)
+                                                                <option value="{{ $district->district_id }}" selected> {{ $district->district_name }} </option>
+                                                            @else
+                                                            <option value="{{ $district->district_id }}"> {{ $district->district_name }} </option>        
+                                                            @endif
+                                                        @endforeach
+
                                                 </select>
                                                 </div>
 
@@ -105,49 +118,55 @@
                                                 </div>
 
 
-                                                <div class="col-sm-4">
+                                                <div class="col-sm-6">
                                                     
                                                         <label class="col-form-label">Lead Source </label>                                                
+                                                        
                                                         <select name="leadsource" id="leadsource" class="form-control"  >
                                                             <option value=""> Select Source </option>
-                                                            @foreach($leadSourceData as $leadsource )
-                                                            <option value="{{ $leadsource['leadsourceid'] }}"> {{ $leadsource['leadsource'] }} </option>
-                                                            @endforeach 
-                                                        </select> 
-                                                </div>
+                                                            @foreach($leadSourceData as $leadSource )
+ 
+                                                              @if($leadSource['leadsourceid'] == $leaddata->leadsource)
+                                                                <option value="{{ $leadSource['leadsourceid'] }}" selected> {{ $leadSource['leadsource'] }} </option>
+                                                            @else
+                                                            <option value="{{ $leadSource['leadsourceid'] }}"> {{ $leadSource['leadsource'] }} </option>        
+                                                            @endif
 
-
-                                                <div class="col-sm-4">
-                                                    
-                                                    <label class="col-form-label">Property Type </label>                                                
-                                                        <select name="property_type" id="property_type" class="form-control"  >
-                                                            <option value=""> Select Type </option>                                                     
-                                                            <option value="resedential"> Resedential </option>
-                                                            <option value="commercial"> Commercial </option>
-                                                            <option value="plot"> Plot </option>
-                                                        
+                                                            @endforeach
                                                         </select>
+                                                        
+                                                       
                                                 </div>
 
 
-                                                <div class="col-sm-4">
+                                                 
+
+
+                                                <div class="col-sm-6">
                                                     
                                                         <label class="col-form-label">Units Interested In </label> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;                                        
                                                         <select   name="units_interested_in[]" id="units_interested_in" class="form-control"  multiple="multiple"  >
                                                                                                             
-                                                            <option value="1-1BHK"> 1BHK </option>
-                                                            <option value="2-1.5BHK"> 1.5BHK </option>
-                                                            <option value="3-2BHK"> 2BHK </option>
-                                                            <option value="4-2.5BHK"> 2.5BHK </option>
-                                                            <option value="5-3BHK"> 3BHK </option>   
+                                                            <option value="1-1BHK" <?php if(in_array('1-1BHK',$leaddata->units_interested_in)) echo "selected" ?> > 1BHK </option>
+                                                            <option value="2-1.5BHK" <?php if(in_array('2-1.5BHK',$leaddata->units_interested_in)) echo "selected" ?> > 1.5BHK </option>
+                                                            <option value="3-2BHK" <?php if(in_array('3-2BHK',$leaddata->units_interested_in)) echo "selected" ?> > 2BHK </option>
+                                                            <option value="4-2.5BHK" <?php if(in_array('4-2.5BHK',$leaddata->units_interested_in)) echo "selected" ?> > 2.5BHK </option>
+                                                            <option value="5-3BHK" <?php if(in_array('5-3BHK',$leaddata->units_interested_in)) echo "selected" ?>> 3BHK </option>   
                                                         </select>  
                                                 </div>
 
-                                                <div class="col-sm-4">                                             
+                                                <div class="col-sm-6">                                             
                                                     <label class="col-form-label">Min Budget </label>                                                
                                                         <select   name="customer_budget_min" id="customer_budget_min" class="form-control"    >
-                                                            <option value=""> Select price </option>                                                     
-                                                                <option value="500000">₹5 Lac</option>
+                                                            <option value=""> Select price </option>  
+                                                                @foreach($customerBudget as $budget)
+                                                                    @if($budget['value'] == $leaddata->customer_budget_min)
+                                                                    <option value="{{ $budget['value'] }}" selected> {{ $budget['key'] }} </option>
+                                                                    @else
+                                                                     <option value="{{ $budget['value'] }}"> {{ $budget['key'] }} </option>
+                                                                    @endif
+                                                                @endforeach    
+                                                                <!-- <option value="500000">₹5 Lac</option>
                                                                 <option value="1000000">₹10 Lac</option>
                                                                 <option value="2000000">₹20 Lac</option>
                                                                 <option value="3000000">₹30 Lac</option>
@@ -166,17 +185,27 @@
                                                                 <option value="23000000">₹2.3 Cr</option>
                                                                 <option value="26000000">₹2.6 Cr</option>
                                                                 <option value="30000000">₹3 Cr</option>                                     
-                                                        
+                                                         -->
                                                         </select>
                                                 </div>
 
 
 
-                                                <div class="col-sm-4">                                             
+                                                <div class="col-sm-6">                                             
                                                     <label class="col-form-label">Max Budget </label>                                                
                                                         <select   name="customer_budget_max" id="customer_budget_max" class="form-control"    >
-                                                            <option value=""> Select price </option>                                                     
-                                                                <option value="500000">₹5 Lac</option>
+                                                            <option value=""> Select price </option>   
+                                                            
+                                                            @foreach($customerBudget as $budget)
+                                                                    @if($budget['value'] == $leaddata->customer_budget_max)
+                                                                    <option value="{{ $budget['value'] }}" selected> {{ $budget['key'] }} </option>
+                                                                    @else
+                                                                     <option value="{{ $budget['value'] }}"> {{ $budget['key'] }} </option>
+                                                                    @endif
+                                                                @endforeach  
+
+
+                                                                <!-- <option value="500000">₹5 Lac</option>
                                                                 <option value="1000000">₹10 Lac</option>
                                                                 <option value="2000000">₹20 Lac</option>
                                                                 <option value="3000000">₹30 Lac</option>
@@ -194,7 +223,7 @@
                                                                 <option value="20000000">₹2 Cr</option>
                                                                 <option value="23000000">₹2.3 Cr</option>
                                                                 <option value="26000000">₹2.6 Cr</option>
-                                                                <option value="30000000">₹3 Cr</option>                                     
+                                                                <option value="30000000">₹3 Cr</option>                                      -->
                                                         
                                                         </select>
                                                 </div>
@@ -203,22 +232,54 @@
                                                     <label class="col-form-label">Loan Required </label>                                                
                                                         <select name="loan_required" id="loan_required" class="form-control"  >
                                                             <option value=""> Select </option>
-                                                            <option value="1"> YES </option>
-                                                            <option value="0"> NO </option>
+                                                            <option value="1" <?php if($leaddata->loan_required == "1") echo 'selected';  ?> > YES </option>
+                                                            <option value="0" <?php if($leaddata->loan_required == "0") echo 'selected';  ?>> NO </option>
                                                             
                                                         </select>
                                                 </div>
 
+                                                 
+
+                                                <div class="col-sm-4">                                             
+                                                    <label class="col-form-label">Next Followup Date </label>                                                
+                                                        <input value="{{$leaddata->next_followup_date}}" type="date" name="next_followup_date" id="next_followup_date" class="form-control"  >
+
+                                                </div>
+
+
+                                                <div class="col-sm-4">
+                                                    
+                                                        <label class="col-form-label">Lead Status </label>                                                
+                                                        
+                                                        <select name="leadstatus" id="leadstatus" class="form-control"  >
+                                                            <option value=""> Select Status </option>
+                                                            @foreach($leadStatusAll as $leadstatus )
+ 
+                                                              @if($leadstatus['leadstatusid'] == $leaddata->leadstatus)
+                                                                <option value="{{ $leadstatus['leadstatusid'] }}" selected> {{ $leadstatus['leadstatus'] }} </option>
+                                                            @else
+                                                            <option value="{{ $leadstatus['leadstatusid'] }}"> {{ $leadstatus['leadstatus'] }} </option>        
+                                                            @endif
+
+                                                            @endforeach
+                                                        </select>
+                                                        
+                                                       
+                                                </div>
+
+
+
                                                  <div class="clearfix"> &nbsp; </div>
 
 
-                                                <div class="col-sm-6">                                             
+                                                <div class="col-sm-12">                                             
                                                      <label class="col-form-label">Lead Description </label>
-                                                     <textarea class="form-control"  name="lead_description" id="lead_description" cols="20" rows="10"></textarea>
+                                                     <textarea class="form-control"  name="lead_description" id="lead_description" cols="15" rows="5"> {{ $leaddata->lead_description ?? '' }}</textarea>
                                                 </div>
                                                 
                                                 <div class="col-md-6"> 
-                                                     <button class="btn btn-primary btn-sm" type="submit">Update Lead</button>
+                                                      <div class="clearfix"> &nbsp; </div>
+                                                     <button class="btn btn-primary btn-sm leadeditbutton" type="submit">Update Lead</button>
                                                 </div>
                                         </div>
                                         </form>
@@ -229,47 +290,41 @@
                                 </div>
                             </div>
                         </div>
+                         <div class="clearfix"> &nbsp; </div>
+                        <div class="col-12">
+                                 <div class="product-list--area mb-50 bg-boxshadow">
+                                
 
-                         <div class="col-5">
-                            <!-- Product List Area -->
-                            <div class="product-list--area mb-50 bg-boxshadow">
-                                <div class="ibox-content">
-                                    <div class="row mb-30">
-                                        <div class="col-12">
-                                            <h5 class="title-- mb-30">Edit Lead</h5>
-                                        </div>
-                                        <!-- Form -->
-                                        <div class="col-sm-4">
-                                             
-                                                <label class="col-form-label" for="product_name">Product Name</label>
-                                                <input type="text" id="product_name" name="product_name" value="" placeholder="Product Name" class="form-control">
-                                             
-                                        </div>
-                                        <!-- Form -->
-                                        <div class="col-sm-2">
-                                            
-                                                <label class="col-form-label" for="price">Price</label>
-                                                <input type="text" id="price" name="price" value="" placeholder="Price" class="form-control">
-                                             
-                                        </div>
-                                        <!-- Form -->
-                                        <div class="col-sm-2">
-                                            
-                                                <label class="col-form-label" for="quantity">Quantity</label>
-                                                <input type="text" id="quantity" name="quantity" value="" placeholder="Quantity" class="form-control">
-                                             
-                                        </div>
-                                        <!-- Form -->
-                                        <div class="col-sm-4">
-                                             
-                                                <label class="col-form-label" for="status">Status</label>
-                                                <select name="status" id="status" class="form-control">
-                                                    <option value="1" selected>Enabled</option>
-                                                    <option value="0">Disabled</option>
-                                                </select>
-                                             
-                                        </div>
+                                    <div class="row">
+                                    <div class="col-lg-12">
+                                    <!-- Ibox -->
+                                    
+                                    <!-- Ibox Title -->
+                                    <div class="ibox-title">
+                                    <h5 class="mb-30">Add Lead Remark </h5>
+                                    </div>
+                                    <div class="ibox-content">
 
+                                       <form id="add_remark_form">
+                                            
+                                            <input type="hidden" name="leadid" id="leadid" value="{{ $leaddata->leadid ?? '' }}" >
+
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+
+                                            <div class="col-sm-12">                                             
+                                                    <label class="col-form-label">Enter Remark </label>
+                                                    <textarea class="form-control"  name="logtext" id="logtext" cols="50" rows="6"></textarea>
+                                            </div>
+
+                                            <div class="col-md-6"> 
+                                                        <div class="clearfix"> &nbsp; </div>
+                                                        <button class="btn btn-primary btn-sm float-right"  type="submit">Submit</button>
+                                            </div>
+                                        </form>
+
+                                    
+                                   
+                                    </div>
                                         
 
                                     </div>
@@ -279,11 +334,66 @@
                             </div>
                         </div>
 
+
+
+
+                            <div class="col-12">
+                             
+                             <div class="product-list--area mb-50 bg-boxshadow">
+                                
+
+                                    <div class="row">
+                                    <div class="col-lg-12">
+                                    <!-- Ibox -->
+                                    
+                                    <!-- Ibox Title -->
+                                    <div class="ibox-title">
+                                    <h5 class="mb-30"> Lead Remarks </h5>
+                                    </div>
+                                    <div class="ibox-content">
+
+                                      <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Remark</th>
+                                                    <th>Date</th>
+                                                    <th>User</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="leadlogtbody">
+                                               
+                                            </tbody>
+                                        </table>
+
+                                    
+                                   
+                                    </div>
+                                        
+
+                                    </div>
+
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        
                         @include('include/footer');
 
                     </div>
                 </div>
             </div>
+
+
+
+
+            
+                       
+                                                                                                                                        
+
+  
+           
 
 
 
@@ -296,6 +406,128 @@
     @include('include.footer_assets');
 
 </body>
+
+<script>
+    
+    $("#add_remark_form").validate({
+        rules: {
+            logtext: {
+                required: true,
+                minlength:20
+            } 
+            
+        },
+        messages: {
+            logtext: {
+                required: "Lead Remark is required"
+            } 
+        },        
+        submitHandler: function(form,e) {
+            e.preventDefault();
+           
+            $.ajax({
+                type: 'POST',
+                url: "{{route('leadremarkadd')}}",
+                dataType: "html",
+                data: $('#add_remark_form').serialize(),
+                beforeSend: function() {
+
+                    $("#loader").show();
+                },               
+                success: function(result) {
+
+                    result = JSON.parse(result);
+                   
+                    if(result.status === 'success'){
+
+                        alertify.success(result.returnmsg);
+                        
+                                
+
+                    }
+                    else if (result.status === 'fail'){
+                        alertify.error(result.returnmsg);
+                    } 
+ 
+
+                    $('#add_remark_form')[0].reset();
+
+                    getleadremarkslist();
+                },
+                complete: function() {
+                    $("#loader").hide();
+                },
+                error : function(error) {
+
+                }
+            });
+            return false;
+        }
+    });
+
+    </script>
+<script>
+$(document).ready(function(){
+    
+    getleadremarkslist()
+
+});
+
+</script>
+
+
+<script>
+
+function getleadremarkslist(){
+     
+
+    var leadid = $("#leadid").val();
+    var token = $('#token').val();      
+
+     
+
+     $.ajax({
+                type:"POST",              
+                url: "{{ route('getleadloglist') }}",                
+                data: { "_token": token , "leadid":leadid },
+                dataType: 'json',
+              
+                beforeSend:function(){
+                    $("#loader").show();
+                },
+                success: function(result){
+                      
+                    if(result.status === 'success'){
+                       var html = "";
+
+                    $( result.data ).each(function( key,val ) {
+                          html += "<tr>";
+                          html += "<td>"+ val.leadlogid +"</td>";
+                          html += "<td>"+ val.logtext +"</td>";
+                          html += "<td>"+ val.createddate +"</td>";
+                          html += "<td>"+ val.createdby +"</td>";
+
+                          html += "<tr>"; 
+                             
+                    });
+                         
+                        $("#leadlogtbody").html(html);
+ 
+                    }
+                    else if (result.status === 'fail'){
+
+                       
+                    } 
+                       
+                },
+                complete:function(){
+                     $("#loader").hide();
+                }
+            }); 
+}
+
+
+</script>
 
 <script>
 
@@ -348,6 +580,132 @@
     });
 </script>
 
+<script>
+$("#lead_edit_form").validate({
+        rules: {
+            firstname: {
+                required: true
+            },
+            lastname: {
+                required: true
+            },
+            email: {
+                required: true,
+                email:true
+            },
+            mobile: {
+                required: true
+            },
+            state: {
+                required: true
+            },
+            district: {
+                required: true
+            },
+            city: {
+                required: true
+            },
+            leadsource:{
+                required:true
+            },
+            property_type:{
+                required:true
+            },
+            units_interested_in:{
+                required:true
+            }
+            // ,
+            // customer_budget_max:{
+            //     required:true,
+            //     greaterThan: "#customer_budget_min"
+            // },
+            // customer_budget_min:{
+            //     required:true
+            // }
 
+            
+            
+        },
+        messages: {
+            firstname: {
+                required: "Firstname is required"
+            },
+            lastname: {
+                required: "Lastname is required"
+            },
+            email: {
+                required: "Email is required"
+                
+            },
+            mobile: {
+                required:  "Mobile is required"
+            },
+            state: {
+                required:  "state is required"
+            } ,
+            district: {
+                required:  "district is required"
+            }  ,
+            city: {
+                required:  "city is required"
+            },
+            leadsource: {
+                required:  "leadsource is required"
+            },             
+            property_type: {
+                required:  "property_type is required"
+            },
+            units_interested_in: {
+                required:  "units_interested_in is required"
+            },
+             customer_budget_max: {
+                required:  "customer max budget is required",
+                greaterThan:"Max budget should be greater than Min"
+            },
+             customer_budget_min: {
+                required:  "customer min budget is required"
+            }
+             
+        },        
+        submitHandler: function(form,e) {
+            e.preventDefault();
+            console.log('Form submitted');
+            $.ajax({
+                type: 'POST',
+                url: "{{route('leadeditsave')}}",
+                dataType: "html",
+                data: $('#lead_edit_form').serialize(),
+                beforeSend: function() {
+
+                    $("#loader").show();
+                },               
+                success: function(result) {
+
+                    result = JSON.parse(result);
+                   
+                    if(result.status === 'success'){
+
+                        alertify.success(result.returnmsg);    
+                                
+
+                    }
+                    else if (result.status === 'fail'){
+                        alertify.error(result.returnmsg);
+                    } 
+  
+                  
+                },
+                complete: function() {
+                    $("#loader").hide();
+                },
+                error : function(error) {
+
+                }
+            });
+            return false;
+        }
+    });
+
+</script>
 
 </html>

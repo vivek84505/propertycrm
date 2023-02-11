@@ -3,7 +3,7 @@
                         <div class="col-12">
                             <!-- Copywrite Text -->
                             <div class="copywrite-text mt-50">
-                                <p>Appwork &copy; 2018 created by <a href="#">Designing World</a></p>
+                                <p>Real Estate 2023 created by <a href="#">Property CRM</a></p>
                                 <!-- Nav Style -->
                                 <div class="footer--nav--style">
                                     <ul>

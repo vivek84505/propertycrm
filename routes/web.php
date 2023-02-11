@@ -53,19 +53,23 @@ Route::middleware([loginliddleware::class])->group(function () {
      Route::post('/getleadstatusbyid', 'LeadStatusController@getleadstatusById')->name('getleadstatusbyid');
      Route::post('/leadstatusedit', 'LeadStatusController@leadstatusEdit')->name('leadstatusedit');
      Route::post('/leadstatusdelete', 'LeadStatusController@leadstatusDelete')->name('leadstatusdelete');
-     Route::post('/leadstatusdelete', 'LeadStatusController@test')->name('test');
-
+ 
 
       // Customer Routes
     Route::get('/leads', 'LeadController@index')->name('leads');
     Route::post('/leadsgetall', 'LeadController@getleadsAll')->name('leadsgetall');
     Route::post('/leadadd', 'LeadController@leadAdd')->name('leadadd');
     Route::get('/leadsedit/{leadid}', 'LeadController@leadEdit')->name('leadsedit');
+    Route::post('/leadsedit/leadeditsave', 'LeadController@leadEditSave')->name('leadeditsave');
     Route::get('student-detail/{id}/{parameter}',[LeadController::class,'detail'])->name('student.detail');
 
     Route::post('/leadsdelete', 'LeadController@leadDelete')->name('leaddelete');
     Route::post('/getleadbyid', 'LeadController@leadById')->name('leadbyid');
- 
+    
+    Route::post('/getleadloglist', 'LeadController@getleadloglist')->name('getleadloglist');
+    Route::post('/leadremarkadd', 'LeadController@leadremarkAdd')->name('leadremarkadd');
+
+  
 
      // Customer Routes
     Route::post('/getdistrictbystateid', 'AjaxController@getdistrictbystateid')->name('getdistrictbystateid');

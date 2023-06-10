@@ -96,6 +96,52 @@ class LeadModel extends Authenticatable
     }
 
 
+     public function leadsearchAll($payload){
+        
+        // $response = []; 
+        // $userdata = LeadModel::select('leadid','firstname','lastname','email','mobile','alt_mobile','state','address','city','created_at','createdby')->where('isdeleted','0')->get();
+          
+        // if(!empty($userdata)){
+        //     $response = $userdata;
+        // } 
+        // return $response;
+        
+        // echo "<pre>";
+        // print_r($payload);
+        // die;
+
+        $response = [];
+            
+       
+        $query = DB::table('tbl_leadmaster');
+
+        $query->select('leadid','firstname','lastname','email','mobile','alt_mobile','state','address','city','created_at','createdby')->where('isdeleted','0');
+
+        if(isset($payload['leadsource']) && !empty($payload['leadsource'])){
+            
+            $query->where('leadsource', $payload['leadsource']);
+        }
+
+         if(isset($payload['property_type']) && !empty($payload['property_type'])){
+            
+            $query->where('property_type', $payload['property_type']);
+        }
+          
+        
+      
+        $leaddata = $query->get();
+        
+         
+        if(!empty($leaddata)){
+            $response = json_decode(json_encode($leaddata), true); 
+        }
+
+        
+        return $response;
+
+    }
+
+
     public function leadDelete($leadid){
 
         $payload['leadid'] = $leadid;

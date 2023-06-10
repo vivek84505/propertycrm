@@ -147,11 +147,11 @@
                                                         <label class="col-form-label">Units Interested In </label> &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;                                        
                                                         <select   name="units_interested_in[]" id="units_interested_in" class="form-control"  multiple="multiple"  >
                                                                                                             
-                                                            <option value="1-1BHK" <?php if(in_array('1-1BHK',$leaddata->units_interested_in)) echo "selected" ?> > 1BHK </option>
-                                                            <option value="2-1.5BHK" <?php if(in_array('2-1.5BHK',$leaddata->units_interested_in)) echo "selected" ?> > 1.5BHK </option>
-                                                            <option value="3-2BHK" <?php if(in_array('3-2BHK',$leaddata->units_interested_in)) echo "selected" ?> > 2BHK </option>
-                                                            <option value="4-2.5BHK" <?php if(in_array('4-2.5BHK',$leaddata->units_interested_in)) echo "selected" ?> > 2.5BHK </option>
-                                                            <option value="5-3BHK" <?php if(in_array('5-3BHK',$leaddata->units_interested_in)) echo "selected" ?>> 3BHK </option>   
+                                                            <option value="1-1BHK" <?php if(!empty($leaddata->units_interested_in))  if(in_array('1-1BHK',$leaddata->units_interested_in)) echo "selected"  ?> > 1BHK </option>
+                                                            <option value="2-1.5BHK" <?php if(!empty($leaddata->units_interested_in)) if(in_array('2-1.5BHK',$leaddata->units_interested_in)) echo "selected" ?> > 1.5BHK </option>
+                                                            <option value="3-2BHK" <?php if(!empty($leaddata->units_interested_in)) if(in_array('3-2BHK',$leaddata->units_interested_in)) echo "selected" ?> > 2BHK </option>
+                                                            <option value="4-2.5BHK" <?php if(!empty($leaddata->units_interested_in)) if(in_array('4-2.5BHK',$leaddata->units_interested_in)) echo "selected" ?> > 2.5BHK </option>
+                                                            <option value="5-3BHK" <?php if(!empty($leaddata->units_interested_in)) if(in_array('5-3BHK',$leaddata->units_interested_in)) echo "selected" ?>> 3BHK </option>   
                                                         </select>  
                                                 </div>
 
@@ -277,10 +277,11 @@
                                                      <textarea class="form-control"  name="lead_description" id="lead_description" cols="15" rows="5"> {{ $leaddata->lead_description ?? '' }}</textarea>
                                                 </div>
                                                 
-                                                <div class="col-md-6"> 
-                                                      <div class="clearfix"> &nbsp; </div>
-                                                     <button class="btn btn-primary btn-sm leadeditbutton" type="submit">Update Lead</button>
+                                               
+                                                <div class="col-md-12  text-right submitbutton ">  
+                                                        <button class="btn btn-primary btn-sm float-right"  type="submit">Update Lead </button>
                                                 </div>
+                                               
                                         </div>
                                         </form>
                                             
@@ -316,9 +317,9 @@
                                                     <textarea class="form-control"  name="logtext" id="logtext" cols="50" rows="6"></textarea>
                                             </div>
 
-                                            <div class="col-md-6"> 
-                                                        <div class="clearfix"> &nbsp; </div>
-                                                        <button class="btn btn-primary btn-sm float-right"  type="submit">Submit</button>
+                                            <div class="col-md-12   text-right submitbutton "> 
+                                                           
+                                                        <button class="btn btn-primary btn-sm float-right submitbutton"  type="submit">Submit</button>
                                             </div>
                                         </form>
 

@@ -24,9 +24,9 @@ class LeadController extends Controller
         // Session::get('userdata');
         $states = Helper::getStateAll();
         $leadSourceData = Helper::getLeadSourceAll(); 
-        
+        $customerBudget = Helper::getCustomerBudget();
       
-        return View::make('leads.view')->with(['states'=> $states , 'leadSourceData'=> $leadSourceData ]);
+        return View::make('leads.view')->with(['customerBudget' => $customerBudget ,'states'=> $states , 'leadSourceData'=> $leadSourceData ]);
 
     }
 
@@ -346,8 +346,7 @@ public function detail(Request $request){
         $customerBudget = Helper::getCustomerBudget();
         $leadStatusAll = Helper::getleadStatusAll();
         
-        // echo "<pre>";
-        // print_r($leadStatusAll);die;
+        
 
         return View::make('leads.edit')->with(['leadStatusAll'=> $leadStatusAll,'customerBudget'=> $customerBudget,'districts'=> $districts, 'leaddata'=> $leaddata , 'states'=> $states , 'leadSourceData'=> $leadSourceData ]);
  
@@ -381,7 +380,53 @@ public function detail(Request $request){
 
     }
 
-    
+    public function leadsearch(){ 
+
+         
+        
+        $states = Helper::getStateAll();
+        
+        $leadSourceData = Helper::getLeadSourceAll(); 
+        $customerBudget = Helper::getCustomerBudget();
+        $leadStatusAll = Helper::getleadStatusAll();
+        
+        
+
+        return View::make('leads.search')->with(['leadStatusAll'=> $leadStatusAll,'customerBudget'=> $customerBudget, 'states'=> $states , 'leadSourceData'=> $leadSourceData ]);
+      
+        // return View::make('leads.search')->with(['states'=> $states , 'leadSourceData'=> $leadSourceData ]);
+
+    }
+
+
+    public function leadsearchAll(Request $request){
+      
+        $result = [];
+        $payload = $request->all();
+
+         if(isset($payload['_token'])){
+            unset($payload['_token']);
+        }
+
+
+        $lead = new LeadModel();   
+        $leaddata = $lead->leadsearchAll($payload);
+
+        if(!empty($leaddata)){
+            // $response = $userdata;
+           $result = json_decode(json_encode($leaddata), true);
+
+        }
+        
+
+        $states = Helper::getStateAll();
+      
+       $returnHtml = view('leads.searchlist')->with(['result' => $result , 'states' => $states])->render();
+
+        return response()->json(array('html'=>$returnHtml));
+
+
+    }
 
 }
  

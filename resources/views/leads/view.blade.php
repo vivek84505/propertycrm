@@ -170,25 +170,10 @@
                                                 <label class="col-form-label">Min Budget </label>                                                
                                                 <select   name="customer_budget_min" id="customer_budget_min" class="form-control"    >
                                                      <option value=""> Select price </option>                                                     
-                                                        <option value="500000">₹5 Lac</option>
-                                                        <option value="1000000">₹10 Lac</option>
-                                                        <option value="2000000">₹20 Lac</option>
-                                                        <option value="3000000">₹30 Lac</option>
-                                                        <option value="4000000">₹40 Lac</option>
-                                                        <option value="5000000">₹50 Lac</option>
-                                                        <option value="6000000">₹60 Lac</option>
-                                                        <option value="7000000">₹70 Lac</option>
-                                                        <option value="8000000">₹80 Lac</option>
-                                                        <option value="9000000">₹90 Lac</option>
-                                                        <option value="10000000">₹1 Cr</option>
-                                                        <option value="12000000">₹1.2 Cr</option>
-                                                        <option value="14000000">₹1.4 Cr</option>
-                                                        <option value="16000000">₹1.6 Cr</option>
-                                                        <option value="18000000">₹1.8 Cr</option>
-                                                        <option value="20000000">₹2 Cr</option>
-                                                        <option value="23000000">₹2.3 Cr</option>
-                                                        <option value="26000000">₹2.6 Cr</option>
-                                                        <option value="30000000">₹3 Cr</option>                                     
+                                                        
+                                                        @foreach($customerBudget as $budget)
+                                                                    <option value="{{ $budget['value'] }}"> {{ $budget['key'] }} </option> 
+                                                        @endforeach                                    
                                                    
                                                 </select>
                                             </div>
@@ -199,26 +184,10 @@
                                              <div class="col-md-3" >
                                                 <label class="col-form-label">Max Budget </label>                                                
                                                 <select   name="customer_budget_max" id="customer_budget_max" class="form-control"    >
-                                                     <option value=""> Select price </option>                                                     
-                                                        <option value="500000">₹5 Lac</option>
-                                                        <option value="1000000">₹10 Lac</option>
-                                                        <option value="2000000">₹20 Lac</option>
-                                                        <option value="3000000">₹30 Lac</option>
-                                                        <option value="4000000">₹40 Lac</option>
-                                                        <option value="5000000">₹50 Lac</option>
-                                                        <option value="6000000">₹60 Lac</option>
-                                                        <option value="7000000">₹70 Lac</option>
-                                                        <option value="8000000">₹80 Lac</option>
-                                                        <option value="9000000">₹90 Lac</option>
-                                                        <option value="10000000">₹1 Cr</option>
-                                                        <option value="12000000">₹1.2 Cr</option>
-                                                        <option value="14000000">₹1.4 Cr</option>
-                                                        <option value="16000000">₹1.6 Cr</option>
-                                                        <option value="18000000">₹1.8 Cr</option>
-                                                        <option value="20000000">₹2 Cr</option>
-                                                        <option value="23000000">₹2.3 Cr</option>
-                                                        <option value="26000000">₹2.6 Cr</option>
-                                                        <option value="30000000">₹3 Cr</option>                                     
+                                                     <option value=""> Select price </option>  
+                                                        @foreach($customerBudget as $budget)
+                                                                    <option value="{{ $budget['value'] }}"> {{ $budget['key'] }} </option> 
+                                                        @endforeach                                      
                                                    
                                                 </select>
                                             </div>
@@ -240,9 +209,9 @@
                                             </div>
  
                                         </div>
-                                        <div class="clearfix"> &nbsp; </div>
-                                        <div class="col-md-6">
-                                            <button class="btn btn-danger btn-sm mr-10" type="reset"  >Clear</button>
+                                       
+                                        <div class="col-md-12 text-right  submitbutton " >
+                                            <button class="btn btn-danger btn-sm" type="reset"  >Clear</button>
                                             <button class="btn btn-primary btn-sm" type="submit">Save Lead</button>
                                          </div>
                                     </form>

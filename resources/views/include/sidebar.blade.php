@@ -33,6 +33,7 @@
                     <li><a href="#"><i class="icon_drive"></i> Leads Management</a>
                         <ul class="dropdown">
                             <li><a href="{{route('leads')}}"> Add Leads </a></li>                            
+                            <li><a href="{{route('leadsearch')}}"> Leads Search </a></li>                            
                                                       
                         </ul>
                     </li>

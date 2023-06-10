@@ -58,11 +58,14 @@ Route::middleware([loginliddleware::class])->group(function () {
       // Customer Routes
     Route::get('/leads', 'LeadController@index')->name('leads');
     Route::post('/leadsgetall', 'LeadController@getleadsAll')->name('leadsgetall');
+    
     Route::post('/leadadd', 'LeadController@leadAdd')->name('leadadd');
     Route::get('/leadsedit/{leadid}', 'LeadController@leadEdit')->name('leadsedit');
     Route::post('/leadsedit/leadeditsave', 'LeadController@leadEditSave')->name('leadeditsave');
-    Route::get('student-detail/{id}/{parameter}',[LeadController::class,'detail'])->name('student.detail');
-
+    
+    Route::get('/leadsearch', 'LeadController@leadsearch')->name('leadsearch');
+    Route::post('/leadsearchall', 'LeadController@leadsearchAll')->name('leadsearchall');
+    
     Route::post('/leadsdelete', 'LeadController@leadDelete')->name('leaddelete');
     Route::post('/getleadbyid', 'LeadController@leadById')->name('leadbyid');
     

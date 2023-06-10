@@ -535,6 +535,11 @@ function getleadlist(){
                     result = JSON.parse(result);
                    
                     if(result.status === 'success'){
+                       
+                        $('#customerid').find('option').remove().end();
+    
+    
+    
                         getcustomersAll();
                         console.log('customer last insertid ===>',result.last_customer_inserid);
                         setTimeout(() => {
@@ -683,7 +688,7 @@ $('#customerid').select2({
 <script>
      
 
-    async function getcustomersAll(inserted_customer_id){
+    async function getcustomersAll(){
    
      var token = $('#token').val();
       

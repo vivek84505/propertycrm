@@ -23,33 +23,32 @@
       @include('include/header');
 
         <!-- ###### Layout Container Area ###### -->
-        <div class="layout-container-area mt-75">
+        <div style="margin-top:-55px !important" class="layout-container-area mt-70">
             <!-- Side Menu Area -->
            @include('include/sidebar');
            
             <!-- Layout Container -->
-            <div class="layout-container sidemenu-container">
+            <div class="layout-container sidemenu-container mt-100">
                 <div class="container-fluid">
                     <div class="row justify-content-center">
-                        <div class="col-sm-6 col-lg-3">
+                    
+                    <div class="col-sm-6 col-lg-3">
                             <!-- Widget Content -->
-                            <div class="widget-content-style rounded-0 one zoom-effect mb-30">
+                            <div class="widget-content-style yellow-bg zoom-effect mb-30">
                                 <div class="row">
                                     <div class="col-4">
-                                        <i class="fa fa-trophy fa-5x"></i>
+                                        <i class="fa fa-search fa-5x"></i>
                                     </div>
-                                    <div class="col-8 text-right">
-                                        <span> Today income </span>
-                                        <!-- Icon -->
-                                        <h2 class="widget-content--text">$ 4,232</h2>
-
-                                        
+                                    <div class="col-8 text-right dashboard-box-text">
+                                        <span style> Total Leads </span>
+                                        <h2 class="widget-content--text color-white">12</h2>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-sm-6 col-lg-3">
+                        
+                    <div class="col-sm-6 col-lg-3">
                             <!-- Widget Content -->
                             <div class="widget-content-style rounded-0 two zoom-effect mb-30">
                                 <div class="row">
@@ -61,14 +60,33 @@
                                     </div>
                                     <div class="col-8 text-right">
                                         <!-- Text -->
-                                        <div class="widget-style-two-text">
-                                            <p>Today degrees</p>
-                                            <h2 class="widget-content--text">29'C</h2>
+                                        <div class="widget-style-two-text dashboard-box-text">
+                                            <p>Total Projects</p>
+                                            <h2 class="widget-content--text">100</h2>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="col-sm-6 col-lg-3">
+                            <!-- Widget Content -->
+                            <div class="widget-content-style rounded-0 one zoom-effect mb-30">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <i class="fa fa-trophy fa-5x"></i>
+                                    </div>
+                                    <div class="col-8 text-right dashboard-box-text">
+                                        <span> Todays Followup </span>
+                                        <!-- Icon -->
+                                        <h2 class="widget-content--text">20</h2>
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
 
                         <div class="col-sm-6 col-lg-3">
                             <!-- Widget Content -->
@@ -77,7 +95,7 @@
                                     <div class="col-4">
                                         <i class="fa fa-envelope-o fa-5x"></i>
                                     </div>
-                                    <div class="col-8 text-right">
+                                    <div class="col-8 text-right dashboard-box-text">
                                         <span> New messages</span>
                                         <h2 class="widget-content--text color-white">260</h2>
                                     </div>
@@ -85,21 +103,7 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-6 col-lg-3">
-                            <!-- Widget Content -->
-                            <div class="widget-content-style yellow-bg zoom-effect mb-30">
-                                <div class="row">
-                                    <div class="col-4">
-                                        <i class="fa fa-music fa-5x"></i>
-                                    </div>
-                                    <div class="col-8 text-right">
-                                        <span> New albums </span>
-                                        <h2 class="widget-content--text color-white">12</h2>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                        
                        
 
                        

@@ -56,19 +56,24 @@ class LeadModel extends Authenticatable
         $lead = new LeadModel();  
         
        
-        $query = DB::table('tbl_leadmaster');
+        // $query = DB::table('tbl_leadmaster');
  
-        if(isset($payload['email']) && !empty($payload['email']))
-            $query->where('email', $payload['email']);
+        // if(isset($payload['email']) && !empty($payload['email']))
+        //     $query->where('email', $payload['email']);
 
-        if(isset($payload['mobile']) && !empty($payload['mobile']))
-        $query->where('mobile', $payload['mobile']);
+        // if(isset($payload['mobile']) && !empty($payload['mobile']))
+        // $query->where('mobile', $payload['mobile']);
 
-        if(isset($payload['leadid']) && !empty($payload['leadid']))
-        $query->where('leadid', $payload['leadid']);
+        // if(isset($payload['leadid']) && !empty($payload['leadid']))
+        // $query->where('leadid', $payload['leadid']);
 
+          $leaddata = DB::table('tbl_leadmaster')
+                    ->select('tbl_customer.firstname','tbl_customer.lastname','tbl_customer.email','tbl_customer.mobile','tbl_leadmaster.leadid','tbl_leadmaster.leadstatus','tbl_leadmaster.leadsource','tbl_leadmaster.units_interested_in','tbl_leadmaster.project_interested_in','tbl_leadmaster.customer_budget_min','tbl_leadmaster.customer_budget_max','tbl_leadmaster.floor_preference','tbl_leadmaster.lead_description','tbl_leadmaster.isactive','tbl_leadmaster.leadassignedto','tbl_leadmaster.is_opportunity','tbl_leadmaster.created_at','tbl_leadmaster.updated_at','tbl_leadmaster.createdby','tbl_leadmaster.lastmodifiedby','tbl_leadmaster.address','tbl_leadmaster.state','tbl_leadmaster.district','tbl_leadmaster.city','tbl_leadmaster.isdeleted','tbl_leadmaster.property_type','tbl_leadmaster.loan_required','tbl_leadmaster.next_followup_date','tbl_leadmaster.customerid')
+                    ->join('tbl_customer','tbl_customer.customerid','=','tbl_leadmaster.customerid')
+                    ->where('tbl_leadmaster.leadid', $payload['leadid'])
+                    ->get()->first();
 
-        $leaddata = $query->get()->first();
+        //  $leaddata = $query->get()->first();
         
         
         
@@ -83,9 +88,14 @@ class LeadModel extends Authenticatable
     public function getleadsAll(){
         $response = [];
 
-        $userdata = LeadModel::select('leadid','firstname','lastname','email','mobile','alt_mobile','state','address','city','created_at','createdby')->where('isdeleted','0')->get();
+        // $userdata = LeadModel::select('leadid','firstname','lastname','email','mobile','alt_mobile','state','address','city','created_at','createdby')->where('isdeleted','0')->get();
          
-        
+        $userdata = DB::table('tbl_leadmaster')
+                    ->select('tbl_customer.firstname','tbl_customer.lastname','tbl_customer.email','tbl_customer.mobile','tbl_leadmaster.leadstatus','tbl_leadmaster.created_at' ,'tbl_leadmaster.createdby','tbl_leadmaster.leadid')
+                    ->join('tbl_customer','tbl_customer.customerid','=','tbl_leadmaster.customerid')
+                    ->get();
+
+
         if(!empty($userdata)){
             $response = $userdata;
         }
@@ -113,9 +123,16 @@ class LeadModel extends Authenticatable
         $response = [];
             
        
-        $query = DB::table('tbl_leadmaster');
+        // $query = DB::table('tbl_leadmaster');
+        
+        $query = DB::table('tbl_leadmaster')
+                    ->select('tbl_customer.firstname','tbl_customer.lastname','tbl_customer.email','tbl_customer.mobile','tbl_leadmaster.leadid','tbl_leadmaster.leadstatus','tbl_leadmaster.leadsource','tbl_leadmaster.units_interested_in','tbl_leadmaster.project_interested_in','tbl_leadmaster.customer_budget_min','tbl_leadmaster.customer_budget_max','tbl_leadmaster.floor_preference','tbl_leadmaster.lead_description','tbl_leadmaster.isactive','tbl_leadmaster.leadassignedto','tbl_leadmaster.is_opportunity','tbl_leadmaster.created_at','tbl_leadmaster.updated_at','tbl_leadmaster.createdby','tbl_leadmaster.lastmodifiedby','tbl_leadmaster.address','tbl_leadmaster.state','tbl_leadmaster.district','tbl_leadmaster.city','tbl_leadmaster.isdeleted','tbl_leadmaster.property_type','tbl_leadmaster.loan_required','tbl_leadmaster.next_followup_date','tbl_leadmaster.customerid')
+                    ->join('tbl_customer','tbl_customer.customerid','=','tbl_leadmaster.customerid');
+                   
+                   
 
-        $query->select('leadid','firstname','lastname','email','mobile','alt_mobile','state','address','city','created_at','createdby')->where('isdeleted','0');
+
+        // $query->select('leadid','firstname','lastname','email','mobile','alt_mobile','state','address','city','created_at','createdby')->where('isdeleted','0');
 
         if(isset($payload['leadsource']) && !empty($payload['leadsource'])){
             

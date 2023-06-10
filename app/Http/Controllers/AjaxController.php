@@ -9,6 +9,7 @@ use View;
 use Redirect;
 use Auth;
 use App\Models\DistrictModel;
+use App\Models\CustomerModel;
 use Response;
 use Session;
 
@@ -31,6 +32,21 @@ class AjaxController extends Controller
         
         return json_encode($res);
 
+    }
+
+    function getcustomers(Request $request){
+        $res = [];
+        $payload = $request->all();
+        
+        
+        if(isset($payload['_token'])){
+            unset($payload['_token']);
+        }
+
+        $res = CustomerModel::customersGetAll($payload);
+
+        
+        return json_encode($res);
     }
  
 

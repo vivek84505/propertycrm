@@ -7,7 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
+    <style>
+    .custom-select-width {
+            width: 100% !important;
+    }
+    </style>
     <!-- Title -->
     <title> Property CRM </title>
 
@@ -72,34 +76,24 @@
                                             
                                             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
-                                            <div class="col-md-3">
-                                                <label class="col-form-label">Firstname</label>
-                                                <input type="text" name="firstname" id="firstname" class="form-control" >
+                                             <div class="col-md-6">
+                                                <label class="col-form-label">Select Customer</label>                                                
+                                                <select name="customerid" id="customerid" class="form-control select2" style="width: 100%" >
+                                                     <option value=""> Select Customer </option>
+                                                              
+                                                </select>
                                             </div>
-
-
-                                            <div class="col-md-3">
-                                                <label class="col-form-label">Lastname</label>
-                                                <input type="text" name="lastname" id="lastname" class="form-control"  >
+                                           
+                                            <div class="col-md-3" style="margin-top: 15px;">
+                                                
+                                               <button class="btn m-2 btn-info" type="button" data-toggle="modal" data-target="#addCustomerModal"> Add New Customer</button>
+                                              
                                             </div>
-
-                                            <div class="col-md-3">
-                                                <label class="col-form-label">Email</label>
-                                                <input type="email" name="email" id="email" class="form-control" >
-                                            </div>
-
-                                            <div class="col-md-3">
-                                                <label class="col-form-label">Mobile</label>
-                                                <input type="text" name="mobile" id="mobile" class="form-control" >
-                                            </div>
-
-
-                                            <div class="col-md-3">
-                                                <label class="col-form-label">Alternate Mobile</label>
-                                                <input type="text" name="alt_mobile" id="alt_mobile" class="form-control"  >
-                                            </div>
-
                                             
+                                            <div class="col-md-3"></div>
+
+
+                                           
                                             
                                             <div class="col-md-3">
                                                 <label class="col-form-label">State</label>                                                
@@ -217,6 +211,67 @@
                                     </form>
 
 
+                                    <!-- Add Customer Modal -->
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="addCustomerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalCenterTitle">Add New Customer</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span></button>
+                                                </div>
+                                                <!-- Modal Body -->
+                                                <div class="modal-body">
+                                                    <form id="addcustomer_entry_form" >
+                                                    <div class="row">
+                                                         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+
+                                                        <div class="col-md-4">
+                                                            <label class="col-form-label">Firstname</label>
+                                                            <input type="text" name="firstname" id="firstname" class="form-control" >
+                                                        </div>
+
+
+                                                        <div class="col-md-4">
+                                                            <label class="col-form-label">Lastname</label>
+                                                            <input type="text" name="lastname" id="lastname" class="form-control"  >
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <label class="col-form-label">Email</label>
+                                                            <input type="email" name="email" id="email" class="form-control" >
+                                                        </div>
+
+                                                        <div class="col-md-4">
+                                                            <label class="col-form-label">Mobile</label>
+                                                            <input type="text" name="mobile" id="mobile" class="form-control" >
+                                                        </div>
+
+
+                                                        <div class="col-md-4">
+                                                            <label class="col-form-label">Alternate Mobile</label>
+                                                            <input type="text" name="alt_mobile" id="alt_mobile" class="form-control"  >
+                                                        </div>
+
+                                                         
+                                                    </div>
+                                                    
+                                                     
+                                                </div>
+                                                <!-- Modal Footer -->
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
                                     </div>
                                 </div>
                             </div>
@@ -275,12 +330,12 @@
     
 $(document).ready(function(){
     
-    getcustomerlist();
-
+    getleadlist();
+    getcustomersAll();
    
 });
 
-function getcustomerlist(){
+function getleadlist(){
    
      var token = $('#token').val();
       
@@ -325,19 +380,7 @@ function getcustomerlist(){
  
     $("#addcustomer_form").validate({
         rules: {
-            firstname: {
-                required: true
-            },
-            lastname: {
-                required: true
-            },
-            email: {
-                required: true,
-                email:true
-            },
-            mobile: {
-                required: true
-            },
+            
             state: {
                 required: true
             },
@@ -368,19 +411,7 @@ function getcustomerlist(){
             
         },
         messages: {
-            firstname: {
-                required: "Firstname is required"
-            },
-            lastname: {
-                required: "Lastname is required"
-            },
-            email: {
-                required: "Email is required"
-                
-            },
-            mobile: {
-                required:  "Mobile is required"
-            },
+            
             state: {
                 required:  "state is required"
             } ,
@@ -436,7 +467,7 @@ function getcustomerlist(){
 
                     $('#addcustomer_form')[0].reset();
 
-                    getcustomerlist();
+                    getleadlist();
                 },
                 complete: function() {
                     $("#loader").hide();
@@ -452,6 +483,89 @@ function getcustomerlist(){
 });
 </script>
 
+
+<script>
+ $(document).ready(function() {
+     $("#addcustomer_entry_form").validate({
+        rules: {
+            firstname: {
+                required: true
+            },
+            lastname: {
+                required: true
+            },
+            email: {
+                required: true,
+                email:true
+            },
+            mobile: {
+                required: true
+            },
+              
+        },
+        messages: {
+            firstname: {
+                required: "Firstname is required"
+            },
+            lastname: {
+                required: "Lastname is required"
+            },
+            email: {
+                required: "Email is required"
+                
+            },
+            mobile: {
+                required:  "Mobile is required"
+            } 
+        },        
+        submitHandler: function(form,e) {
+            e.preventDefault();
+            console.log('Form submitted');
+            $.ajax({
+                type: 'POST',
+                url: "{{route('customeradd')}}",
+                dataType: "html",
+                data: $('#addcustomer_entry_form').serialize(),
+                beforeSend: function() {
+
+                    $("#loader").show();
+                },               
+                success: function(result) {
+
+                    result = JSON.parse(result);
+                   
+                    if(result.status === 'success'){
+                        getcustomersAll();
+                        console.log('customer last insertid ===>',result.last_customer_inserid);
+                        setTimeout(() => {
+                                 $("#customerid").val(result.last_customer_inserid).trigger('change');
+
+                        }, 1000);
+
+                        alertify.success(result.returnmsg);    
+                                
+
+                    }
+                    else if (result.status === 'fail'){
+                        alertify.error(result.returnmsg);
+                    } 
+
+                    $('#addcustomer_form')[0].reset();
+
+                    getleadlist();
+                },
+                complete: function() {
+                    $("#loader").hide();
+                },
+                error : function(error) {
+
+                }
+            });
+            return false;
+        }
+    });
+ });
+</script>
 <script>
 
 $("#property_type").change(function(){
@@ -527,6 +641,84 @@ $("#property_type").change(function(){
     $(document).ready(function() {
         $('#units_interested_in').multiselect();
     });
+</script>
+
+<script>
+$('#customerid').select2({
+  selectOnClose: true
+});
+  
+</script>
+
+<script>
+     $(document).ready(function(){
+      var csrf_token =  "{{ csrf_token() }}"
+      $( "#customerids" ).select2({
+        ajax: { 
+          url: "{{route('getcustomers')}}",
+          type: "post",
+          dataType: 'json',
+          delay: 250,
+          data: function (params) {
+            return {
+              _token: csrf_token,
+              firstname: params.term // search term
+            };
+          },
+          processResults: function (response) {
+            return {
+              results: response
+            };
+          },
+          cache: true
+        }
+
+      });
+
+    });
+</script>
+
+ 
+
+<script>
+     
+
+    async function getcustomersAll(inserted_customer_id){
+   
+     var token = $('#token').val();
+      
+      $.ajax({
+          type:"POST",
+          url: "{{ route('getcustomers') }}",
+          data: { "_token": token },
+          dataType: 'json',
+          beforeSend:function(){
+              $("#loader").show();
+          },
+          success: function(res){
+             
+           console.log('get customer res=========>',res);
+            if(res.length > 0 ){
+               var dropdown = document.getElementById("customerid");
+               
+               for( var i = 0; i<res.length; i++ ){
+                  var option = document.createElement('option');
+                  option.value = res[i].customerid;
+                  option.text = res[i].firstname +" "+res[i].lastname;
+                  dropdown.add(option);
+               } 
+                 
+              
+ 
+            }
+
+
+         },
+         complete:function(){
+             $("#loader").hide();
+         }
+      }); 
+}
 </script>
 
  

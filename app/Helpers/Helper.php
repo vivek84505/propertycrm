@@ -5,6 +5,7 @@ use App\Models\StateModel;
 use App\Models\DistrictModel;
 use App\Models\LeadSourceModel;
 use App\Models\LeadStatusModel;
+use App\Models\CustomerModel;
 
 use Arr;
 class Helper
@@ -30,6 +31,17 @@ class Helper
         return $statesAll; 
     }
 
+     public static function getCustomersAll($statid = '', $type = '')
+    {
+        $customersAll = [];
+
+        $customers = new CustomerModel();
+       
+        $customersAll = $customers->customersGetAll($statid);
+          
+        return $customersAll; 
+    }
+
 
      public static function getDestrictsAll($statid = '', $type = '')
     {
@@ -43,6 +55,8 @@ class Helper
 
         return $districtsAll; 
     }
+
+    
 
 
     public static function getCustomerBudget(){

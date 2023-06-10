@@ -50,27 +50,27 @@
                                                 <input type="hidden" name="leadid" id="leadid" value="{{ $leaddata->leadid ?? '' }}" >
                                                 <div class="col-sm-6">
                                                         <label class="col-form-label">Firstname</label>
-                                                        <input type="text" name="firstname" id="firstname" class="form-control" value="{{ $leaddata->firstname ?? '' }}" >
+                                                        <input type="text" name="firstname" id="firstname" class="form-control" value="{{ $leaddata->firstname ?? '' }}" disabled >
                                                 </div>
                                                
                                                 <div class="col-sm-6">
                                                         <label class="col-form-label">Lastname</label>
-                                                        <input type="text" name="lastname" id="lastname" class="form-control" value="{{ $leaddata->lastname ?? '' }}" >
+                                                        <input type="text" name="lastname" id="lastname" class="form-control" value="{{ $leaddata->lastname ?? '' }}" disabled>
                                                 </div>
 
                                                 <div class="col-sm-6">
                                                         <label class="col-form-label">Email</label>
-                                                        <input type="email" name="email" id="email" class="form-control" value="{{ $leaddata->email ?? '' }} " >
+                                                        <input type="email" name="email" id="email" class="form-control" value="{{ $leaddata->email ?? '' }} " disabled>
                                                 </div>
 
                                                 <div class="col-sm-6">
                                                          <label class="col-form-label">Mobile</label>
-                                                         <input type="text" name="mobile" id="mobile" class="form-control" value="{{ $leaddata->mobile ?? '' }}" >
+                                                         <input type="text" name="mobile" id="mobile" class="form-control" value="{{ $leaddata->mobile ?? '' }}" disabled >
                                                 </div>
 
                                                  <div class="col-sm-6">
                                                          <label class="col-form-label">Alternate Mobile</label>
-                                                          <input type="text" name="alt_mobile" id="alt_mobile" class="form-control" value="{{ $leaddata->alt_mobile ?? '' }}" >
+                                                          <input type="text" name="alt_mobile" id="alt_mobile" class="form-control" value="{{ $leaddata->alt_mobile ?? '' }}" disabled>
                                                 </div>
 
                                                  <div class="col-sm-6">

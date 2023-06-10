@@ -55,7 +55,7 @@ Route::middleware([loginliddleware::class])->group(function () {
      Route::post('/leadstatusdelete', 'LeadStatusController@leadstatusDelete')->name('leadstatusdelete');
  
 
-      // Customer Routes
+      // Lead Routes
     Route::get('/leads', 'LeadController@index')->name('leads');
     Route::post('/leadsgetall', 'LeadController@getleadsAll')->name('leadsgetall');
     
@@ -74,10 +74,12 @@ Route::middleware([loginliddleware::class])->group(function () {
 
   
 
-     // Customer Routes
+    // Ajax Routes
     Route::post('/getdistrictbystateid', 'AjaxController@getdistrictbystateid')->name('getdistrictbystateid');
-    
+    Route::post('/getcustomers', 'AjaxController@getcustomers')->name('getcustomers');
 
+    //Customer Routes
+    Route::post('/customeradd', 'CustomerController@customerAdd')->name('customeradd');
 });
  
 

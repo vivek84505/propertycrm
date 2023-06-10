@@ -16,11 +16,11 @@
                                                        @if(!empty($result))
                                                             @foreach($result as $res)
                                                                 <tr>
-                                                                    <td>  {{  $res['leadid']  }}   </td> 
-                                                                    <td>  {{  $res['firstname'] }} {{  $res['lastname'] }}   </td>
-                                                                    <td>  {{  $res['email']  }}   </td> 
-                                                                    <td>  {{  $res['mobile']  }}  </td> 
-                                                                    <td>  {{  $res['city']  }}  </td>
+                                                                    <td>  {{  $res['leadid'] ?? ''  }}   </td> 
+                                                                    <td>  {{  $res['firstname'] ?? '' }} {{  $res['lastname'] ?? '' }}   </td>
+                                                                    <td>  {{  $res['email'] ?? ''  }}   </td> 
+                                                                    <td>  {{  $res['mobile']  ?? '' }}  </td> 
+                                                                    <td>  {{  $res['city']  ?? '' }}  </td>
                                                                     <td class="text-right" >
                                                                     <div class="btn-group">
  

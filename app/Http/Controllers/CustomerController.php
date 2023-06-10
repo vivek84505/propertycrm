@@ -15,7 +15,7 @@ use Response;
 use Session;
 use Carbon\Carbon;
 
-class LeadController extends Controller
+class CustomerController extends Controller
 {
     //
     public function index(){
@@ -26,9 +26,8 @@ class LeadController extends Controller
         $states = Helper::getStateAll();
         $leadSourceData = Helper::getLeadSourceAll(); 
         $customerBudget = Helper::getCustomerBudget();
-        $customerData = Helper::getCustomersAll();
-       
-        return View::make('leads.view')->with(['customerData' => $customerData ,'customerBudget' => $customerBudget ,'states'=> $states , 'leadSourceData'=> $leadSourceData ]);
+      
+        return View::make('leads.view')->with(['customerBudget' => $customerBudget ,'states'=> $states , 'leadSourceData'=> $leadSourceData ]);
 
     }
 
@@ -87,11 +86,60 @@ class LeadController extends Controller
 
     }
 
-    public function leadAdd (Request $request){
+    public function customerAdd (Request $request){
+        $response = [];
+        $customerModel = new CustomerModel(); 
+       
+        $payload = $request->all();
+         
+         
+        if(isset($payload['_token'])){
+            unset($payload['_token']);
+        }
+
+        if(isset($payload['firstname']) && $payload['firstname'] == '' ){
+            $response['status'] = 'fail';
+            $response['returnmsg'] = 'Firstname is required';
+        }
+
+        if(isset($payload['lastname']) && $payload['lastname'] == '' ){
+            $response['status'] = 'fail';
+            $response['returnmsg'] = 'Lastname is required';
+        }
+        
+        if(isset($payload['email']) && $payload['email'] == '' ){
+            $response['status'] = 'fail';
+            $response['returnmsg'] = 'Email is required';
+        }
+
+        if(isset($payload['mobile']) && $payload['mobile'] == '' ){
+            $response['status'] = 'fail';
+            $response['returnmsg'] = 'Mobile Number is required';
+        }
+ 
+        
+        if(isset(Session::get('userdata')['email'])){
+            $payload['createdby'] = Session::get('userdata')['email'];
+            $payload['created_at'] = date("Y-m-d H:i:s", strtotime('now'));
+        }
+
+       
+
+        $response = $customerModel->customerAdd($payload);
+
+         
+        return response()->json($response); 
+
+    }
+
+
+    public function leadEditSave (Request $request){
         $response = [];
         $leadModel = new LeadModel(); 
        
         $payload = $request->all();
+        
+
         $units_interested_in = [];
         if(!empty($payload['units_interested_in'])){
             $unitlen = count($payload['units_interested_in']);
@@ -128,61 +176,6 @@ class LeadController extends Controller
             $response['returnmsg'] = 'Mobile Number is required';
         }
 
-         if(isset($payload['state']) && $payload['state'] == '' ){
-            $response['status'] = 'fail';
-            $response['returnmsg'] = 'state is required';
-        }
-
-         if(isset($payload['district']) && $payload['district'] == '' ){
-            $response['status'] = 'fail';
-            $response['returnmsg'] = 'District required';
-        }
-
-
-         if(isset($payload['city']) && $payload['city'] == '' ){
-            $response['status'] = 'fail';
-            $response['returnmsg'] = 'City is required';
-        }
-        
-        if(isset(Session::get('userdata')['email'])){
-            $payload['createdby'] = Session::get('userdata')['email'];
-            $payload['created_at'] = date("Y-m-d H:i:s", strtotime('now'));
-        }
-
-        $payload['leadstatus'] = '1';
-
-        $response = $leadModel->leadAdd($payload);
-
-         
-        return response()->json($response); 
-
-    }
-
-
-    public function leadEditSave (Request $request){
-        $response = [];
-        $leadModel = new LeadModel(); 
-       
-        $payload = $request->all();
-        
-
-        $units_interested_in = [];
-        if(!empty($payload['units_interested_in'])){
-            $unitlen = count($payload['units_interested_in']);
-            for($i=0; $i<$unitlen; $i++ ){
-                $unit = explode('-',$payload['units_interested_in'][$i]);
-                $obj = (Object) array($unit[0] => $unit[1]);
-                $units_interested_in[$i] = $obj; 
-            }
-        }
-        $units_interested_in = json_encode($units_interested_in);
-        $payload['units_interested_in'] = $units_interested_in; 
-         
-        if(isset($payload['_token'])){
-            unset($payload['_token']);
-        }
-
-        
          if(isset($payload['state']) && $payload['state'] == '' ){
             $response['status'] = 'fail';
             $response['returnmsg'] = 'state is required';
@@ -330,7 +323,7 @@ public function detail(Request $request){
         $leadStatusAll = Helper::getleadStatusAll();
         
         
-    
+
         return View::make('leads.edit')->with(['leadStatusAll'=> $leadStatusAll,'customerBudget'=> $customerBudget,'districts'=> $districts, 'leaddata'=> $leaddata , 'states'=> $states , 'leadSourceData'=> $leadSourceData ]);
  
     }

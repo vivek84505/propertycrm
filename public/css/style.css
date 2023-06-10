@@ -140,7 +140,6 @@ h6 {
     line-height: 1.5;
     font-weight: 500;
     font-family: "Poppins", sans-serif;
-    color: #222;
 }
 
 p {
@@ -4622,7 +4621,7 @@ iframe {
 }
 
 .widget-content-style.one {
-    background-color: #ebebeb;
+    background-color: #28a745;
 }
 
 .widget-content-style.two {
@@ -4636,6 +4635,7 @@ iframe {
 .widget-style-two-text > p {
     color: #f1f1f1;
     margin-bottom: 5px;
+    font-size: initial;
 }
 
 .widget-style-two-text > h2 {
@@ -5494,4 +5494,9 @@ iframe {
 
 .submitbutton {
     margin-top: 15px;
+}
+
+.dashboard-box-text {
+    font-size: 15px !important;
+    color: #ffffff;
 }

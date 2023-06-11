@@ -42,7 +42,7 @@ function getDashboarddataAll(Request $request){
             $res['total_customers'] = count($totalCustomers);
         }
         
-        $ldate = date('Y-m-d H:i:s');
+        $ldate = date('Y-m-d');
         $todays_followup_leads = LeadModel::leadsearchAll(['next_followup_date' => $ldate ]);
         
          if(!empty($todays_followup_leads)){

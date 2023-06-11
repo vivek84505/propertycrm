@@ -24,7 +24,7 @@
 
                     <li><a href="#"><i class="icon_drive"></i> Master</a>
                         <ul class="dropdown">
-                            <li class="active" ><a href="{{route('leadsource')}}">Lead Source master</a></li>                            
+                            <li   ><a href="{{route('leadsource')}}">Lead Source master</a></li>                            
                             <li><a href="{{route('leadstatus')}}">Lead Status master</a></li>                            
                         </ul>
                     </li>

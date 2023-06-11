@@ -406,7 +406,7 @@ public function detail(Request $request){
       
        $returnHtml = view('leads.searchlist')->with(['result' => $result , 'states' => $states])->render();
 
-        return response()->json(array('html'=>$returnHtml));
+        return response()->json(['html' => $returnHtml , 'leaddatajson' => json_encode($leaddata)]);
 
 
     }

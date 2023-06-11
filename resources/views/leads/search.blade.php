@@ -154,9 +154,9 @@
 
                         <div class="row">
                             <div class="col-lg-12">
-                                <!-- Ibox -->
+                                
                                 <div class="ibox bg-boxshadow mb-50">
-                                    <!-- Ibox Title -->
+                                    
                                     <div class="ibox-title">
                                         <h5 class="mb-30">Lead List </h5>
                                     </div>
@@ -230,15 +230,16 @@
                 },
                 success: function(res){
 
-
-                if(res.html.length > 0){
+                 
+                if(JSON.parse(res.leaddatajson).length > 0){
 
                     $("#leadsearchlist").html(res.html);
 
                 }
                 else{
-
+                   
                      $("#leadsearchlist").html('<tr id="noRecordTR" style="display:none"> <td>No Record Found</td></tr>');
+                     alertify.error("No Records Found");
                 }
 
 

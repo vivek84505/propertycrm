@@ -5,7 +5,7 @@
                                                 <thead>
                                                     <tr>
                                                       
-                                                        <th>Client ID </th>
+                                                        <th>Lead ID </th>
                                                         <th>Name </th> 
                                                         <th>Email</th>
                                                         <th>Mobile</th>

@@ -5,22 +5,24 @@
                                                 <thead>
                                                     <tr>
                                                       
-                                                        <th>Client ID </th>
-                                                        <th>Name </th> 
-                                                        <th>Email</th>
-                                                        <th>Mobile</th>
-                                                        <th>City</th>
-                                                        <th class="text-right">Action</th>
+                                                        <th    style="width: 56px;">Lead ID</th>
+                                                        <th  style="width: 125px;">Name</th>
+                                                        <th  style="width: 113px;">Email</th>
+                                                        <th style="width: 82px;">Mobile</th>
+                                                        <th style="width: 128px;">Followup Date</th>
+                                                        <th style="width: 112px;">Visit Date</th>
+                                                        <th   style="width: 132px;">Action</th>
                                                     </tr>
                                                    <tbody >
                                                        @if(!empty($result))
                                                             @foreach($result as $res)
                                                                 <tr>
-                                                                    <td>  {{  $res['leadid']  }}   </td> 
-                                                                    <td>  {{  $res['firstname'] }} {{  $res['lastname'] }}   </td>
-                                                                    <td>  {{  $res['email']  }}   </td> 
-                                                                    <td>  {{  $res['mobile']  }}  </td> 
-                                                                    <td>  {{  $res['city']  }}  </td>
+                                                                    <td>  {{  $res['leadid'] ?? ''  }}   </td> 
+                                                                    <td>  {{  $res['firstname'] ?? '' }} {{  $res['lastname'] }}   </td>
+                                                                    <td>  {{  $res['email'] ?? '' }}   </td> 
+                                                                    <td>  {{  $res['mobile'] ?? '' }}  </td> 
+                                                                    <td>  {{  $res['next_followup_date'] ?? '' }}  </td>
+                                                                    <td>  {{  $res['visit_date'] ?? '' }}  </td>
                                                                     <td class="text-right" >
                                                                     <div class="btn-group">
  

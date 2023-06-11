@@ -103,7 +103,17 @@
                                                 </select>
                                             </div>
 
+                                              <div class="col-sm-3">                                             
+                                                    <label class="col-form-label">Next Followup Date </label>                                                
+                                                        <input   type="date" name="next_followup_date" id="next_followup_date" class="form-control"  >
 
+                                                </div>
+
+                                                <div class="col-sm-3">                                             
+                                                    <label class="col-form-label">Visit Date </label>                                                
+                                                        <input   type="date" name="visit_date" id="visit_date" class="form-control"  >
+
+                                                </div>
 
                                              <div class="col-md-3">
                                                 <label class="col-form-label">Property Type </label>                                                

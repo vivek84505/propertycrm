@@ -126,8 +126,10 @@ class LeadModel extends Authenticatable
         // $query = DB::table('tbl_leadmaster');
         
         $query = DB::table('tbl_leadmaster')
-                    ->select('tbl_customer.firstname','tbl_customer.lastname','tbl_customer.email','tbl_customer.mobile','tbl_leadmaster.leadid','tbl_leadmaster.leadstatus','tbl_leadmaster.leadsource','tbl_leadmaster.units_interested_in','tbl_leadmaster.project_interested_in','tbl_leadmaster.customer_budget_min','tbl_leadmaster.customer_budget_max','tbl_leadmaster.floor_preference','tbl_leadmaster.lead_description','tbl_leadmaster.isactive','tbl_leadmaster.leadassignedto','tbl_leadmaster.is_opportunity','tbl_leadmaster.created_at','tbl_leadmaster.updated_at','tbl_leadmaster.createdby','tbl_leadmaster.lastmodifiedby','tbl_leadmaster.address','tbl_leadmaster.state','tbl_leadmaster.district','tbl_leadmaster.city','tbl_leadmaster.isdeleted','tbl_leadmaster.property_type','tbl_leadmaster.loan_required','tbl_leadmaster.next_followup_date','tbl_leadmaster.customerid')
-                    ->join('tbl_customer','tbl_customer.customerid','=','tbl_leadmaster.customerid');
+                    ->select('tbl_customer.firstname','tbl_customer.lastname','tbl_customer.email','tbl_customer.mobile','tbl_leadmaster.leadid','tbl_leadmaster.leadstatus','tbl_leadmaster.leadsource','tbl_leadmaster.units_interested_in','tbl_leadmaster.project_interested_in','tbl_leadmaster.customer_budget_min','tbl_leadmaster.customer_budget_max','tbl_leadmaster.floor_preference','tbl_leadmaster.lead_description','tbl_leadmaster.isactive','tbl_leadmaster.leadassignedto','tbl_leadmaster.is_opportunity','tbl_leadmaster.created_at','tbl_leadmaster.updated_at','tbl_leadmaster.createdby','tbl_leadmaster.lastmodifiedby','tbl_leadmaster.address','tbl_leadmaster.state','tbl_leadmaster.district','tbl_leadmaster.city','tbl_leadmaster.isdeleted','tbl_leadmaster.property_type','tbl_leadmaster.loan_required','tbl_leadmaster.next_followup_date','tbl_leadmaster.visit_date','tbl_leadmaster.customerid')
+                    ->leftJoin('tbl_customer','tbl_customer.customerid','=','tbl_leadmaster.customerid')
+                    ->join('tbl_state','tbl_state.state_id','=','tbl_leadmaster.state')
+                    ->join('tbl_district','tbl_district.district_id','=','tbl_leadmaster.district');;
                    
                    
 
@@ -143,19 +145,43 @@ class LeadModel extends Authenticatable
             
             $query->where('property_type', $payload['property_type']);
         }
+
         
-        if(isset($payload['next_followup_date']) && !empty($payload['next_followup_date'])){
-            
-            $query->whereRaw('Date(next_followup_date) = CURDATE()');
+
+        if(isset($payload['state']) && !empty($payload['state'])) {
+            $query->whereRaw("tbl_leadmaster.state = '" . $payload['state'] . "'");
         }
-        // $sql = $query->toSql();
 
-        // print_r($sql);
+        if(isset($payload['district']) && !empty($payload['district'])) {
+            $query->whereRaw("tbl_leadmaster.district = '" . $payload['district'] . "'");
+        }
+            
+       if(isset($payload['next_followup_date']) && !empty($payload['next_followup_date'])) {
+            $query->whereRaw("DATE(next_followup_date) = '" . $payload['next_followup_date'] . "'");
+       }
 
+       if(isset($payload['visit_date']) && !empty($payload['visit_date'])) {
+            $query->whereRaw("DATE(visit_date) = '" . $payload['visit_date'] . "'");
+        }
+        
+    //     print_r($payload);
+    //     die;
+
+    //     $sql = $query->toSql();
+    //     //  echo $payload['next_followup_date'];
+    //     print_r($sql);
+    //    die;
+    
+                
+      
       
         $leaddata = $query->get();
         
-         
+        
+        // echo $payload['next_followup_date'];
+        // print_r($leaddata);
+        // die;
+        
         if(!empty($leaddata)){
             $response = json_decode(json_encode($leaddata), true); 
         }

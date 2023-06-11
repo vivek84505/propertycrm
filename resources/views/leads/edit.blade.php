@@ -228,7 +228,7 @@
                                                         </select>
                                                 </div>
 
-                                                <div class="col-sm-4">                                             
+                                                <div class="col-sm-3">                                             
                                                     <label class="col-form-label">Loan Required </label>                                                
                                                         <select name="loan_required" id="loan_required" class="form-control"  >
                                                             <option value=""> Select </option>
@@ -240,14 +240,20 @@
 
                                                  
 
-                                                <div class="col-sm-4">                                             
+                                                <div class="col-sm-3">                                             
                                                     <label class="col-form-label">Next Followup Date </label>                                                
                                                         <input value="{{$leaddata->next_followup_date}}" type="date" name="next_followup_date" id="next_followup_date" class="form-control"  >
 
                                                 </div>
 
+                                                <div class="col-sm-3">                                             
+                                                    <label class="col-form-label">Visit Date </label>                                                
+                                                        <input value="{{$leaddata->visit_date}}" type="date" name="visit_date" id="visit_date" class="form-control"  >
 
-                                                <div class="col-sm-4">
+                                                </div>
+
+
+                                                <div class="col-sm-3">
                                                     
                                                         <label class="col-form-label">Lead Status </label>                                                
                                                         

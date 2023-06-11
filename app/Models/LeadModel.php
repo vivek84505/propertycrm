@@ -68,7 +68,7 @@ class LeadModel extends Authenticatable
         // $query->where('leadid', $payload['leadid']);
 
           $leaddata = DB::table('tbl_leadmaster')
-                    ->select('tbl_customer.firstname','tbl_customer.lastname','tbl_customer.email','tbl_customer.mobile','tbl_leadmaster.leadid','tbl_leadmaster.leadstatus','tbl_leadmaster.leadsource','tbl_leadmaster.units_interested_in','tbl_leadmaster.project_interested_in','tbl_leadmaster.customer_budget_min','tbl_leadmaster.customer_budget_max','tbl_leadmaster.floor_preference','tbl_leadmaster.lead_description','tbl_leadmaster.isactive','tbl_leadmaster.leadassignedto','tbl_leadmaster.is_opportunity','tbl_leadmaster.created_at','tbl_leadmaster.updated_at','tbl_leadmaster.createdby','tbl_leadmaster.lastmodifiedby','tbl_leadmaster.address','tbl_leadmaster.state','tbl_leadmaster.district','tbl_leadmaster.city','tbl_leadmaster.isdeleted','tbl_leadmaster.property_type','tbl_leadmaster.loan_required','tbl_leadmaster.next_followup_date','tbl_leadmaster.customerid')
+                    ->select('tbl_customer.firstname','tbl_customer.lastname','tbl_customer.email','tbl_customer.mobile','tbl_leadmaster.leadid','tbl_leadmaster.leadstatus','tbl_leadmaster.leadsource','tbl_leadmaster.units_interested_in','tbl_leadmaster.project_interested_in','tbl_leadmaster.customer_budget_min','tbl_leadmaster.customer_budget_max','tbl_leadmaster.floor_preference','tbl_leadmaster.lead_description','tbl_leadmaster.isactive','tbl_leadmaster.leadassignedto','tbl_leadmaster.is_opportunity','tbl_leadmaster.created_at','tbl_leadmaster.updated_at','tbl_leadmaster.createdby','tbl_leadmaster.lastmodifiedby','tbl_leadmaster.address','tbl_leadmaster.state','tbl_leadmaster.district','tbl_leadmaster.city','tbl_leadmaster.isdeleted','tbl_leadmaster.property_type','tbl_leadmaster.loan_required','tbl_leadmaster.next_followup_date','tbl_leadmaster.visit_date','tbl_leadmaster.customerid')
                     ->join('tbl_customer','tbl_customer.customerid','=','tbl_leadmaster.customerid')
                     ->where('tbl_leadmaster.leadid', $payload['leadid'])
                     ->get()->first();
@@ -139,12 +139,19 @@ class LeadModel extends Authenticatable
             $query->where('leadsource', $payload['leadsource']);
         }
 
-         if(isset($payload['property_type']) && !empty($payload['property_type'])){
+        if(isset($payload['property_type']) && !empty($payload['property_type'])){
             
             $query->where('property_type', $payload['property_type']);
         }
-          
         
+        if(isset($payload['next_followup_date']) && !empty($payload['next_followup_date'])){
+            
+            $query->whereRaw('Date(next_followup_date) = CURDATE()');
+        }
+        // $sql = $query->toSql();
+
+        // print_r($sql);
+
       
         $leaddata = $query->get();
         

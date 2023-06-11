@@ -32,16 +32,15 @@
                 <div class="container-fluid">
                     <div class="row justify-content-center">
                     
-                    <div class="col-sm-6 col-lg-3">
-                            <!-- Widget Content -->
+                        <div class="col-sm-6 col-lg-3" onclick="window.location ='{{ url("leads") }}'"> 
                             <div class="widget-content-style yellow-bg zoom-effect mb-30">
                                 <div class="row">
                                     <div class="col-4">
                                         <i class="fa fa-search fa-5x"></i>
                                     </div>
                                     <div class="col-8 text-right dashboard-box-text">
-                                        <span style> Total Leads </span>
-                                        <h2 class="widget-content--text color-white">12</h2>
+                                        <span > Total Leads </span>
+                                        <h2 id="total_leads" class="widget-content--text color-white"></h2>
                                     </div>
                                 </div>
                             </div>
@@ -61,8 +60,8 @@
                                     <div class="col-8 text-right">
                                         <!-- Text -->
                                         <div class="widget-style-two-text dashboard-box-text">
-                                            <p>Total Projects</p>
-                                            <h2 class="widget-content--text">100</h2>
+                                            <span >Total Projects</span>
+                                            <h2 id="total_projects" class="widget-content--text"></h2>
                                         </div>
                                     </div>
                                 </div>
@@ -76,9 +75,9 @@
                                         <i class="fa fa-trophy fa-5x"></i>
                                     </div>
                                     <div class="col-8 text-right dashboard-box-text">
-                                        <span> Todays Followup </span>
+                                        <span > Todays Followup </span>
                                         <!-- Icon -->
-                                        <h2 class="widget-content--text">20</h2>
+                                        <h2 id="todays_followup_leads" class="widget-content--text"></h2>
 
                                         
                                     </div>
@@ -96,8 +95,8 @@
                                         <i class="fa fa-envelope-o fa-5x"></i>
                                     </div>
                                     <div class="col-8 text-right dashboard-box-text">
-                                        <span> New messages</span>
-                                        <h2 class="widget-content--text color-white">260</h2>
+                                        <span > Total Customers</span>
+                                        <h2 id="total_customers" class="widget-content--text color-white"></h2>
                                     </div>
                                 </div>
                             </div>
@@ -287,4 +286,34 @@
 
 </body>
 
+
+<script>
+ $(document).ready(function(){
+      var token = $('#token').val();
+      
+      $.ajax({
+          type:"POST",
+          url: "{{ route('getdashboarddataall') }}",
+          data: { "_token": token },
+          dataType: 'json',
+          beforeSend:function(){
+              $("#loader").show();
+          },
+          success: function(res){
+           
+            $("#total_leads").html(res.total_leads); 
+            $("#total_customers").html(res.total_customers); 
+            $("#todays_followup_leads").html(res.todays_followup_leads); 
+            $("#total_projects").html(res.total_projects);  
+
+         },
+         complete:function(){
+             $("#loader").hide();
+         }
+      }); 
+
+    });
+
+
+</script>
 </html>

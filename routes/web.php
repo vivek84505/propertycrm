@@ -77,6 +77,7 @@ Route::middleware([loginliddleware::class])->group(function () {
     // Ajax Routes
     Route::post('/getdistrictbystateid', 'AjaxController@getdistrictbystateid')->name('getdistrictbystateid');
     Route::post('/getcustomers', 'AjaxController@getcustomers')->name('getcustomers');
+    Route::post('/getdashboarddataall', 'AjaxController@getDashboarddataAll')->name('getdashboarddataall');
 
     //Customer Routes
     Route::post('/customeradd', 'CustomerController@customerAdd')->name('customeradd');

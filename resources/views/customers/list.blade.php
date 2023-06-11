@@ -24,10 +24,10 @@
                                                                     <td class="text-right" >
                                                                     <div class="btn-group">
  
-                                                                    <a target="_blank"   class="btn m-2 btn-xs rounded-0 btn-info "> Edit </a>
+                                                                    <!-- <a target="_blank"   class="btn m-2 btn-xs rounded-0 btn-info "> Edit </a>
                                                                     </div>                                                                 
                                                                     <button class="btn m-2 btn-xs rounded-0 btn-danger deletecustomer " value="{{ $res['customerid'] }}" color-white"> Delete </button>
-                                                                       
+                                                                        -->
                                                                        
                                                                      </div>
                                                                     </td>

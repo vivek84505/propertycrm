@@ -127,7 +127,7 @@
                                          
                                         <div class="col-md-12  text-right submitbutton">
                                             <button class="btn btn-danger btn-sm mr-10" type="reset"  >Clear</button>
-                                            <button class="btn btn-primary btn-sm" type="submit">Search</button>
+                                            <button class="btn btn-info btn-sm" type="submit">Search</button>
                                          </div>
                                     </form>
 

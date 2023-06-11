@@ -50,23 +50,7 @@ class CustomerModel extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getleadsourcebyid($payload){
-        $res = [];
-        $user = new UserModel();  
-       
-        $query = DB::table('tbl_leadsourcemaster');
-       
-        if(isset($payload['leadsourceid']) && !empty($payload['leadsourceid']))
-        $query->where('leadsourceid', $payload['leadsourceid']);
-        $userdata = $query->get();
-        
-
-        if(!empty($userdata)){
-            $res = $userdata;
-        }
-        
-        return $res;
-    }
+    
 
     public function customersGetAll($payload){
        
@@ -77,7 +61,7 @@ class CustomerModel extends Authenticatable
     //    $customerdata = DB::select("SELECT customerid,firstname,lastname FROM `tbl_customer` WHERE CONCAT(firstname, ' ', lastname) LIKE '%$firstname%'");
         
        
-       $customerdata = DB::select("SELECT customerid,firstname,lastname FROM `tbl_customer`");
+       $customerdata = DB::select("SELECT customerid,firstname,lastname,email,mobile,alt_mobile FROM `tbl_customer`");
         
 
        if(!empty($customerdata)){
@@ -89,67 +73,7 @@ class CustomerModel extends Authenticatable
 
     }
 
-
-    public function leadsourcDelete($leadsourceid){
-
-        return $deleteResult = LeadSourceModel::where('leadsourceid',$leadsourceid)->delete(); 
-    }
-
-    public function checExistingleadsource($payload){
-
-       
-        $res = [];
-        $user = new UserModel();  
-       
-        $query = DB::table('users');
-
-        
-
-        if(isset($payload['email']) && !empty($payload['email'])){
-            
-            $query->where('email', $payload['email']);
-        }
-          
-        
-        if(isset($payload['mobile']) && !empty($payload['mobile'])){  
-            
-            $query->orwhere('mobile', $payload['mobile']); 
-        }
-       
-
-         
-       
-      
-        $userdata = $query->get();
-        
-         
-        if(!empty($userdata)){
-            $res = json_decode(json_encode($userdata), true); 
-        }
-
-        
-        return $res;
-
-    }
-
-
-    public function leadsourceEdit($payload){
-
-       $leadsourceid = $payload['leadsourceid'];
-
-       if(isset($payload['leadsourceid'])){
-         unset($payload['leadsourceid']);
-       }
-       
-       
-    
-       $res = LeadSourceModel::where('leadsourceid',$leadsourceid)->update($payload);
-       
-      
-      
-       return $res; 
-
-    }
+ 
 
 
     public function customerAdd($payload){

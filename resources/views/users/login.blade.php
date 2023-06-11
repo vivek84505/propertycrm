@@ -75,7 +75,7 @@ background-color: #cccccc;
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
 
-                                <button type="submit" class="btn btn-primary register">Login</button>
+                                <button type="submit" class="btn btn-info register">Login</button>
                                 <!-- <a class="forgot_pass" href="#"><small>Forgot password?</small></a> -->
                                 
                               

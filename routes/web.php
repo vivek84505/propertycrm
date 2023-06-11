@@ -80,6 +80,8 @@ Route::middleware([loginliddleware::class])->group(function () {
     Route::post('/getdashboarddataall', 'AjaxController@getDashboarddataAll')->name('getdashboarddataall');
 
     //Customer Routes
+    Route::get('/customerlist', 'CustomerController@index')->name('customerlist');
+    Route::post('/getcustomerlistall', 'CustomerController@getcustomerlistAll')->name('getcustomerlistall');
     Route::post('/customeradd', 'CustomerController@customerAdd')->name('customeradd');
 });
  

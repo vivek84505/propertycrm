@@ -40,6 +40,12 @@
                                                       
                         </ul>
                     </li>
+
+                    <li><a href="#"><i class="icon_drive"></i> Customers Management</a>
+                        <ul class="dropdown">
+                            <li><a href="{{route('customerlist')}}"> Customer List </a></li>   
+                        </ul>
+                    </li>
                     
                 </ul>
             </div>

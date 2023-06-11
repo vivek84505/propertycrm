@@ -24,7 +24,7 @@
                                                                     <td class="text-right" >
                                                                     <div class="btn-group">
  
-                                                                    <a target="_blank" href="{{ route('leadsedit', ['leadid'=>$res['leadid'] ]) }}" class="btn m-2 btn-xs rounded-0 btn-primary "> Edit </a>
+                                                                    <a target="_blank" href="{{ route('leadsedit', ['leadid'=>$res['leadid'] ]) }}" class="btn m-2 btn-xs rounded-0 btn-info "> Edit </a>
                                                                     </div>                                                                 
                                                                     <button class="btn m-2 btn-xs rounded-0 btn-danger deletecustomer " value="{{ $res['leadid'] }}" color-white"> Delete </button>
                                                                        
@@ -133,7 +133,7 @@
                                 <!-- Modal Footer -->
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                    <button type="submit" class="btn btn-info">Save changes</button>
                             
                                 </div>
                                 </div>

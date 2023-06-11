@@ -46,7 +46,7 @@
                                 <li class="breadcrumb-item"><a href="#">Leads Management</a></li>
                               
                              </ol>
-                             <button data-toggle="collapse" data-target="#demo"class="btn btn-primary btn-sm btn-lg float-right" >Add Lead </button></br>
+                             <button data-toggle="collapse" data-target="#demo"class="btn btn-info btn-sm btn-lg float-right" >Add Lead </button></br>
                         </nav>
                     </div>
                 </div>
@@ -206,7 +206,7 @@
                                        
                                         <div class="col-md-12 text-right  submitbutton " >
                                             <button class="btn btn-danger btn-sm" type="reset"  >Clear</button>
-                                            <button class="btn btn-primary btn-sm" type="submit">Save Lead</button>
+                                            <button class="btn btn-info btn-sm" type="submit">Save Lead</button>
                                          </div>
                                     </form>
 
@@ -263,7 +263,7 @@
                                                 <!-- Modal Footer -->
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                    <button type="submit" class="btn btn-info">Save changes</button>
                                                 </div>
                                             </form>
                                             </div>

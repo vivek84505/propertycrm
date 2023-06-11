@@ -393,7 +393,7 @@ public function detail(Request $request){
 
 
         $lead = new LeadModel();   
-        $leaddata = $lead->leadsearchAll($payload);
+        $leaddata = $lead->getleadsAll($payload);
 
         if(!empty($leaddata)){
             

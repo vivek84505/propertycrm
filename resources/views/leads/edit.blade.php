@@ -285,7 +285,7 @@
                                                 
                                                
                                                 <div class="col-md-12  text-right submitbutton ">  
-                                                        <button class="btn btn-primary btn-sm float-right"  type="submit">Update Lead </button>
+                                                        <button class="btn btn-info btn-sm float-right"  type="submit">Update Lead </button>
                                                 </div>
                                                
                                         </div>
@@ -325,7 +325,7 @@
 
                                             <div class="col-md-12   text-right submitbutton "> 
                                                            
-                                                        <button class="btn btn-primary btn-sm float-right submitbutton"  type="submit">Submit</button>
+                                                        <button class="btn btn-info btn-sm float-right submitbutton"  type="submit">Submit</button>
                                             </div>
                                         </form>
 

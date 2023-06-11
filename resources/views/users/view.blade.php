@@ -42,7 +42,7 @@
                                 <li class="breadcrumb-item"><a href="#">Users Management</a></li>
                               
                              </ol>
-                             <button data-toggle="collapse" data-target="#demo"class="btn btn-primary btn-sm btn-lg float-right" >Add User</button></br>
+                             <button data-toggle="collapse" data-target="#demo"class="btn btn-info btn-sm btn-lg float-right" >Add User</button></br>
                         </nav>
                     </div>
                 </div>
@@ -113,7 +113,7 @@
                                                 <div class="col-12">
                                                     <button class="btn btn-danger btn-sm mr-10" type="reset"  >Clear</button>
 
-                                                    <button class="btn btn-primary btn-sm" type="submit">Save changes</button>
+                                                    <button class="btn btn-info btn-sm" type="submit">Save changes</button>
                                                 </div>
                                             </div>
 

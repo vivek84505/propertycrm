@@ -5,28 +5,28 @@
                                                 <thead>
                                                     <tr>
                                                       
-                                                        <th>Client ID </th>
+                                                        <th>Customer ID </th>
                                                         <th>Name </th> 
                                                         <th>Email</th>
                                                         <th>Mobile</th>
-                                                        <th>City</th>
+                                                        <th>Alt Mobile</th>
                                                         <th class="text-right">Action</th>
                                                     </tr>
                                                    <tbody >
                                                        @if(!empty($result))
                                                             @foreach($result as $res)
                                                                 <tr>
-                                                                    <td>  {{  $res['leadid'] ?? ''  }}   </td> 
+                                                                    <td>  {{  $res['customerid'] ?? ''  }}   </td> 
                                                                     <td>  {{  $res['firstname'] ?? '' }} {{  $res['lastname'] ?? '' }}   </td>
                                                                     <td>  {{  $res['email'] ?? ''  }}   </td> 
                                                                     <td>  {{  $res['mobile']  ?? '' }}  </td> 
-                                                                    <td>  {{  $res['city']  ?? '' }}  </td>
+                                                                    <td>  {{  $res['alt_mobile']  ?? '' }}  </td>
                                                                     <td class="text-right" >
                                                                     <div class="btn-group">
  
-                                                                    <a target="_blank" href="{{ route('leadsedit', ['leadid'=>$res['leadid'] ]) }}" class="btn m-2 btn-xs rounded-0 btn-info "> Edit </a>
+                                                                    <a target="_blank"   class="btn m-2 btn-xs rounded-0 btn-info "> Edit </a>
                                                                     </div>                                                                 
-                                                                    <button class="btn m-2 btn-xs rounded-0 btn-danger deletecustomer " value="{{ $res['leadid'] }}" color-white"> Delete </button>
+                                                                    <button class="btn m-2 btn-xs rounded-0 btn-danger deletecustomer " value="{{ $res['customerid'] }}" color-white"> Delete </button>
                                                                        
                                                                        
                                                                      </div>
@@ -42,106 +42,7 @@
 
   <!-- User List Model --> 
         <!-- Modal -->
-        <div class="modal fade" id="leadeditModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalCenterTitle">Edit Client</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span></button>
-                                    </div>
-                                    <!-- Modal Body -->
-                        <div class="modal-body">
-                             <form  id="customereditform" >
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <input type="hidden" id="leadid" name="leadid" class="edit_leadid" value="">
-                            
-                                    <div class="row">
-                                                    <div class="form-group col-md-6">
-                                                        <label class="control-label">Firstname</label>
-                                                        <div>
-                                                            <input type="text" name="firstname" id="firstname"  class="form-control input-lg edit_firstname"  value="">
-                                                        </div>
-                                                    </div>
-
-
-                                                    <div class="form-group col-md-6 ">
-                                                        <label class="control-label">Lastname</label>
-                                                            <div>
-                                                                <input type="text" name="lastname" id="lastname"  class="form-control input-lg edit_lastname"  value="">
-                                                            </div>
-                                                    </div>
-                                            
-                                            
-                                                    <div class="form-group col-md-6 ">
-                                                        <label class="control-label">Email</label>
-                                                        <div>
-                                                            <input type="email" name="email" id="email"  class="form-control input-lg edit_email"  value="">
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="form-group col-md-6 ">
-                                                        <label class="control-label">Mobile</label>
-                                                        <div>
-                                                            <input type="text" name="mobile" id="mobile"  class="form-control input-lg edit_mobile"  value="">
-                                                        </div>
-                                                    </div>
-
-
-                                                    <div class="form-group col-md-6 ">
-                                                        <label class="control-label">Website</label>
-                                                        <div>
-                                                            <input type="url" name="website" id="website"  class="form-control input-lg edit_website"  value="">
-                                                        </div>
-                                                    </div>
-
-                                                   
-
-                                                    <div class="form-group col-md-6 ">
-                                                    <label class="control-label">State</label>
-                                                    <div>
-                                                        <select name="state" id="state" class="form-control  edit_state"  >
-                                                        <option value=""> Select State </option>
-                                                        @foreach($states as $state )
-                                                        <option value="{{ $state['state_id'] }}"> {{ $state['state_name'] }} </option>
-                                                        @endforeach
-                                                        </select>
-                                                    </div>
-                                                    </div>
-
-
-                                                    <div class="form-group col-md-6 ">
-                                                     <label class="col-form-label">District</label>                                                
-                                                        <select name="district" id="district" class="form-control edit_district"  >
-                                                            
-                                                        </select>
-                                                    </div>
-
-
-                                                      <div class="form-group col-md-6 ">
-                                                        <label class="control-label">City</label>
-                                                        <div>
-                                                            <input type="text" name="city" id="city"  class="form-control input-lg edit_city"  value="">
-                                                        </div>
-                                                    </div>
-
-
-                                            
-                                            
-                        
-                                </div>
-                                <!-- Modal Footer -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-info">Save changes</button>
-                            
-                                </div>
-                                </div>
-                               
-
-                </div>
-            </div>
-        </div>
+        
     </div>
   </div>
 </div>

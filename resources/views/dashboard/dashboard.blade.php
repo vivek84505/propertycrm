@@ -54,7 +54,7 @@
                                     <div class="col-4">
                                         <!-- Icon -->
                                         <div class="widget-style-two-icon">
-                                            <i class="fa fa-cloud fa-5x"></i>
+                                            <i class="fa fa-building fa-5x"></i>
                                         </div>
                                     </div>
                                     <div class="col-8 text-right">
@@ -72,7 +72,7 @@
                             <div class="widget-content-style rounded-0 one zoom-effect mb-30">
                                 <div class="row">
                                     <div class="col-4">
-                                        <i class="fa fa-trophy fa-5x"></i>
+                                        <i class="fa fa-calendar-check-o fa-5x"></i>
                                     </div>
                                     <div class="col-8 text-right dashboard-box-text">
                                         <span > Todays Followup </span>

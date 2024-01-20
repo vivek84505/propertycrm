@@ -22,7 +22,7 @@
                      <li  ><a href="{{route('dashboard')}}"><i class="icon_house_alt"></i> Dashboard </a></li>
 
 
-                    <li><a href="#"><i class="icon_drive"></i> Master</a>
+                    <li><a href="#"><i class="icon_drive"></i> Master Menu</a>
                         <ul class="dropdown">
                             <li   ><a href="{{route('leadsource')}}">Lead Source master</a></li>                            
                             <li><a href="{{route('leadstatus')}}">Lead Status master</a></li>                            

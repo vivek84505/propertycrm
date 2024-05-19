@@ -26,7 +26,8 @@ class CustomerController extends Controller
         $states = Helper::getStateAll();
         $leadSourceData = Helper::getLeadSourceAll(); 
         $customerBudget = Helper::getCustomerBudget();
-        $customerData = CustomerModel::customersGetAll([]);
+        $customerModel = new CustomerModel();   
+        $customerData = $customerModel->customersGetAll([]);
         return View::make('customers.view')->with(['customerData' => $customerData]);
 
     }

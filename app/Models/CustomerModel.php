@@ -52,13 +52,9 @@ class CustomerModel extends Authenticatable
 
     
 
-    public function customersGetAll($payload){
+    public static function customersGetAll($payload){
        
        $response = []; 
-       
-    //    $firstname = $payload['firstname'];  
-       
-    //    $customerdata = DB::select("SELECT customerid,firstname,lastname FROM `tbl_customer` WHERE CONCAT(firstname, ' ', lastname) LIKE '%$firstname%'");
         
        
        $customerdata = DB::select("SELECT customerid,firstname,lastname,email,mobile,alt_mobile FROM `tbl_customer`");

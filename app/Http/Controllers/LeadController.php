@@ -303,7 +303,9 @@ public function detail(Request $request){
         if(!empty($leaddata->units_interested_in)){
             $tempunits = [];
             $leaddata->units_interested_in = json_decode($leaddata->units_interested_in);
-            
+            $leaddata->units_interested_in = (array) $leaddata->units_interested_in;
+            if(is_array($leaddata->units_interested_in)){
+               
             foreach($leaddata->units_interested_in  as $unit){
                 $unit = (array)$unit;
                 $key = key($unit);
@@ -313,6 +315,8 @@ public function detail(Request $request){
                 }
  
             } 
+            }
+      
         }
         
         if(!empty($tempunits)){

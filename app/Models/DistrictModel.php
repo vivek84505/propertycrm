@@ -51,7 +51,7 @@ class DistrictModel extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getdistrictbystateid($payload){
+    public static function getdistrictbystateid($payload){
         $res = [];
         $customerdata = [];
         $customer = new DistrictModel();  

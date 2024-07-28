@@ -298,15 +298,11 @@
                             </div>
                         </div>
                          <div class="clearfix"> &nbsp; </div>
+                         
                         <div class="col-12">
-                                 <div class="product-list--area mb-50 bg-boxshadow">
-                                
-
+                                 <div class="product-list--area mb-50 bg-boxshadow"> 
                                     <div class="row">
-                                    <div class="col-lg-12">
-                                    <!-- Ibox -->
-                                    
-                                    <!-- Ibox Title -->
+                                    <div class="col-lg-12"> 
                                     <div class="ibox-title">
                                     <h5 class="mb-30">Add Lead Remark </h5>
                                     </div>
@@ -344,16 +340,11 @@
 
 
 
-                            <div class="col-12">
-                             
-                             <div class="product-list--area mb-50 bg-boxshadow">
-                                
+                            <div class="col-12"> 
+                             <div class="product-list--area mb-50 bg-boxshadow"> 
 
                                     <div class="row">
-                                    <div class="col-lg-12">
-                                    <!-- Ibox -->
-                                    
-                                    <!-- Ibox Title -->
+                                    <div class="col-lg-12"> 
                                     <div class="ibox-title">
                                     <h5 class="mb-30"> Lead Remarks </h5>
                                     </div>
@@ -371,16 +362,9 @@
                                             <tbody id="leadlogtbody">
                                                
                                             </tbody>
-                                        </table>
-
-                                    
-                                   
-                                    </div>
-                                        
-
-                                    </div>
-
-                                    
+                                        </table>  
+                                    </div> 
+                                    </div> 
                                 </div>
                             </div>
                         </div>

@@ -5,7 +5,7 @@
                                                 <thead>
                                                     <tr>
                                                       
-                                                        <th    style="width: 56px;">Lead ID</th>
+                                                        <th style="width: 56px;">Lead ID</th>
                                                         <th  style="width: 125px;">Name</th>
                                                         <th  style="width: 113px;">Email</th>
                                                         <th style="width: 82px;">Mobile</th>
@@ -23,15 +23,11 @@
                                                                     <td>  {{  $res['mobile'] ?? '' }}  </td> 
                                                                     <td>  {{  $res['next_followup_date'] ?? '' }}  </td>
                                                                     <td>  {{  $res['visit_date'] ?? '' }}  </td>
-                                                                    <td class="text-right" >
-                                                                    <div class="btn-group">
- 
-                                                                    <a target="_blank" href="{{ route('leadsedit', ['leadid'=>$res['leadid'] ]) }}" class="btn m-2 btn-xs rounded-0 btn-info "> Edit </a>
-                                                                    </div>                                                                 
-                                                                    <button class="btn m-2 btn-xs rounded-0 btn-danger deletecustomer " value="{{ $res['leadid'] }}" color-white"> Delete </button>
-                                                                       
-                                                                       
-                                                                     </div>
+                                                                   <td>
+                                                                        <div class="btn-group row">
+                                                                            <a target="_blank" href="{{ route('leadsedit', ['leadid'=>$res['leadid'] ]) }}" class="btn btn-info" style="margin-right: 10px;">Edit</a>
+                                                                            <button class="btn btn-danger deletecustomer" value="{{ $res['leadid'] }}" style="margin-left: 10px;">Delete</button>
+                                                                        </div>
                                                                     </td>
                                                                 </tr>  
                                                             @endforeach

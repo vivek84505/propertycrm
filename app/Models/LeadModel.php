@@ -108,17 +108,7 @@ class LeadModel extends Authenticatable
 
      public function leadsearchAll($payload){
         
-        // $response = []; 
-        // $userdata = LeadModel::select('leadid','firstname','lastname','email','mobile','alt_mobile','state','address','city','created_at','createdby')->where('isdeleted','0')->get();
-          
-        // if(!empty($userdata)){
-        //     $response = $userdata;
-        // } 
-        // return $response;
-        
-        // echo "<pre>";
-        // print_r($payload);
-        // die;
+         
 
         $response = [];
             
@@ -134,8 +124,7 @@ class LeadModel extends Authenticatable
                    
 
 
-        // $query->select('leadid','firstname','lastname','email','mobile','alt_mobile','state','address','city','created_at','createdby')->where('isdeleted','0');
-
+ 
         if(isset($payload['leadsource']) && !empty($payload['leadsource'])){
             
             $query->where('leadsource', $payload['leadsource']);

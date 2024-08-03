@@ -17,7 +17,9 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
    <!-- Loader -->
-   <div style="display:none" id="loader" class="loader"></div>
+   <div style="display:none" id="loader" class="loader">
+    <img src="{{ asset('public/img/loader1.gif') }}" alt="Loading...">
+   </div>
 
    <!-- csrf token -->
    <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">

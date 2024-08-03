@@ -5462,15 +5462,44 @@ iframe {
     width: 25px;
 }
 
-.loader {
+/* .loader {
+    display: none;
     position: fixed;
-    opacity: 60%;
-    left: 0px;
-    top: 0px;
-    width: 50%;
-    height: 50%;
     z-index: 9999;
-    background: url("../img/loader.gif") 50% 50% no-repeat rgb(249, 249, 249);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border: 10px solid 1f1f2c;
+    border-radius: 50%;
+    border-top: 10px solid #f8f9fa;
+    animation: spin 2s linear infinite;
+} */
+
+/* Loader animation */
+/* @keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+} */
+
+.loader {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 9999; /* Ensures it stays on top */
+    top: 70%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+}
+
+/* Style for loader image */
+.loader img {
+    width: 100px; /* Adjust the size of the loader image */
+    height: 100px;
 }
 
 .error {

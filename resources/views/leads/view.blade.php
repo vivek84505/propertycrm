@@ -345,7 +345,7 @@ function getleadlist(){
           data: { "_token": token },
           dataType: 'json',
           beforeSend:function(){
-              $("#loader").show();
+                $("#loader").show();
           },
           success: function(res){
              
@@ -359,7 +359,7 @@ function getleadlist(){
 
          },
          complete:function(){
-             $("#loader").hide();
+                  $("#loader").hide();
          }
       }); 
 }
@@ -697,9 +697,7 @@ $('#customerid').select2({
           url: "{{ route('getcustomers') }}",
           data: { "_token": token },
           dataType: 'json',
-          beforeSend:function(){
-              $("#loader").show();
-          },
+          
           success: function(res){
              
            console.log('get customer res=========>',res);
@@ -718,10 +716,8 @@ $('#customerid').select2({
             }
 
 
-         },
-         complete:function(){
-             $("#loader").hide();
          }
+        
       }); 
 }
 </script>

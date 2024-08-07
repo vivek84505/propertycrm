@@ -22,3 +22,4 @@ Route::get('/', function () {
 
 //Protected Routes
     Route::get('/dashboard', 'DashboardControlller@index')->name('dashboard');
+    Route::get('/login', 'LoginController@index')->name('login');

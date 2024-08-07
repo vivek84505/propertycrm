@@ -9,12 +9,12 @@
                 <button class="smallDeviceMenuController hidden md:inline-block xl:hidden">
                   <iconify-icon class="leading-none bg-transparent relative text-xl top-[2px] text-slate-900 dark:text-white" icon="heroicons-outline:menu-alt-3"></iconify-icon>
                 </button>
-                <button class="flex items-center xl:text-sm text-lg xl:text-slate-400 text-slate-800 dark:text-slate-300 px-1
+                <!-- <button class="flex items-center xl:text-sm text-lg xl:text-slate-400 text-slate-800 dark:text-slate-300 px-1
         rtl:space-x-reverse search-modal" data-bs-toggle="modal" data-bs-target="#searchModal">
                   <iconify-icon icon="heroicons-outline:search"></iconify-icon>
                   <span class="xl:inline-block hidden ml-3">Search...
     </span>
-                </button>
+                </button> -->
 
               </div>
               <!-- end vertcial -->
@@ -1251,12 +1251,12 @@
                 <!-- BEGIN: Language Dropdown  -->
 
                 <div class="relative">
-                  <button class="text-slate-800 dark:text-white focus:ring-0 focus:outline-none font-medium rounded-lg text-sm text-center
+                  <!-- <button class="text-slate-800 dark:text-white focus:ring-0 focus:outline-none font-medium rounded-lg text-sm text-center
             inline-flex items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <iconify-icon icon="circle-flags:uk" class="mr-0 md:mr-2 rtl:ml-2 text-xl"></iconify-icon>
                     <span class="text-sm md:block hidden font-medium text-slate-600 dark:text-slate-300">
             En</span>
-                  </button>
+                  </button> -->
                   <!-- Language Dropdown menu -->
                   <div class="dropdown-menu z-10 hidden bg-white divide-y divide-slate-100 shadow w-44 dark:bg-slate-800 border dark:border-slate-900 !top-[25px] rounded-md
             overflow-hidden">
@@ -1280,35 +1280,35 @@
                 <!-- END: Language Dropdown -->
 
                 <!-- BEGIN: Toggle Theme -->
-                <div>
+                <!-- <div>
                   <button id="themeMood" class="h-[28px] w-[28px] lg:h-[32px] lg:w-[32px] lg:bg-gray-500-f7 bg-slate-50 dark:bg-slate-900 lg:dark:bg-slate-900 dark:text-white text-slate-900 cursor-pointer rounded-full text-[20px] flex flex-col items-center justify-center">
                     <iconify-icon class="text-slate-800 dark:text-white text-xl dark:block hidden" id="moonIcon" icon="line-md:sunny-outline-to-moon-alt-loop-transition"></iconify-icon>
                     <iconify-icon class="text-slate-800 dark:text-white text-xl dark:hidden block" id="sunIcon" icon="line-md:moon-filled-to-sunny-filled-loop-transition"></iconify-icon>
                   </button>
-                </div>
+                </div> -->
                 <!-- END: TOggle Theme -->
 
                 <!-- BEGIN: gray-scale Dropdown -->
-                <div>
+                <!-- <div>
                   <button id="grayScale" class="lg:h-[32px] lg:w-[32px] lg:bg-slate-100 lg:dark:bg-slate-900 dark:text-white text-slate-900 cursor-pointer
             rounded-full text-[20px] flex flex-col items-center justify-center">
                     <iconify-icon class="text-slate-800 dark:text-white text-xl" icon="mdi:paint-outline"></iconify-icon>
                   </button>
-                </div>
+                </div> -->
                 <!-- END: gray-scale Dropdown -->
 
                 <!-- BEGIN: Message Dropdown -->
                 <!-- Mail Dropdown -->
                 <div class="relative md:block hidden">
-                  <button class="lg:h-[32px] lg:w-[32px] lg:bg-slate-100 lg:dark:bg-slate-900 dark:text-white text-slate-900 cursor-pointer
+                  <!-- <button class="lg:h-[32px] lg:w-[32px] lg:bg-slate-100 lg:dark:bg-slate-900 dark:text-white text-slate-900 cursor-pointer
       rounded-full text-[20px] flex flex-col items-center justify-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <iconify-icon class="text-slate-800 dark:text-white text-xl" icon="heroicons-outline:mail"></iconify-icon>
                     <span class="absolute -right-1 lg:top-0 -top-[6px] h-4 w-4 bg-red-500 text-[8px] font-semibold flex flex-col items-center
         justify-center rounded-full text-white z-[45]">
       10</span>
-                  </button>
+                  </button> -->
                   <!-- Mail Dropdown -->
-                  <div class="dropdown-menu z-10 hidden bg-white divide-y divide-slate-100 dark:divide-slate-700 shadow w-[335px]
+    <div class="dropdown-menu z-10 hidden bg-white divide-y divide-slate-100 dark:divide-slate-700 shadow w-[335px]
       dark:bg-slate-800 border dark:border-slate-700 !top-[23px] rounded-md overflow-hidden lrt:origin-top-right rtl:origin-top-left">
                     <div class="flex items-center justify-between py-4 px-4">
                       <h3 class="text-sm font-Inter font-medium text-slate-700 dark:text-white">Messages</h3>
@@ -1389,13 +1389,13 @@
                 <!-- BEGIN: Notification Dropdown -->
                 <!-- Notifications Dropdown area -->
                 <div class="relative md:block hidden">
-                  <button class="lg:h-[32px] lg:w-[32px] lg:bg-slate-100 lg:dark:bg-slate-900 dark:text-white text-slate-900 cursor-pointer
+                  <!-- <button class="lg:h-[32px] lg:w-[32px] lg:bg-slate-100 lg:dark:bg-slate-900 dark:text-white text-slate-900 cursor-pointer
       rounded-full text-[20px] flex flex-col items-center justify-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <iconify-icon class="animate-tada text-slate-800 dark:text-white text-xl" icon="heroicons-outline:bell"></iconify-icon>
                     <span class="absolute -right-1 lg:top-0 -top-[6px] h-4 w-4 bg-red-500 text-[8px] font-semibold flex flex-col items-center
         justify-center rounded-full text-white z-[99]">
       4</span>
-                  </button>
+                  </button> -->
                   <!-- Notifications Dropdown -->
                   <div class="dropdown-menu z-10 hidden bg-white shadow w-[335px]
       dark:bg-slate-800 border dark:border-slate-700 !top-[23px] rounded-md overflow-hidden lrt:origin-top-right rtl:origin-top-left">
@@ -1487,7 +1487,7 @@
                   <button class="text-slate-800 dark:text-white focus:ring-0 focus:outline-none font-medium rounded-lg text-sm text-center
       inline-flex items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="lg:h-8 lg:w-8 h-7 w-7 rounded-full flex-1 ltr:mr-[10px] rtl:ml-[10px]">
-                      <img src="{{ URL::asset('public/images/all-img/user.png') }}" alt="user" class="block w-full h-full object-cover rounded-full">
+                      <img src="{{ URL::asset('public/images/all-img/newuser.png') }}" alt="user" class="block w-full h-full object-cover rounded-full">
                     </div>
                     <span class="flex-none text-slate-600 dark:text-white text-sm font-normal items-center lg:flex hidden overflow-hidden text-ellipsis whitespace-nowrap">Albert Flores</span>
                     <svg class="w-[16px] h-[16px] dark:text-white hidden lg:inline-block text-base inline-block ml-[10px] rtl:mr-[10px]" aria-hidden="true" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -1498,34 +1498,10 @@
                   <div class="dropdown-menu z-10 hidden bg-white divide-y divide-slate-100 shadow w-44 dark:bg-slate-800 border dark:border-slate-700 !top-[23px] rounded-md
       overflow-hidden">
                     <ul class="py-1 text-sm text-slate-800 dark:text-slate-200">
-                      <li>
-                        <a href="index.html" class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600
-            dark:text-white font-normal">
-                          <iconify-icon icon="heroicons-outline:user" class="relative top-[2px] text-lg ltr:mr-1 rtl:ml-1"></iconify-icon>
-                          <span class="font-Inter">Dashboard</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="chat.html" class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600
-            dark:text-white font-normal">
-                          <iconify-icon icon="heroicons-outline:chat" class="relative top-[2px] text-lg ltr:mr-1 rtl:ml-1"></iconify-icon>
-                          <span class="font-Inter">Chat</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="email.html" class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600
-            dark:text-white font-normal">
-                          <iconify-icon icon="heroicons-outline:mail" class="relative top-[2px] text-lg ltr:mr-1 rtl:ml-1"></iconify-icon>
-                          <span class="font-Inter">Email</span>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="todo.html" class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600
-            dark:text-white font-normal">
-                          <iconify-icon icon="heroicons-outline:clipboard-check" class="relative top-[2px] text-lg ltr:mr-1 rtl:ml-1"></iconify-icon>
-                          <span class="font-Inter">Todo</span>
-                        </a>
-                      </li>
+                      
+                       
+                       
+                     
                       <li>
                         <a href="settings.html" class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600
             dark:text-white font-normal">
@@ -1537,7 +1513,7 @@
                         <a href="pricing.html" class="block px-4 py-2 hover:bg-slate-100 dark:hover:bg-slate-600 dark:hover:text-white font-inter text-sm text-slate-600
             dark:text-white font-normal">
                           <iconify-icon icon="heroicons-outline:credit-card" class="relative top-[2px] text-lg ltr:mr-1 rtl:ml-1"></iconify-icon>
-                          <span class="font-Inter">Price</span>
+                          <span class="font-Inter">Profile</span>
                         </a>
                       </li>
                       <li>

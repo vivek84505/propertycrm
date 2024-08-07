@@ -68,6 +68,7 @@
 
   // Theme Change by Header Button
   $("#themeMood").on("click", function () {
+   
     if (currentTheme === "light") {
       currentTheme = "dark";
     } else {

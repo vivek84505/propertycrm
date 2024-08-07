@@ -35,8 +35,8 @@
              
           </li>
           <!-- Apps Area -->
-          <li class="sidebar-menu-title">APPS</li>
-          <li>
+        <li style="display:none" class="sidebar-menu-title">APPS</li>
+          <li style="display:none">
             <a href="chat.html" class="navItem">
               <span class="flex items-center">
             <iconify-icon class="nav-icon" icon="heroicons-outline:chat"></iconify-icon>
@@ -44,7 +44,7 @@
               </span>
             </a>
           </li>
-          <li class="">
+          <li style="display:none" class="">
             <a href="email.html" class="navItem">
               <span class="flex items-center">
             <iconify-icon class=" nav-icon" icon="heroicons-outline:mail"></iconify-icon>
@@ -52,7 +52,7 @@
               </span>
             </a>
           </li>
-          <li class="">
+          <li style="display:none" class="">
             <a href="kanban.html" class="navItem">
               <span class="flex items-center">
             <iconify-icon class=" nav-icon" icon="heroicons-outline:view-boards"></iconify-icon>
@@ -60,7 +60,7 @@
               </span>
             </a>
           </li>
-          <li class="">
+          <li style="display:none" class="">
             <a href="calander.html" class="navItem">
               <span class="flex items-center">
             <iconify-icon class=" nav-icon" icon="heroicons-outline:calendar"></iconify-icon>
@@ -68,7 +68,7 @@
               </span>
             </a>
           </li>
-          <li class="">
+          <li style="display:none" class="">
             <a href="todo.html" class="navItem">
               <span class="flex items-center">
             <iconify-icon class=" nav-icon" icon="heroicons-outline:clipboard-check"></iconify-icon>
@@ -76,7 +76,7 @@
               </span>
             </a>
           </li>
-          <li class="">
+          <li style="display:none" class="">
             <a href="javascript:void(0)" class="navItem">
               <span class="flex items-center">
             <iconify-icon class=" nav-icon" icon="heroicons-outline:document"></iconify-icon>
@@ -94,9 +94,9 @@
             </ul>
           </li>
           <!-- Pages Area -->
-          <li class="sidebar-menu-title">PAGES</li>
+          <li style="display:none" class="sidebar-menu-title">PAGES</li>
           <!-- Authentication -->
-          <li class="">
+          <li style="display:none" class="">
             <a href="javascript:void(0)" class="navItem">
               <span class="flex items-center">
             <iconify-icon class=" nav-icon" icon="heroicons-outline:lock-closed"></iconify-icon>
@@ -144,7 +144,7 @@
             </ul>
           </li>
           <!-- Utility -->
-          <li class="">
+          <li style="display:none" class="">
             <a href="javascript:void(0)" class="navItem">
               <span class="flex items-center">
             <iconify-icon class=" nav-icon" icon="heroicons-outline:view-boards"></iconify-icon>
@@ -183,9 +183,9 @@
             </ul>
           </li>
           <!-- Elements Area -->
-          <li class="sidebar-menu-title">ELEMENTS</li>
+          <li style="display:none" class="sidebar-menu-title">ELEMENTS</li>
           <!-- Widgets -->
-          <li class="">
+          <li style="display:none" class="">
             <a href="javascript:void(0)" class="navItem">
               <span class="flex items-center">
             <iconify-icon class=" nav-icon" icon="heroicons-outline:view-grid-add"></iconify-icon>
@@ -203,7 +203,7 @@
             </ul>
           </li>
           <!-- Components -->
-          <li>
+          <li  style="display:none">
             <a href="javascript:void(0)" class="navItem">
               <span class="flex items-center">
             <iconify-icon class=" nav-icon" icon="heroicons-outline:collection"></iconify-icon>
@@ -263,7 +263,7 @@
             </ul>
           </li>
           <!-- Forms -->
-          <li class="">
+          <li  style="display:none" class="">
             <a href="javascript:void(0)" class="navItem">
               <span class="flex items-center">
             <iconify-icon class=" nav-icon" icon="heroicons-outline:clipboard-list"></iconify-icon>
@@ -317,7 +317,7 @@
             </ul>
           </li>
           <!-- Tables -->
-          <li class="">
+          <li  style="display:none" class="">
             <a href="javascript:void(0)" class="navItem">
               <span class="flex items-center">
             <iconify-icon class=" nav-icon" icon="heroicons-outline:table"></iconify-icon>
@@ -335,7 +335,7 @@
             </ul>
           </li>
           <!-- Charts -->
-          <li class="">
+          <li  style="display:none" class="">
             <a href="javascript:void(0)" class="navItem">
               <span class="flex items-center">
             <iconify-icon class=" nav-icon" icon="heroicons-outline:chart-bar"></iconify-icon>
@@ -353,7 +353,7 @@
             </ul>
           </li>
           <!-- Map -->
-          <li class="">
+          <li  style="display:none" class="">
             <a href="map.html" class="navItem">
               <span class="flex items-center">
             <iconify-icon class=" nav-icon" icon="heroicons-outline:map"></iconify-icon>
@@ -362,7 +362,7 @@
             </a>
           </li>
           <!-- Icons -->
-          <li class="">
+          <li  style="display:none" class="">
             <a href="icons.html" class="navItem">
               <span class="flex items-center">
             <iconify-icon class=" nav-icon" icon="heroicons-outline:emoji-happy"></iconify-icon>
@@ -372,7 +372,7 @@
           </li>
         </ul>
         <!-- Upgrade Your Business Plan Card Start -->
-        <div class="bg-slate-900 mb-10 mt-24 p-4 relative text-center rounded-2xl text-white" id="sidebar_bottom_wizard">
+        <div  style="display:none" class="bg-slate-900 mb-10 mt-24 p-4 relative text-center rounded-2xl text-white" id="sidebar_bottom_wizard">
           <img src="{{ URL::asset('public/images/svg/rabit.svg') }}" alt="" class="mx-auto relative -mt-[73px]">
           <div class="max-w-[160px] mx-auto mt-6">
             <div class="widget-title font-Inter mb-1">Unlimited Access</div>

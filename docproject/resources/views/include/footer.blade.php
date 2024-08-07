@@ -5,12 +5,12 @@
             <div class="text-center ltr:md:text-start rtl:md:text-right text-sm">
               COPYRIGHT ©
               <span id="thisYear"></span>
-              DashCode, All rights Reserved
+              DocProject, All rights Reserved
             </div>
             <div class="ltr:md:text-right rtl:md:text-end text-center text-sm">
-              Hand-crafted &amp; Made by
+              Developed By
               <a href="https://codeshaper.net" target="_blank" class="text-primary-500 font-semibold">
-                Codeshaper
+                DocProject
               </a>
             </div>
           </div>

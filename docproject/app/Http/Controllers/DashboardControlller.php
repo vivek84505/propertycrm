@@ -17,8 +17,9 @@ class DashboardControlller extends Controller
 
     public function index(){
     
-      
-        return View::make('dashboard.dashboard');
+      $user = Session::get("userdata");
+         
+      return View::make('dashboard.dashboard')->with('user', $user);
     }
 
 }

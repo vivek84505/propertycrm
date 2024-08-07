@@ -9,7 +9,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title> Property CRM </title>
+    <title> DocProject </title>
 
     <!-- Favicon -->
   @include('include.header_assets');

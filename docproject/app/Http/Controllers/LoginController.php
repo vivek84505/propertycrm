@@ -14,10 +14,9 @@ class LoginController extends Controller
 {
     //
     public function index(){
-
-        
+ 
         if(!empty(Session::get("userdata"))){
-            
+           
             return redirect('/dashboard');
         }  
 

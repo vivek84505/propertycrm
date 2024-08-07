@@ -53,14 +53,16 @@
               </div>
             </div>
             <!-- BEGIN: Login Form -->
-            <form class="space-y-4" action='index.html'>
+            <form class="space-y-4" id="loginform">
               <div class="fromGroup">
                 <label class="block capitalize form-label">email</label>
                 <div class="relative ">
-                  <input type="email" name="email" class="  form-control py-2" placeholder="Add placeholder" value="dashcode@gmail.com">
+                  <input type="email" name="email" class="  form-control py-2" placeholder="Add placeholder" value="">
                 </div>
               </div>
-              <div class="fromGroup       ">
+              <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+
+              <div class="fromGroup">
                 <label class="block capitalize form-label  ">passwrod</label>
                 <div class="relative "><input type="password" name="password" class="  form-control py-2   " placeholder="Add placeholder" value="dashcode">
                 </div>
@@ -128,4 +130,65 @@
   @include('include.footer_assets');
 
 </body>
+<script>
+// loginform
+
+$(document).ready(function() {
+    $("#loginform").validate({
+        rules: {
+            email: {
+                required: true
+            },
+            password: {
+                required: true
+            }
+        },
+        messages: {
+            email: {
+                required: "specify email"
+            },
+            password: {
+                required: "specify password"
+            }
+        },        
+        submitHandler: function(form,e) {
+            e.preventDefault();
+             $.ajax({
+                type: 'POST',
+                url: "{{route('loginprocess')}}",
+                dataType: "html",
+                data: $('#loginform').serialize(),
+                beforeSend: function() {
+
+                    $("#loader").show();
+                },               
+                success: function(result) {
+
+                    result = JSON.parse(result);
+                   
+                    if(result.status === 'success'){
+
+                        alertify.success(result.returnmsg);
+                        window.location.href = "{{route('dashboard')}}";
+
+                    }
+                    else if (result.status === 'fail'){
+                        alertify.error(result.returnmsg);
+                    } 
+                },
+                complete: function() {
+                    $("#loader").hide();
+                },
+                error : function(error) {
+
+                }
+            });
+            return false;
+        }
+    });
+
+});
+ 
+
+</script>
 </html>

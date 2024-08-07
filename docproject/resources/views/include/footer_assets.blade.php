@@ -1,3 +1,6 @@
+<script src="{{ URL::asset('public/js/alertifyjs/alertify.js') }}"></script>
+<script src="{{ URL::asset('public/js/alertifyjs/alertify.min.js') }}"></script>
+
 <script src="{{ URL::asset('public/js/jquery-3.6.0.min.js') }}"></script>
 <script src="{{ URL::asset('public/js/rt-plugins.js') }}"></script>
 <script src="{{ URL::asset('public/js/app.js') }}"></script>

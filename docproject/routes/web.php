@@ -1,7 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
-
+ 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,10 +16,19 @@ use Illuminate\Http\Request;
 
 
  
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
+ Route::get('/', 'LoginController@index')->name('login');
+Route::post('/loginprocess', 'LoginController@loginprocess')->name('loginprocess');
+Route::get('/logout', 'LoginController@logout')->name('logout');
 //Protected Routes
-    Route::get('/dashboard', 'DashboardControlller@index')->name('dashboard');
-    Route::get('/login', 'LoginController@index')->name('login');
+   
+Route::middleware([loginmiddleware::class])->group(function () {
+
+    //Dashboard Routes
+        Route::get('/dashboard', 'DashboardControlller@index')->name('dashboard');
+
+    
+});

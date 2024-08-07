@@ -5,6 +5,8 @@
 <link rel="stylesheet" href="{{ URL::asset('public/css/rt-plugins.css') }}">
 <link rel="stylesheet" href="{{ URL::asset('public/css/app.css') }}">
 
+<link rel="stylesheet" href="{{ URL::asset('public/css/alertifycss/alertify.css') }}">
+<link rel="stylesheet" href="{{ URL::asset('public/css/alertifycss/alertify.min.css') }}">
  
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/1.1.2/css/bootstrap-multiselect.css" integrity="sha512-tlP4yGOtHdxdeW9/VptIsVMLtgnObNNr07KlHzK4B5zVUuzJ+9KrF86B/a7PJnzxEggPAMzoV/eOipZd8wWpag==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />

@@ -41,10 +41,10 @@
         <div class="inner-content h-full flex flex-col bg-white dark:bg-slate-800">
           <div class="auth-box h-full flex flex-col justify-center">
             <div class="mobile-logo text-center mb-6 lg:hidden block">
-              <a href="index.html">
+              <!-- <a href="index.html">
                 <img src="{{ URL::asset('public/images/logo/logo.svg') }}" alt="" class="mb-10 dark_logo">
                 <img src="{{ URL::asset('public/images/logo/logo-white.svg') }}" alt="" class="mb-10 white_logo">
-              </a>
+              </a> -->
             </div>
             <div class="text-center 2xl:mb-10 mb-4">
               <h4 class="font-medium">Sign in</h4>

@@ -19,8 +19,8 @@ class DashboardControlller extends Controller
     
       $user = Session::get("userdata");
          
-      // return View::make('dashboard.dashboard')->with('user', $user);
-      return View::make('dashboard.blank')->with('user', $user);
+      return View::make('dashboard.dashboard')->with('user', $user);
+      
     }
 
 }

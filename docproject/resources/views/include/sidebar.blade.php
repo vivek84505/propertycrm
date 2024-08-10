@@ -34,6 +34,16 @@
              </a>
              
           </li>
+
+          <li class="">
+            <a href="{{route('settings')}}" class="navItem">
+              <span class="flex items-center">
+            <iconify-icon class=" nav-icon" icon="heroicons-outline:cog"></iconify-icon>
+             <span>Settings</span>
+              </span>
+             </a>
+             
+          </li>
           <!-- Apps Area -->
         <li style="display:none" class="sidebar-menu-title">APPS</li>
           <li style="display:none">

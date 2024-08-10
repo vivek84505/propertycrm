@@ -20,15 +20,18 @@ use Illuminate\Http\Request;
 //     return view('welcome');
 // });
 
- Route::get('/', 'LoginController@index')->name('login');
+Route::get('/', 'LoginController@index')->name('login');
 Route::post('/loginprocess', 'LoginController@loginprocess')->name('loginprocess');
 Route::get('/logout', 'LoginController@logout')->name('logout');
+Route::get('/dashboard', 'DashboardControlller@index')->name('dashboard');
+Route::get('/settings', 'SettingsController@index')->name('settings');
+
 //Protected Routes
    
 Route::middleware([loginmiddleware::class])->group(function () {
 
     //Dashboard Routes
-        Route::get('/dashboard', 'DashboardControlller@index')->name('dashboard');
+        // Route::get('/dashboard', 'DashboardControlller@index')->name('dashboard');
 
     
 });

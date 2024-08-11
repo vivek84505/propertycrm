@@ -202,7 +202,6 @@
         },        
         submitHandler: function(form,e) {
             e.preventDefault();
-            alert('test');
             $.ajax({
                 type: 'POST',
                 url: "{{route('useredit')}}",

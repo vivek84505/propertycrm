@@ -80,7 +80,7 @@ class UserModel extends Authenticatable
     public function getuserAll(){
         $response = [];
 
-        $userdata = User::select('user_id','firstname','lastname','email','mobile','userrole','created_at','createdby')->get();
+        $userdata = User::select('user_id','firstname','lastname','email','mobile','userrole','created_at','createdby','isactive',)->get();
          
         
         if(!empty($userdata)){

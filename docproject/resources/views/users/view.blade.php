@@ -29,43 +29,65 @@
           <div class="page-content">
             <div class="transition-all duration-150 container-fluid" id="page_layout">
               <div id="content_layout">
-                  <!-- Add user Card starts -->
-<div class="card relative">
+                 <!-- Add New Button -->
+<div class="flex justify-end mb-4">
+  <button 
+    class="btn inline-flex justify-center btn-outline-dark !bg-black-500 !text-white"
+    id="toggleCardButton">
+    <span class="flex items-center">
+      <iconify-icon class="text-2xl ltr:mr-2 rtl:ml-2" icon="ic:round-plus"></iconify-icon>
+      <span>Add User</span>
+    </span>
+  </button>
+</div>
+
+<!-- Add user Card starts -->
+<div class="card relative" id="userCard" style="display: none;">
   <div class="card-body flex flex-col p-6">
     <header class="flex mb-5 items-center border-b border-slate-100 dark:border-slate-700 pb-5 -mx-6 px-6">
       <div class="flex-1">
-       
+        <!-- Card title or other content can go here -->
       </div>
-      <button 
-        class="btn inline-flex justify-center btn-outline-dark !bg-black-500 !text-white absolute top-0 right-0 mt-2 mr-2"
-        id="toggleFormButton">
-        <span class="flex items-center">
-          <iconify-icon class="text-2xl ltr:mr-2 rtl:ml-2" icon="ic:round-plus"></iconify-icon>
-          <span>Add New</span>
-        </span>
-      </button>
     </header>
-    <div id="userForm" class="card-text h-full" style="display: none;">
-      <form>
+    <div class="card-text h-full">
+      <form id="adduser_form">
         <div class="from-group">
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div class="input-area">
               <label for="firstName" class="form-label">First Name</label>
-              <input id="firstName" type="text" class="form-control" value="Bill" placeholder="First Name">
+              <input id="firstname" name="firstname" type="text" class="form-control"  placeholder="First Name">
             </div>
+            
+            <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+
             <div class="input-area">
               <label for="lastName" class="form-label">Last Name</label>
-              <input id="lastName" type="text" class="form-control" value="Jhone" placeholder="Last Name">
+              <input id="lastname" name="lastname" type="text" class="form-control"  placeholder="Last Name">
             </div>
-            <div class="flex justify-between items-end space-x-6">
-              <div class="input-area w-full">
-                <label for="phone" class="form-label">Phone Number</label>
-                <input id="phone" type="tel" class="form-control" value="1234569870" placeholder="Phone Number">
-              </div>
-              <button class="inline-flex items-center justify-center h-10 w-10 bg-danger-500 text-lg border rounded border-danger-500 text-white rb-zeplin-focused">
-                <iconify-icon icon="fluent:delete-20-regular"></iconify-icon>
-              </button>
+
+             <div class="input-area">
+              <label for="lastName" class="form-label">Email</label>
+              <input id="email" name="email" type="email" class="form-control"  placeholder="Email">
             </div>
+
+             <div class="input-area">
+              <label for="lastName" class="form-label">Mobile</label>
+              <input id="mobile" name="mobile" type="text" class="form-control"  placeholder="Mobile">
+            </div>
+
+              <div class="input-area">
+              <label for="lastName" class="form-label">Role</label>
+              <select name="userrole" id="userrole" class="form-control w-full mt-2">
+                  <option selected="Selected" disabled="disabled" value="none" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">Select Role</option>
+                  <option value="superadmin" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">Super Admin </option>
+                  <option value="admin" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">Admin</option>
+                  <option value="user" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">User</option>
+              </select>
+             </div>
+
+              
+
+
           </div>
         </div>
         <button class="btn flex justify-center btn-dark mt-5 ml-auto">Submit</button>
@@ -111,12 +133,96 @@
 </main>
 @include('include.footer_assets');
 <script>
-  document.getElementById('toggleFormButton').addEventListener('click', function() {
-    var form = document.getElementById('userForm');
-    form.style.display = form.style.display === 'none' ? 'block' : 'none';
+  document.getElementById('toggleCardButton').addEventListener('click', function() {
+    var card = document.getElementById('userCard');
+    card.style.display = card.style.display === 'none' ? 'block' : 'none';
   });
 </script>
 
+
+<script>
+    $(document).ready(function() {
+    $("#adduser_form").validate({
+        rules: {
+            firstname: {
+                required: true
+            },
+            lastname: {
+                required: true
+            },
+            email: {
+                required: true,
+                email:true
+            },
+            mobile: {
+                required: true
+            },
+            userrole: {
+                required: true
+            }
+        },
+        messages: {
+            firstname: {
+                required: "Firstname is required"
+            },
+            lastname: {
+                required: "Lastname is required"
+            },
+            email: {
+                required: "Email is required"
+                
+            },
+            mobile: {
+                required:  "Mobile is required"
+            },
+            userrole: {
+                required:  "User Role is required"
+            }           
+             
+        },        
+        submitHandler: function(form,e) {
+            e.preventDefault();
+            console.log('Form submitted');
+            $.ajax({
+                type: 'POST',
+                url: "{{route('useradd')}}",
+                dataType: "html",
+                data: $('#adduser_form').serialize(),
+                beforeSend: function() {
+
+                    $("#loader").show();
+                },               
+                success: function(result) {
+
+                    result = JSON.parse(result);
+                   
+                    if(result.status === 'success'){
+
+                        alertify.success(result.returnmsg);    
+                                
+
+                    }
+                    else if (result.status === 'fail'){
+                        alertify.error(result.returnmsg);
+                    } 
+
+                    $('#adduser_form')[0].reset();
+
+                    getuserlist();
+                },
+                complete: function() {
+                    $("#loader").hide();
+                },
+                error : function(error) {
+
+                }
+            });
+            return false;
+        }
+    });
+
+});
+</script>
 
 <script>
 

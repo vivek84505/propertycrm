@@ -23,15 +23,25 @@ use Illuminate\Http\Request;
 Route::get('/', 'LoginController@index')->name('login');
 Route::post('/loginprocess', 'LoginController@loginprocess')->name('loginprocess');
 Route::get('/logout', 'LoginController@logout')->name('logout');
-Route::get('/dashboard', 'DashboardControlller@index')->name('dashboard');
-Route::get('/settings', 'SettingsController@index')->name('settings');
 
 //Protected Routes
    
 Route::middleware([loginmiddleware::class])->group(function () {
 
     //Dashboard Routes
-        // Route::get('/dashboard', 'DashboardControlller@index')->name('dashboard');
+    Route::get('/dashboard', 'DashboardControlller@index')->name('dashboard');
 
-    
+    //Settings Routes
+    Route::get('/settings', 'SettingsController@index')->name('settings');
+
+
+     // User Routes
+    Route::get('/profile', 'UserController@profile')->name('profile');
+    Route::get('/users', 'UserController@index')->name('users');
+    Route::post('/usersgetall', 'UserController@getuserAll')->name('usersgetall');
+    Route::post('/useradd', 'UserController@userAdd')->name('useradd');
+    Route::post('/useredit', 'UserController@userEdit')->name('useredit');
+    Route::post('/userdelete', 'UserController@userDelete')->name('userdelete');
+    Route::post('/getuserbyid', 'UserController@getuserById')->name('getuserbyid');
+    Route::post('/changepassword', 'UserController@changepassword')->name('changepassword');
 });

@@ -21,7 +21,23 @@
   <!-- BEGIN: Theme CSS-->
   
   <!-- End : Theme CSS-->
-   
+   <style>
+    
+.loader {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 9999; /* Ensures it stays on top */
+    top: 70%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+}
+
+/* Style for loader image */
+.loader img {
+    width: 100px; /* Adjust the size of the loader image */
+    height: 100px;
+}
+    </style>
   <script src="{{ URL::asset('public/js/settings.js') }}"></script>
 
 

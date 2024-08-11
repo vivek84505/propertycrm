@@ -225,12 +225,15 @@
                         alertify.error(result.returnmsg);
                     } 
 
-                     
+                     $('#usereditModel').modal('hide');
+
 
                     getuserlist();
                 },
                 complete: function() {
                     $("#loader").hide();
+                    $('#usereditModel').modal('hide');
+
                 },
                 error : function(error) {
 

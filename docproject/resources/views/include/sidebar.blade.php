@@ -48,14 +48,34 @@
            <li class="">
             <a href="{{route('users')}}" class="navItem">
               <span class="flex items-center">
-            <iconify-icon class=" nav-icon" icon="heroicons-outline:cog"></iconify-icon>
+            <iconify-icon class=" nav-icon" icon="heroicons-outline:lock-closed"></iconify-icon>
              <span>Users Management</span>
               </span>
              </a>
              
           </li>
           <!-- Apps Area -->
-        <li style="display:none" class="sidebar-menu-title">APPS</li>
+        <li  class="sidebar-menu-title">Document Master</li>
+            <li  class="">
+            <a href="javascript:void(0)" class="navItem">
+              <span class="flex items-center">
+            <iconify-icon class=" nav-icon" icon="heroicons-outline:document"></iconify-icon>
+            <span>Documents</span>
+              </span>
+              <iconify-icon class="icon-arrow" icon="heroicons-outline:chevron-right"></iconify-icon>
+            </a>
+            <ul class="sidebar-submenu">
+              <li>
+                <a href="{{route('marathidocument')}}">Marathi Document</a>
+              </li>
+              <li>
+                <a href="#">English Document</a>
+              </li>
+            </ul>
+          </li>
+
+          
+
           <li style="display:none">
             <a href="chat.html" class="navItem">
               <span class="flex items-center">
@@ -64,6 +84,7 @@
               </span>
             </a>
           </li>
+
           <li style="display:none" class="">
             <a href="email.html" class="navItem">
               <span class="flex items-center">

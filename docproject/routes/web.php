@@ -44,4 +44,8 @@ Route::middleware([loginmiddleware::class])->group(function () {
     Route::post('/userdelete', 'UserController@userDelete')->name('userdelete');
     Route::post('/getuserbyid', 'UserController@getuserById')->name('getuserbyid');
     Route::post('/changepassword', 'UserController@changepassword')->name('changepassword');
+
+     // Document Routes
+    Route::get('/marathidocument', 'MarathiDocumentControlller@index')->name('marathidocument');
+
 });

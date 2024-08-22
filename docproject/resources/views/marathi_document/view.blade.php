@@ -14,6 +14,15 @@
     <!-- Favicon -->
   @include('include.header_assets');
 
+  <style>
+    .separatorline {
+    border-top-width: 5px; /* Adjust the thickness as needed */
+    border-color: #152030; /* Optional: Set the border color */
+    
+   
+}
+  </style>
+
 </head>
 
 <body class=" font-inter dashcode-app" id="body_class">
@@ -49,26 +58,73 @@
       <h3 class="text-lg font-semibold mb-4">दस्तसाठी आवश्यक माहिती / Required Information</h3>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div class="input-area">
-          <label for="firstName" class="form-label">दस्ताचा प्रकार /Document Article </label>
-          <input id="document_type" name="document_type" type="text" class="form-control" placeholder="First Name">
+          <label for="document_type" class="form-label">दस्ताचा प्रकार /Document Article </label>
+          <select name="document_type" id="document_type" class="form-control w-full mt-2" placeholder="अनुष्छेद/आर्टिकल निवडा">
+              <option value="" disabled selected hidden>अनुष्छेद/आर्टिकल निवडा</option>  
+              <option value="abhihastantaran" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">25 - अभिहस्तांतरण पत्र</option>
+           
+          </select>        
         </div>
 
         <div class="input-area">
-          <label for="lastName" class="form-label">Last Name</label>
-          <input id="lastname" name="lastname" type="text" class="form-control" placeholder="Last Name">
+           <label for="property_type" class="form-label">मिळकतीचा प्रकार / Property Type</label>
+          <select name="property_type" id="property_type" class="form-control w-full mt-2" >
+              <option value="" disabled selected hidden>मिळकतीचा प्रकार निवडा</option>  
+              <option value="residential" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">रेसिडेंन्सीयल</option>
+              <option value="plot" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">प्लाॅट </option>           
+          </select>     
+        </div>
+
+         <div class="input-area">
+           <label for="document_title" class="form-label">दस्ताचा शिर्षक / Document Title</label>
+          <select name="document_title" id="document_title" class="form-control w-full mt-2" >
+              <option value="" disabled selected hidden>दस्ताचा शिर्षक निवडा</option>  
+              <option value="अभिहस्तांतरण पत्र" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">अभिहस्तांतरण पत्र</option>
+              <option value="खरेदीखत" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">खरेदीखत </option>           
+              <option value="खुषखरेदीखत" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">खुषखरेदीखत </option>           
+              <option value="फराेक्तखरेदीखत" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">फराेक्तखरेदीखत </option>           
+              <option value="विक्रीखत" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">विक्रीखत </option>           
+              <option value="हस्तांतरणपत्र" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">हस्तांतरणपत्र </option>           
+              <option value="तबदिलपत्र" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">तबदिलपत्र </option>           
+              <option value="कायम खुषखरेदीखत" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">कायम खुषखरेदीखत </option>           
+              <option value="सेल डीड" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">सेल डीड </option>           
+              <option value="कन्व्हेंन्स डीड" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">कन्व्हेंन्स डीड </option>           
+              <option value="ट्रान्सफर डीड" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">ट्रान्सफर डीड </option>           
+              <option value="असाईनमेंट+B45 डीड" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">असाईनमेंट+B45 डीड </option>           
+              <option value="असाईनमेंट डीड" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">असाईनमेंट डीड </option>           
+          </select>     
         </div>
 
         <div class="input-area">
-          <label for="email" class="form-label">Email</label>
-          <input id="email" name="email" type="email" class="form-control" placeholder="Email">
+          <label for="property_consideration_price" class="form-label">माेबदला - किंमत /Consideration - Price</label>
+          <input id="property_consideration_price" name="property_consideration_price" type="number" class="form-control" >
         </div>
+
+        <div class="input-area">
+          <label for="religious_slogan" class="form-label">धार्मिक घाेष वाक्य /Religious slogans</label>
+          <input id="religious_slogan" name="religious_slogan" type="text" class="form-control" >
+        </div>
+
+          <div class="input-area">
+          <label for="document_execution_date" class="form-label">दस्त निष्पादनाचा दिनांक /Document Execution Date</label>
+          <input id="document_execution_date" name="document_execution_date" type="date" class="form-control" >
+        </div>
+
+        <div class="input-area">
+          <label for="religious_symbol" class="form-label">धार्मिक चिन्ह (फाेटाे) /Religious Symbols (Image)</label>
+          <input id="religious_symbol" name="religious_symbol" type="file" class="form-control" >
+        </div>
+
       </div>
 
       <!-- CSRF Token -->
       <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+     
+      <!-- Separator -->
+    <hr class="separatorline my-8 border-t-8 border-gray-300">
 
       <!-- Section 2: Contact Information -->
-      <h3 class="text-lg font-semibold mt-8 mb-4">Contact Information</h3>
+      <h3 class="text-lg font-semibold mt-8 mb-4"> पक्षकार संपूर्ण माहीती / Party Details</h3>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div class="input-area">
           <label for="mobile" class="form-label">Mobile</label>
@@ -111,52 +167,57 @@
 
 </main>
 @include('include.footer_assets');
-<script>
-  document.getElementById('toggleCardButton').addEventListener('click', function() {
-    var card = document.getElementById('userCard');
-    card.style.display = card.style.display === 'none' ? 'block' : 'none';
-  });
-</script>
+ 
 
 
 <script>
     $(document).ready(function() {
     $("#marathidoc_form").validate({
         rules: {
-            firstname: {
+            document_type: {
                 required: true
             },
-            lastname: {
+            property_type: {
                 required: true
             },
-            email: {
-                required: true,
-                email:true
+            document_title: {
+                required: true,                 
             },
-            mobile: {
+            property_consideration_price: {
                 required: true
             },
-            userrole: {
+            religious_slogan: {
+                required: true
+            },
+            religious_symbol: {
+                required: true
+            },
+            document_execution_date: {
                 required: true
             }
         },
         messages: {
-            firstname: {
-                required: "Firstname is required"
+            document_type: {
+                required: "This Field is required"
             },
-            lastname: {
-                required: "Lastname is required"
+            property_type: {
+                required: "This Field is required"
             },
-            email: {
-                required: "Email is required"
-                
+            document_title: {
+                required: "This Field is required"
             },
-            mobile: {
-                required:  "Mobile is required"
+           property_consideration_price: {
+                required: "This Field is required"
             },
-            userrole: {
-                required:  "User Role is required"
-            }           
+           religious_slogan: {
+                required: "This Field is required"
+            },
+           religious_symbol: {
+                required: "This Field is required"
+            },
+            document_execution_date: {
+                required: "This Field is required"
+            }            
              
         },        
         submitHandler: function(form,e) {

@@ -66,7 +66,11 @@
             </a>
             <ul class="sidebar-submenu">
               <li>
-                <a href="{{route('marathidocument')}}">Marathi Document</a>
+                <a href="{{ route('marathidocument') }}" target="_blank">Marathi Document Wizard</a>
+              </li>
+
+               <li>
+                <a href="{{ route('marathidocument_old') }}" >Marathi Document old</a>
               </li>
               <li>
                 <a href="#">English Document</a>

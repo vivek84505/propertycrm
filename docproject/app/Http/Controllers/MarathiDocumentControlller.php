@@ -21,4 +21,10 @@ class MarathiDocumentControlller extends Controller
       
     }
 
+      public function marathidocument_old(){
+        
+      return View::make('marathi_document.marathi-doc-backup');
+      
+    }
+
 }

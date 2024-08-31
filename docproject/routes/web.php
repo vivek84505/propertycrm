@@ -47,5 +47,6 @@ Route::middleware([loginmiddleware::class])->group(function () {
 
      // Document Routes
     Route::get('/marathidocument', 'MarathiDocumentControlller@index')->name('marathidocument');
+    Route::get('/marathidocument_old', 'MarathiDocumentControlller@marathidocument_old')->name('marathidocument_old');
 
 });

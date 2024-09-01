@@ -28,7 +28,7 @@
 <body class=" font-inter dashcode-app" id="body_class">
 <main class="app-wrapper">
     @include('include/settings')
-
+ @include('include/sidebar');
     @include('include/header')
     <div class="flex flex-col justify-between min-h-screen">
       <div>
@@ -41,7 +41,7 @@
               <div id="content_layout">
                  <!-- Add New Button -->
  
-                 <!-- Main Content Area starts -->
+<!-- Main Content Area starts -->
 
 <!-- BEGIN: Step Form Verticle -->
 
@@ -135,7 +135,7 @@
             </div>
 
             <div class="conten-box lg:col-span-9 col-span-12 h-full">
-                <form>
+                <form id="marathidoc_form">
                     <div class="wizard-form-step active" data-step="1">
                         <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
                             <div class="lg:col-span-3 md:col-span-2 col-span-1">
@@ -474,96 +474,210 @@
 
 <script>
     $(document).ready(function() {
+    // $("#marathidoc_form").validate({
+    //     rules: {
+    //         document_type: {
+    //             required: true
+    //         },
+    //         property_type: {
+    //             required: true
+    //         },
+    //         document_title: {
+    //             required: true,                 
+    //         },
+    //         property_consideration_price: {
+    //             required: true
+    //         },
+    //         religious_slogan: {
+    //             required: true
+    //         },
+    //         religious_symbol: {
+    //             required: true
+    //         },
+    //         document_execution_date: {
+    //             required: true
+    //         },
+    //          party_sirname: {
+    //             required: true
+    //         }
+    //     },
+    //     messages: {
+    //         document_type: {
+    //             required: "This Field is required"
+    //         },
+    //         property_type: {
+    //             required: "This Field is required"
+    //         },
+    //         document_title: {
+    //             required: "This Field is required"
+    //         },
+    //        property_consideration_price: {
+    //             required: "This Field is required"
+    //         },
+    //        religious_slogan: {
+    //             required: "This Field is required"
+    //         },
+    //        religious_symbol: {
+    //             required: "This Field is required"
+    //         },
+    //         document_execution_date: {
+    //             required: "This Field is required"
+    //         }            
+             
+    //     },        
+    //     submitHandler: function(form,e) {
+    //         e.preventDefault();
+    //         console.log('Form submitted');
+    //         $.ajax({
+    //             type: 'POST',
+    //             url: "{{route('useradd')}}",
+    //             dataType: "html",
+    //             data: $('#marathidoc_form').serialize(),
+    //             beforeSend: function() {
+
+    //                 $("#loader").show();
+    //             },               
+    //             success: function(result) {
+
+    //                 result = JSON.parse(result);
+                   
+    //                 if(result.status === 'success'){
+
+    //                     alertify.success(result.returnmsg);    
+                                
+
+    //                 }
+    //                 else if (result.status === 'fail'){
+    //                     alertify.error(result.returnmsg);
+    //                 } 
+
+    //                 $('#marathidoc_form')[0].reset();
+
+    //                 getuserlist();
+    //             },
+    //             complete: function() {
+    //                 $("#loader").hide();
+    //             },
+    //             error : function(error) {
+
+    //             }
+    //         });
+    //         return false;
+    //     }
+    // });
+
+});
+
+
+ $(document).ready(function() {
+    var currentStep = 1;
+
+    // Function to show the current step
+    function showStep(step) {
+        $(".wizard-form-step").removeClass("active");
+        $('.wizard-form-step[data-step="' + step + '"]').addClass("active");
+    }
+
+    // Initialize the form validation
     $("#marathidoc_form").validate({
+        // Define the validation rules
         rules: {
             document_type: {
                 required: true
             },
-            property_type: {
-                required: true
-            },
-            document_title: {
-                required: true,                 
-            },
             property_consideration_price: {
+                required: true,
+                number: true
+            },
+            party_sirname: {
                 required: true
             },
-            religious_slogan: {
+            party_address_buildingname: {
                 required: true
             },
-            religious_symbol: {
+            address: {
                 required: true
             },
-            document_execution_date: {
-                required: true
+            fblink: {
+                required: true,
+                url: true
+            },
+            youtubelink: {
+                required: true,
+                url: true
             }
         },
         messages: {
             document_type: {
-                required: "This Field is required"
+                required: "Please select a document type."
             },
-            property_type: {
-                required: "This Field is required"
+            property_consideration_price: {
+                required: "Please enter a price.",
+                number: "Please enter a valid number."
             },
-            document_title: {
-                required: "This Field is required"
+            party_sirname: {
+                required: "Please enter the surname."
             },
-           property_consideration_price: {
-                required: "This Field is required"
+            party_address_buildingname: {
+                required: "Please enter the building name."
             },
-           religious_slogan: {
-                required: "This Field is required"
+            address: {
+                required: "Please enter your address."
             },
-           religious_symbol: {
-                required: "This Field is required"
+            fblink: {
+                required: "Please enter your Facebook link.",
+                url: "Please enter a valid URL."
             },
-            document_execution_date: {
-                required: "This Field is required"
-            }            
-             
-        },        
-        submitHandler: function(form,e) {
-            e.preventDefault();
-            console.log('Form submitted');
-            $.ajax({
-                type: 'POST',
-                url: "{{route('useradd')}}",
-                dataType: "html",
-                data: $('#marathidoc_form').serialize(),
-                beforeSend: function() {
+            youtubelink: {
+                required: "Please enter your Youtube link.",
+                url: "Please enter a valid URL."
+            }
+        },
+        // Validate only the visible fields
+        ignore: ":hidden"
+    });
 
-                    $("#loader").show();
-                },               
-                success: function(result) {
-
-                    result = JSON.parse(result);
-                   
-                    if(result.status === 'success'){
-
-                        alertify.success(result.returnmsg);    
-                                
-
-                    }
-                    else if (result.status === 'fail'){
-                        alertify.error(result.returnmsg);
-                    } 
-
-                    $('#marathidoc_form')[0].reset();
-
-                    getuserlist();
-                },
-                complete: function() {
-                    $("#loader").hide();
-                },
-                error : function(error) {
-
-                }
-            });
-            return false;
+    // Next button click event
+    $(".next-button").click(function() {
+        // Check if the current step is valid
+        if ($("#marathidoc_form").valid()) {
+            // Move to the next step
+            currentStep++;
+            showStep(currentStep);
+        } else {
+            // Focus on the first invalid input field
+            $(":input.error:visible").first().focus();
         }
     });
 
+    // Prev button click event
+    $(".prev-button").click(function() {
+        // Move to the previous step
+        currentStep--;
+        showStep(currentStep);
+    });
+
+    // Submit the form using AJAX when the final step is validated
+    $("#marathidoc_form").on('submit', function(e) {
+        e.preventDefault(); // Prevent default form submission
+        if ($("#marathidoc_form").valid()) {
+            $.ajax({
+                type: "POST",
+                url: "{{route('useradd')}}", // Update this with your actual endpoint
+                data: $(this).serialize(),
+                success: function(response) {
+                    alert("Form submitted successfully!");
+                },
+                error: function(xhr, status, error) {
+                    alert("An error occurred: " + error);
+                }
+            });
+        }
+    });
 });
+
+
+
 </script>
 
 <script>
@@ -573,11 +687,11 @@
 $(document).ready(function() {
 
   // hiding side menu on page load
-   $(".sidebar-wrapper").addClass("menu-hide");
-      $("#menuCollapse").hide();
-      $(".app-header").addClass("margin-0");
-      $(".site-footer").addClass("margin-0");
-      $("#content_wrapper").addClass("margin-0");
+  //  $(".sidebar-wrapper").addClass("menu-hide");
+  //     $("#menuCollapse").hide();
+  //     $(".app-header").addClass("margin-0");
+  //     $(".site-footer").addClass("margin-0");
+  //     $("#content_wrapper").addClass("margin-0");
 
 });
 

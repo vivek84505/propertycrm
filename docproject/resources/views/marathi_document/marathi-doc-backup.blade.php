@@ -194,9 +194,9 @@
 
  <div class="grid grid-cols-4 gap-6">
   
- <div class="input-area">
-    <label for="party_sirname" class="form-label">आडनांव</label>
-    <input id="party_sirname" name="party_sirname" type="text"   class="form-control" >
+  <div class="input-area">
+      <label for="party_sirname" class="form-label">आडनांव</label>
+      <input id="party_sirname" name="party_sirname" type="text"   class="form-control" >
   </div>
 
   <div class="input-area">

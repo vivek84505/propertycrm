@@ -70,7 +70,7 @@
               </li>
 
                <li>
-                <a href="{{ route('marathidocument_old') }}" >Marathi Document regular form</a>
+                <a href="{{ route('marathidocument_old') }}" >Marathi Document form</a>
               </li>
               
             </ul>

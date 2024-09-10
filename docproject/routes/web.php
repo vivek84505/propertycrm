@@ -45,8 +45,15 @@ Route::middleware([loginmiddleware::class])->group(function () {
     Route::post('/getuserbyid', 'UserController@getuserById')->name('getuserbyid');
     Route::post('/changepassword', 'UserController@changepassword')->name('changepassword');
 
-     // Document Routes
+
+Route::middleware(['loginmiddleware', 'manage.product.session'])->group(function () {
+
+    // Document Routes
     Route::get('/marathidocument', 'MarathiDocumentControlller@index')->name('marathidocument');
     Route::get('/marathidocument_old', 'MarathiDocumentControlller@marathidocument_old')->name('marathidocument_old');
+    Route::post('/marathidoc_stepone_submit', 'MarathiDocumentControlller@marathidoc_stepone_submit')->name('marathidoc_stepone_submit');
+
+});
+
 
 });

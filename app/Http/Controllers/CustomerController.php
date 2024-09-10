@@ -33,6 +33,14 @@ class CustomerController extends Controller
     }
 
 
+    public function wizardform(){
+
+       
+         return View::make('blank');
+
+    }
+
+
    
 
     

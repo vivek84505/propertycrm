@@ -51,7 +51,10 @@
                                                     Vertical form wizard
                                                 </h4> -->
     </div>
-
+<form id="userform">
+  <input type="text" name="firstname" id="firstname" />
+  <input type="submit"  />
+</form>
     <div class="card-body p-6">
         <div class="grid gap-5 grid-cols-12">
             <div class="lg:col-span-3 col-span-12">
@@ -142,14 +145,14 @@
                                  <h3 class="text-lg font-semibold mb-4">दस्तसाठी आवश्यक माहिती / Required Information</h3>
                             </div>
                             <div class="input-area">
-                              <label for="document_type" class="form-label">दस्ताचा प्रकार /Document Article </label>
-                                <select name="document_type" id="document_type" class="form-control w-full mt-2" placeholder="अनुष्छेद/आर्टिकल निवडा">
-                                <option value="" disabled selected hidden>अनुष्छेद/आर्टिकल निवडा</option>  
-                                <option value="abhihastantaran" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">25 - अभिहस्तांतरण पत्र</option>
-
+                              <label for="document_type" class="form-label">दस्ताचा प्रकार /Document Article</label>
+                                <select name="document_type" id="document_type" class="form-control w-full mt-2">
+                                  <option value="">अनुष्छेद/आर्टिकल निवडा</option>  <!-- Empty value for validation -->
+                                  <option value="abhihastantaran" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">25 - अभिहस्तांतरण पत्र</option>
                                 </select>        
                             </div>
-
+                            <label for="testinput" class="form-label">testinput</label>
+                            <input type="text" name="testinput" id="testinput" class="form-control" />
                             <div class="input-area">
                               <label for="property_type" class="form-label">मिळकतीचा प्रकार / Property Type</label>
                                 <select name="property_type" id="property_type" class="form-control w-full mt-2" >
@@ -473,126 +476,146 @@
 
 
 <script>
-    $(document).ready(function() {
-    // $("#marathidoc_form").validate({
-    //     rules: {
-    //         document_type: {
-    //             required: true
-    //         },
-    //         property_type: {
-    //             required: true
-    //         },
-    //         document_title: {
-    //             required: true,                 
-    //         },
-    //         property_consideration_price: {
-    //             required: true
-    //         },
-    //         religious_slogan: {
-    //             required: true
-    //         },
-    //         religious_symbol: {
-    //             required: true
-    //         },
-    //         document_execution_date: {
-    //             required: true
-    //         },
-    //          party_sirname: {
-    //             required: true
-    //         }
-    //     },
-    //     messages: {
-    //         document_type: {
-    //             required: "This Field is required"
-    //         },
-    //         property_type: {
-    //             required: "This Field is required"
-    //         },
-    //         document_title: {
-    //             required: "This Field is required"
-    //         },
-    //        property_consideration_price: {
-    //             required: "This Field is required"
-    //         },
-    //        religious_slogan: {
-    //             required: "This Field is required"
-    //         },
-    //        religious_symbol: {
-    //             required: "This Field is required"
-    //         },
-    //         document_execution_date: {
-    //             required: "This Field is required"
-    //         }            
-             
-    //     },        
-    //     submitHandler: function(form,e) {
-    //         e.preventDefault();
-    //         console.log('Form submitted');
-    //         $.ajax({
-    //             type: 'POST',
-    //             url: "{{route('useradd')}}",
-    //             dataType: "html",
-    //             data: $('#marathidoc_form').serialize(),
-    //             beforeSend: function() {
-
-    //                 $("#loader").show();
-    //             },               
-    //             success: function(result) {
-
-    //                 result = JSON.parse(result);
-                   
-    //                 if(result.status === 'success'){
-
-    //                     alertify.success(result.returnmsg);    
-                                
-
-    //                 }
-    //                 else if (result.status === 'fail'){
-    //                     alertify.error(result.returnmsg);
-    //                 } 
-
-    //                 $('#marathidoc_form')[0].reset();
-
-    //                 getuserlist();
-    //             },
-    //             complete: function() {
-    //                 $("#loader").hide();
-    //             },
-    //             error : function(error) {
-
-    //             }
-    //         });
-    //         return false;
-    //     }
-    // });
-
-});
+  
 
 
- $(document).ready(function() {
+//  $(document).ready(function () {
+//     var currentStep = 1;
+
+//     // Function to show the current step
+//     function showStep(step) {
+//         $(".wizard-form-step").removeClass("active");
+//         $('.wizard-form-step[data-step="' + step + '"]').addClass("active");
+//     }
+
+//     // Initialize the form validation
+//     $("#marathidoc_form").validate({
+//         // Define the validation rules
+//         rules: {
+//             document_type: {
+//                 required: true
+//             },
+//             property_consideration_price: {
+//                 required: true,
+//                 number: true
+//             },
+//             party_sirname: {
+//                 required: true
+//             },
+//             party_address_buildingname: {
+//                 required: true
+//             },
+//             address: {
+//                 required: true
+//             },
+//             fblink: {
+//                 required: true,
+//                 url: true
+//             },
+//             youtubelink: {
+//                 required: true,
+//                 url: true
+//             }
+//         },
+//         messages: {
+//             document_type: {
+//                 required: "Please select a document type."
+//             },
+//             property_consideration_price: {
+//                 required: "Please enter a price.",
+//                 number: "Please enter a valid number."
+//             },
+//             party_sirname: {
+//                 required: "Please enter the surname."
+//             },
+//             party_address_buildingname: {
+//                 required: "Please enter the building name."
+//             },
+//             address: {
+//                 required: "Please enter your address."
+//             },
+//             fblink: {
+//                 required: "Please enter your Facebook link.",
+//                 url: "Please enter a valid URL."
+//             },
+//             youtubelink: {
+//                 required: "Please enter your Youtube link.",
+//                 url: "Please enter a valid URL."
+//             }
+//         },
+//         // Validate only the visible fields
+//         ignore: ":hidden"
+//     });
+
+    
+
+    
+ 
+// });
+
+
+
+$(document).ready(function () {
+
+  $("#userform").validate({
+        // Specify validation rules
+        rules: {
+            firstname: {
+                required: true
+            },
+           
+        },
+        // Specify validation error messages
+        messages: {
+            firstname: "Please select a testinput",
+            
+        }
+        
+    });
+
     var currentStep = 1;
+        console.log("Document ready - Initializing validation.");
 
-    // Function to show the current step
-    function showStep(step) {
-        $(".wizard-form-step").removeClass("active");
-        $('.wizard-form-step[data-step="' + step + '"]').addClass("active");
-    }
-
-    // Initialize the form validation
+    // Initialize form validation on your form
     $("#marathidoc_form").validate({
-        // Define the validation rules
+        // Specify validation rules
         rules: {
             document_type: {
+                required: true
+            },
+            testinput: {
+                required: true
+            }, 
+            property_type: {
+                required: true
+            },
+            document_title: {
                 required: true
             },
             property_consideration_price: {
                 required: true,
                 number: true
             },
-            party_sirname: {
+            religious_slogan: {
+                required: true
+            },
+            document_execution_date: {
+                required: true,
+                date: true
+            },
+            religious_symbol: {
+                required: true
+            },
+            party_gender: {
+                required: true
+            },
+            party_profession: {
                 required: true
             },
             party_address_buildingname: {
+                required: true
+            },
+            party_address_flatno: {
                 required: true
             },
             address: {
@@ -607,75 +630,87 @@
                 url: true
             }
         },
+        // Specify validation error messages
         messages: {
-            document_type: {
-                required: "Please select a document type."
-            },
+            testinput: "Please select a testinput",
+            document_type: "Please select a document type",
+            property_type: "Please select a property type",
+            document_title: "Please select a document title",
             property_consideration_price: {
-                required: "Please enter a price.",
-                number: "Please enter a valid number."
+                required: "Please enter a consideration price",
+                number: "Please enter a valid number"
             },
-            party_sirname: {
-                required: "Please enter the surname."
-            },
-            party_address_buildingname: {
-                required: "Please enter the building name."
-            },
-            address: {
-                required: "Please enter your address."
-            },
+            religious_slogan: "Please enter a religious slogan",
+            document_execution_date: "Please select a valid date",
+            religious_symbol: "Please upload a religious symbol",
+            party_gender: "Please select a gender",
+            party_profession: "Please enter a profession",
+            party_address_buildingname: "Please enter the building name",
+            party_address_flatno: "Please enter the flat/house number",
+            address: "Please enter your address",
             fblink: {
-                required: "Please enter your Facebook link.",
-                url: "Please enter a valid URL."
+                required: "Please enter a Facebook link",
+                url: "Please enter a valid URL"
             },
             youtubelink: {
-                required: "Please enter your Youtube link.",
-                url: "Please enter a valid URL."
+                required: "Please enter a YouTube link",
+                url: "Please enter a valid URL"
             }
         },
-        // Validate only the visible fields
-        ignore: ":hidden"
-    });
+        errorPlacement: function (error, element) {
+            error.appendTo(element.parent().find("label"));  // Place error message next to the label
+            console.log("Error for " + element.attr("id") + ": " + error.text());
 
-    // Next button click event
-    $(".next-button").click(function() {
-        // Check if the current step is valid
-        if ($("#marathidoc_form").valid()) {
-            // Move to the next step
-            currentStep++;
-            showStep(currentStep);
-        } else {
-            // Focus on the first invalid input field
-            $(":input.error:visible").first().focus();
+        },
+        highlight: function (element) {
+            $(element).addClass("error");
+            console.log("Highlighting field: " + element.id);
+
+        },
+        unhighlight: function (element) {
+            $(element).removeClass("error");
+            console.log("Unhighlighting field: " + element.id);
+        },
+        // Prevent form submission
+        submitHandler: function (form) {
+            return false;
         }
     });
 
-    // Prev button click event
-    $(".prev-button").click(function() {
-        // Move to the previous step
+    // Navigation through the wizard steps
+    $(".next-button").click(function () {
+        // Check if current step is valid
+       console.log("Next button clicked. Checking if form is valid...");
+
+         var form = $('#marathidoc_form');
+          form.validate();  // Initialize form validation
+      console.log(" check form valid=========>",form.valid());
+      console.log(" testinput value=========>",$("#testinput").val());
+      console.log(" testinput value length=========>",$("#testinput").val().length);
+        if (form.valid()) {       
+            console.log("Form is valid. Proceeding to the next step.");
+            currentStep++;
+            showStep(currentStep);
+        }
+        else{
+           console.log("Form is invalid. Errors exist.");
+        }
+    });
+
+    $(".prev-button").click(function () {
         currentStep--;
         showStep(currentStep);
     });
 
-    // Submit the form using AJAX when the final step is validated
-    $("#marathidoc_form").on('submit', function(e) {
-        e.preventDefault(); // Prevent default form submission
-        if ($("#marathidoc_form").valid()) {
-            $.ajax({
-                type: "POST",
-                url: "{{route('useradd')}}", // Update this with your actual endpoint
-                data: $(this).serialize(),
-                success: function(response) {
-                    alert("Form submitted successfully!");
-                },
-                error: function(xhr, status, error) {
-                    alert("An error occurred: " + error);
-                }
-            });
-        }
-    });
-});
+    // Function to handle showing/hiding steps
+    function showStep(step) {
+        $(".wizard-form-step").hide();
+        $(".wizard-form-step[data-step='" + step + "']").show();
+    }
 
+    // Show first step on load
+    showStep(1);
+});
 
 
 </script>

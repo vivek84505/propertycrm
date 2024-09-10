@@ -83,6 +83,9 @@ Route::middleware([loginliddleware::class])->group(function () {
     Route::get('/customerlist', 'CustomerController@index')->name('customerlist');
     Route::post('/getcustomerlistall', 'CustomerController@getcustomerlistAll')->name('getcustomerlistall');
     Route::post('/customeradd', 'CustomerController@customerAdd')->name('customeradd');
+
+
+    Route::get('/wizardform', 'CustomerController@wizardform')->name('wizardform');
 });
  
 

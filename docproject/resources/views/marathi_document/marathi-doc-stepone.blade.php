@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zxx" dir="ltr" class="light semiDark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Colors">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title> DocProject </title>
+
+    <!-- Favicon -->
+  @include('include.header_assets');
+
+  <style>
+    .separatorline {
+    border-top-width: 5px; /* Adjust the thickness as needed */
+    border-color: #152030; /* Optional: Set the border color */
+    
+   
+}
+  </style>
+
+</head>
+
+<body class=" font-inter dashcode-app" id="body_class">
+<main class="app-wrapper">
+    @include('include/sidebar');
+    @include('include/settings');
+
+    @include('include/header');
+
+    <style>
+      .nav-pills .nav-link.active {
+        background:rgb(30 41 59 / var(--tw-bg-opacity));
+      }
+
+      /* Ensure the tabs wrap nicely and have space between lines */
+#pills-tabHorizontal {
+  flex-wrap: wrap;
+}
+
+/* Add space between rows of tabs */
+.nav-item {
+  margin-bottom: 10px; /* Adjust the value for more/less space between rows */
+}
+
+/* Optional: add some padding between tabs themselves */
+.nav-link {
+  padding: 8px 16px;
+}
+
+
+    </style>
+    <div class="flex flex-col justify-between min-h-screen">
+      <div>
+
+     
+
+      <div class="content-wrapper transition-all duration-150 ltr:ml-[248px] rtl:mr-[248px]" id="content_wrapper">
+          <div class="page-content">
+            <div class="transition-all duration-150 container-fluid" id="page_layout">
+              <div id="content_layout">
+                 <!-- Add New Button -->
+ 
+
+<!-- Add Document Card starts -->
+<div class="card relative" id="userCard" >
+  <div class="card-body flex flex-col p-6">
+
+    
+    <!-- Wizard Top Bar start -->
+    
+    <div class="card-text h-full">
+                        <div>
+                          <ul class="nav nav-pills flex items-center flex-wrap list-none pl-0 mb-6 space-x-4 " id="pills-tabHorizontal" role="tablist">
+                            <li class="nav-item text-center" role="presentation">
+                              <a href="#" class="nav-link block font-medium font-Inter text-sm leading-tight capitalize rounded-md px-6 py-3 focus:outline-none focus:ring-0 active dark:bg-slate-900 dark:text-slate-300 active" id="pills-home-tabHorizontal" data-bs-toggle="pill" data-bs-target="#pills-homeHorizontal" role="tab" aria-controls="pills-homeHorizontal" aria-selected="true">दस्तसाठी आवश्यक माहिती</a>
+                            </li>
+                            <li class="nav-item text-center" role="presentation">
+                              <a href="#" class="nav-link block font-medium font-Inter text-sm leading-tight capitalize rounded-md px-6 py-3 focus:outline-none focus:ring-0 dark:bg-slate-900 dark:text-slate-300 active" id="pills-profile-tabHorizontal" data-bs-toggle="pill" data-bs-target="#pills-profileHorizontal" role="tab" aria-controls="pills-profileHorizontal" aria-selected="false">पक्षकार संपूर्ण माहीती</a>
+                            </li>
+                            <li class="nav-item text-center" role="presentation">
+                              <a href="#" class="nav-link block font-medium font-Inter text-sm leading-tight capitalize rounded-md px-6 py-3 focus:outline-none focus:ring-0 dark:bg-slate-900 dark:text-slate-300 active" id="pills-contact-tabHorizontal" data-bs-toggle="pill" data-bs-target="#pills-contactHorizontal" role="tab" aria-controls="pills-contactHorizontal" aria-selected="false">पक्षकार संपूर्ण माहीती</a>
+                            </li>
+
+                             <li class="nav-item text-center" role="presentation">
+                              <a href="#" class="nav-link block font-medium font-Inter text-sm leading-tight capitalize rounded-md px-6 py-3 focus:outline-none focus:ring-0 dark:bg-slate-900 dark:text-slate-300 active" id="pills-contact-tabHorizontal" data-bs-toggle="pill" data-bs-target="#pills-contactHorizontal" role="tab" aria-controls="pills-contactHorizontal" aria-selected="false">पक्षकार संपूर्ण माहीती</a>
+                            </li>
+
+                             <li class="nav-item text-center" role="presentation">
+                              <a href="#" class="nav-link block font-medium font-Inter text-sm leading-tight capitalize rounded-md px-6 py-3 focus:outline-none focus:ring-0 dark:bg-slate-900 dark:text-slate-300 active" id="pills-contact-tabHorizontal" data-bs-toggle="pill" data-bs-target="#pills-contactHorizontal" role="tab" aria-controls="pills-contactHorizontal" aria-selected="false">पक्षकार संपूर्ण माहीती</a>
+                            </li>
+
+                             <li class="nav-item text-center" role="presentation">
+                              <a href="#" class="nav-link block font-medium font-Inter text-sm leading-tight capitalize rounded-md px-6 py-3 focus:outline-none focus:ring-0 dark:bg-slate-900 dark:text-slate-300 active" id="pills-contact-tabHorizontal" data-bs-toggle="pill" data-bs-target="#pills-contactHorizontal" role="tab" aria-controls="pills-contactHorizontal" aria-selected="false">पक्षकार संपूर्ण माहीती</a>
+                            </li>
+
+                             <li class="nav-item text-center" role="presentation">
+                              <a href="#" class="nav-link block font-medium font-Inter text-sm leading-tight capitalize rounded-md px-6 py-3 focus:outline-none focus:ring-0 dark:bg-slate-900 dark:text-slate-300 active" id="pills-contact-tabHorizontal" data-bs-toggle="pill" data-bs-target="#pills-contactHorizontal" role="tab" aria-controls="pills-contactHorizontal" aria-selected="false">पक्षकार संपूर्ण माहीती</a>
+                            </li>
+
+                             <li class="nav-item text-center" role="presentation">
+                              <a href="#" class="nav-link block font-medium font-Inter text-sm leading-tight capitalize rounded-md px-6 py-3 focus:outline-none focus:ring-0 dark:bg-slate-900 dark:text-slate-300 active" id="pills-contact-tabHorizontal" data-bs-toggle="pill" data-bs-target="#pills-contactHorizontal" role="tab" aria-controls="pills-contactHorizontal" aria-selected="false">पक्षकार संपूर्ण माहीती</a>
+                            </li>
+
+                            <li class="nav-item text-center" role="presentation">
+                              <a href="#" class="nav-link block font-medium font-Inter text-sm leading-tight capitalize rounded-md px-6 py-3 focus:outline-none focus:ring-0 dark:bg-slate-900 dark:text-slate-300 " id="pills-settings-tabHorizontal" data-bs-toggle="pill" data-bs-target="#pills-settingsHorizontal" role="tab" aria-controls="pills-settingsHorizontal" aria-selected="false">Settings</a>
+                            </li>
+                          </ul>
+                          <div class="tab-content" id="pills-tabContentHorizontal">
+                            
+                            
+                          </div>
+                        </div>
+                      </div>
+    
+    <!-- Wizard Top Bar end -->
+
+
+    <header class="flex mb-5 items-center border-b border-slate-100 dark:border-slate-700 pb-5 -mx-6 px-6">
+      <div class="flex-1">
+        <!-- Card title or other content can go here -->
+      </div>
+    </header>
+
+
+   <div class="card-text h-full">
+  <form id="marathidoc_form" enctype="multipart/form-data">
+    <div class="form-group">
+      <!-- Section 1: Personal Information -->
+      <h3 class="text-lg font-semibold mb-4">दस्तसाठी आवश्यक माहिती / Required Information</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="input-area">
+          <label for="document_type" class="form-label">दस्ताचा प्रकार /Document Article </label>
+          <select name="document_type" id="document_type" class="form-control w-full mt-2" placeholder="अनुष्छेद/आर्टिकल निवडा">
+              <option value="" disabled selected hidden>अनुष्छेद/आर्टिकल निवडा</option>  
+              <option value="abhihastantaran" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">25 - अभिहस्तांतरण पत्र</option>
+           
+          </select>        
+        </div>
+
+        <div class="input-area">
+           <label for="property_type" class="form-label">मिळकतीचा प्रकार / Property Type</label>
+          <select name="property_type" id="property_type" class="form-control w-full mt-2" >
+              <option value="" disabled selected hidden>मिळकतीचा प्रकार निवडा</option>  
+              <option value="residential" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">रेसिडेंन्सीयल</option>
+              <option value="plot" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">प्लाॅट </option>           
+          </select>     
+        </div>
+
+         <div class="input-area">
+           <label for="document_title" class="form-label">दस्ताचा शिर्षक / Document Title</label>
+          <select name="document_title" id="document_title" class="form-control w-full mt-2" >
+              <option value="" disabled selected hidden>दस्ताचा शिर्षक निवडा</option>  
+              <option value="अभिहस्तांतरण पत्र" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">अभिहस्तांतरण पत्र</option>
+              <option value="खरेदीखत" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">खरेदीखत </option>           
+              <option value="खुषखरेदीखत" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">खुषखरेदीखत </option>           
+              <option value="फराेक्तखरेदीखत" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">फराेक्तखरेदीखत </option>           
+              <option value="विक्रीखत" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">विक्रीखत </option>           
+              <option value="हस्तांतरणपत्र" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">हस्तांतरणपत्र </option>           
+              <option value="तबदिलपत्र" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">तबदिलपत्र </option>           
+              <option value="कायम खुषखरेदीखत" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">कायम खुषखरेदीखत </option>           
+              <option value="सेल डीड" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">सेल डीड </option>           
+              <option value="कन्व्हेंन्स डीड" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">कन्व्हेंन्स डीड </option>           
+              <option value="ट्रान्सफर डीड" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">ट्रान्सफर डीड </option>           
+              <option value="असाईनमेंट+B45 डीड" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">असाईनमेंट+B45 डीड </option>           
+              <option value="असाईनमेंट डीड" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">असाईनमेंट डीड </option>           
+          </select>     
+        </div>
+
+        <div class="input-area">
+          <label for="property_consideration_price" class="form-label">माेबदला - किंमत /Consideration - Price</label>
+          <input id="property_consideration_price" name="property_consideration_price" type="number" class="form-control" >
+        </div>
+
+        <div class="input-area">
+          <label for="religious_slogan" class="form-label">धार्मिक घाेष वाक्य /Religious slogans</label>
+          <input id="religious_slogan" name="religious_slogan" type="text" class="form-control" >
+        </div>
+
+          <div class="input-area">
+          <label for="document_execution_date" class="form-label">दस्त निष्पादनाचा दिनांक /Document Execution Date</label>
+          <input id="document_execution_date" name="document_execution_date" type="date" class="form-control" >
+        </div>
+
+        <div class="input-area">
+          <label for="religious_symbol" class="form-label">धार्मिक चिन्ह (फाेटाे) /Religious Symbols (Image)</label>
+          <input id="religious_symbol" name="religious_symbol" type="file" class="form-control" >
+        </div>
+
+      </div>
+
+      <!-- CSRF Token -->
+      <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+     
+     
+
+    </div>
+    <button class="btn flex justify-center btn-dark mt-5 ml-auto">Submit</button>
+  </form>
+</div>
+
+  </div>
+</div>
+<br/>
+<!-- Add Document Card End -->
+
+    
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          
+          </div>
+        </div>
+
+        @include('include/footer');
+
+</main>
+@include('include.footer_assets');
+ 
+
+
+<script>
+    $(document).ready(function() {
+    $("#marathidoc_form").validate({
+        rules: {
+            document_type: {
+                required: true
+            },
+            property_type: {
+                required: true
+            },
+            document_title: {
+                required: true
+            },
+            property_consideration_price: {
+                required: true
+            },
+            religious_slogan: {
+                required: true
+            },
+            religious_symbol: {
+                required: true
+            },
+            document_execution_date: {
+                required: true
+            }
+        },
+        messages: {
+            document_type: {
+                required: "This Field is required"
+            },
+            property_type: {
+                required: "This Field is required"
+            },
+            document_title: {
+                required: "This Field is required"
+            },
+            property_consideration_price: {
+                required: "This Field is required"
+            },
+            religious_slogan: {
+                required: "This Field is required"
+            },
+            religious_symbol: {
+                required: "This Field is required"
+            },
+            document_execution_date: {
+                required: "This Field is required"
+            }
+        },
+        submitHandler: function(form, e) {
+            e.preventDefault();
+
+            // Create a FormData object to include the file
+            var formData = new FormData(form); // Automatically includes all form fields
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('marathidoc_stepone_submit') }}",
+                data: formData,  // Send FormData object
+                processData: false,  // Prevent jQuery from converting the data to a query string
+                contentType: false,  // Set the content type to false as jQuery will tell the server it's a multipart request
+                beforeSend: function() {
+                    $("#loader").show();
+                },
+                success: function(result) {
+                    result = JSON.parse(result);
+
+                    if (result.status === 'success') {
+                        alertify.success(result.returnmsg);
+                    } else if (result.status === 'fail') {
+                        alertify.error(result.returnmsg);
+                    }
+
+                    $('#marathidoc_form')[0].reset();
+                    getuserlist();
+                },
+                complete: function() {
+                    $("#loader").hide();
+                },
+                error: function(error) {
+                    console.log("Error:", error);
+                }
+            });
+
+            return false;
+        }
+    });
+});
+
+</script>
+
+<script>
+
+    
+$(document).ready(function() {
+    // Listen for changes in the party_sub_type dropdown
+    $('#party_sub_type').on('change', function() {
+        // Get the index of the selected option
+        var selectedIndex = $(this).prop('selectedIndex');
+
+        // Set the selected index in the party_tarfe dropdown
+        $('#party_tarfe').prop('selectedIndex', selectedIndex);
+    });
+});
+ 
+
+ 
+
+</script>
+
+
+
+ </body>
+
+
+</html>
+

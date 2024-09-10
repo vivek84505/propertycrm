@@ -1,6 +1,9 @@
  <!-- Favicons -->
  <!-- <link href="assets/img/favicon.png" rel="icon"> -->
  <link rel="icon" href="{{ URL::asset('public/images/logo/favicon.svg') }}">
+
+ <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
+
  <!-- Core Stylesheet -->
 <link rel="stylesheet" href="{{ URL::asset('public/css/rt-plugins.css') }}">
 <link rel="stylesheet" href="{{ URL::asset('public/css/app.css') }}">
@@ -10,14 +13,13 @@
 <link rel="stylesheet" href="{{ URL::asset('public/css/bootstrap-multiselect.css') }}">
 <link rel="stylesheet" href="{{ URL::asset('public/css/bootstrap-multiselect.css') }}">
  
- 
-
 
 
 <link rel="icon" type="image/png" href="{{ URL::asset('public/images/logo/favicon.svg') }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <!-- BEGIN: Theme CSS-->
   
   <!-- End : Theme CSS-->

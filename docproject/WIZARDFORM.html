@@ -1,0 +1,190 @@
+<!-- wizard form start -->
+<div class="container mx-auto mt-12">
+    <div class="flex">
+        <!-- Sidebar -->
+        <div class="w-1/4 p-4 bg-white shadow-lg rounded">
+            <ul id="wizard-sidebar" class="space-y-4">
+                <li class="wizard-step active" data-step="1">
+                    <a href="#" class="block p-6 bg-blue-500 text-white rounded"
+                        >दस्तसाठी आवश्यक माहिती</a
+                    >
+                </li>
+                <li class="wizard-step" data-step="2">
+                    <a href="#" class="block p-2 bg-gray-200 rounded"
+                        >पक्षकार संपूर्ण माहीती</a
+                    >
+                </li>
+                <li class="wizard-step" data-step="3">
+                    <a href="#" class="block p-2 bg-gray-200 rounded">Step 3</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Form Content -->
+        <div class="w-full md:w-3/4 p-4 bg-white shadow-lg rounded ml-4">
+            <form id="wizard-form">
+                <!-- Step 1 -->
+                <div class="wizard-content" data-step="1">
+                    <h2 class="text-lg font-bold">
+                        Step 1: Personal Information
+                    </h2>
+                    <div class="grid grid-cols-4 gap-4 mt-4">
+                        <!-- Input Field 1 -->
+                        <div class="col-span-1">
+                            <label
+                                class="block text-sm font-medium text-gray-700 mb-2"
+                                >Name</label
+                            >
+                            <input
+                                type="text"
+                                name="name"
+                                class="border p-2 w-full"
+                                required
+                            />
+                        </div>
+                        <!-- Input Field 2 -->
+                        <div class="col-span-1">
+                            <label
+                                class="block text-sm font-medium text-gray-700 mb-2"
+                                >Email</label
+                            >
+                            <input
+                                type="email"
+                                name="email"
+                                class="border p-2 w-full"
+                                required
+                            />
+                        </div>
+                        <!-- Input Field 3 -->
+                        <div class="col-span-1">
+                            <label
+                                class="block text-sm font-medium text-gray-700 mb-2"
+                                >Phone</label
+                            >
+                            <input
+                                type="text"
+                                name="phone"
+                                class="border p-2 w-full"
+                                required
+                            />
+                        </div>
+                        <!-- Input Field 4 -->
+                        <div class="col-span-1">
+                            <label
+                                class="block text-sm font-medium text-gray-700 mb-2"
+                                >Date of Birth</label
+                            >
+                            <input
+                                type="date"
+                                name="dob"
+                                class="border p-2 w-full"
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div class="flex justify-end mt-4">
+                        <button
+                            type="button"
+                            class="next-step bg-blue-500 text-white p-2 mt-4 rounded"
+                        >
+                            Next
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="wizard-content hidden" data-step="2">
+                    <h2 class="text-lg font-bold">Step 2: Address</h2>
+                    <div class="grid grid-cols-4 gap-4 mt-4">
+                        <!-- Input Field 1 -->
+                        <div class="col-span-1">
+                            <label
+                                class="block text-sm font-medium text-gray-700 mb-2"
+                                >Street Address</label
+                            >
+                            <input
+                                type="text"
+                                name="address"
+                                class="border p-2 w-full"
+                                required
+                            />
+                        </div>
+                        <!-- Input Field 2 -->
+                        <div class="col-span-1">
+                            <label
+                                class="block text-sm font-medium text-gray-700 mb-2"
+                                >City</label
+                            >
+                            <input
+                                type="text"
+                                name="city"
+                                class="border p-2 w-full"
+                                required
+                            />
+                        </div>
+                        <!-- Input Field 3 -->
+                        <div class="col-span-1">
+                            <label
+                                class="block text-sm font-medium text-gray-700 mb-2"
+                                >State</label
+                            >
+                            <input
+                                type="text"
+                                name="state"
+                                class="border p-2 w-full"
+                                required
+                            />
+                        </div>
+                        <!-- Input Field 4 -->
+                        <div class="col-span-1">
+                            <label
+                                class="block text-sm font-medium text-gray-700 mb-2"
+                                >Postal Code</label
+                            >
+                            <input
+                                type="text"
+                                name="postal_code"
+                                class="border p-2 w-full"
+                                required
+                            />
+                        </div>
+                    </div>
+                    <div class="flex justify-end mt-4 space-x-2">
+                        <button
+                            type="button"
+                            class="previous-step bg-blue-500 text-white p-2 mt-4 rounded"
+                        >
+                            Previous
+                        </button>
+                        <button
+                            type="button"
+                            class="next-step bg-blue-500 text-white p-2 mt-4 rounded"
+                        >
+                            Next
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="wizard-content hidden" data-step="3">
+                    <h2 class="text-lg font-bold">Step 3: Confirm</h2>
+                    <p>Please review your information before submitting.</p>
+                    <button
+                        type="button"
+                        class="previous-step bg-blue-500 text-white p-2 mt-4 rounded"
+                    >
+                        Previous
+                    </button>
+                    <button
+                        type="submit"
+                        class="bg-green-500 text-white p-2 mt-4 rounded"
+                    >
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- wizard form end -->

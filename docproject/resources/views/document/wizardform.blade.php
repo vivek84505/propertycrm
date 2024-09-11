@@ -55,7 +55,7 @@
 <div class="container mx-auto mt-12">
     <div class="flex">
         <!-- Sidebar -->
-        <div class="w-1/4 p-4 bg-white shadow-lg rounded">
+        <div style="margin-left:-30px" class="w-1/4 p-4 bg-white shadow-lg rounded">
             <ul id="wizard-sidebar" class="space-y-4">
                 <li class="wizard-step active" data-step="1">
                     <a href="#" class="block p-6 bg-blue-500 text-white rounded">दस्तसाठी आवश्यक माहिती</a>
@@ -71,31 +71,75 @@
 
         <!-- Form Content -->
         <div class="w-full md:w-3/4 p-4 bg-white shadow-lg rounded ml-4">
-            <form id="wizard-form">
+            <form id="wizard-form" enctype='multipart/form-data'>
                 <!-- Step 1 -->
                 <div class="wizard-content" data-step="1">
-                    <h2 class="text-lg font-bold">Step 1: Personal Information</h2>
+                    <h2 class="text-lg font-bold">दस्तसाठी आवश्यक माहिती</h2>
                     <div class="grid grid-cols-4 gap-4 mt-4">
                         <!-- Input Field 1 -->
-                        <div class="col-span-1">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Name</label>
-                            <input type="text" name="name" class="border p-2 w-full" required>
+                        <div class="col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">दस्ताचा प्रकार /Document Article</label>
+                             <select name="document_type" id="document_type" class="form-control w-full mt-2">
+                                  <option value="">अनुष्छेद/आर्टिकल निवडा</option>  <!-- Empty value for validation -->
+                                  <option value="abhihastantaran" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">25 - अभिहस्तांतरण पत्र</option>
+                                </select> 
                         </div>
                         <!-- Input Field 2 -->
-                        <div class="col-span-1">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                            <input type="email" name="email" class="border p-2 w-full" required>
+                        <div class="col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">मिळकतीचा प्रकार / Property Type</label>
+                            <select name="property_type" id="property_type" class="form-control w-full mt-2" >
+                                <option value="" disabled selected hidden>मिळकतीचा प्रकार निवडा</option>  
+                                <option value="residential" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">रेसिडेंन्सीयल</option>
+                                <option value="plot" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">प्लाॅट </option>           
+                                </select> 
                         </div>
                         <!-- Input Field 3 -->
-                        <div class="col-span-1">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
-                            <input type="text" name="phone" class="border p-2 w-full" required>
+                        <div class="col-span-2">
+                             <label for="document_title" class="form-label">दस्ताचा शिर्षक / Document Title</label>
+                                <select name="document_title" id="document_title" class="form-control w-full mt-2" >
+                                <option value="" disabled selected hidden>दस्ताचा शिर्षक निवडा</option>  
+                                <option value="अभिहस्तांतरण पत्र" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">अभिहस्तांतरण पत्र</option>
+                                <option value="खरेदीखत" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">खरेदीखत </option>           
+                                <option value="खुषखरेदीखत" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">खुषखरेदीखत </option>           
+                                <option value="फराेक्तखरेदीखत" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">फराेक्तखरेदीखत </option>           
+                                <option value="विक्रीखत" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">विक्रीखत </option>           
+                                <option value="हस्तांतरणपत्र" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">हस्तांतरणपत्र </option>           
+                                <option value="तबदिलपत्र" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">तबदिलपत्र </option>           
+                                <option value="कायम खुषखरेदीखत" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">कायम खुषखरेदीखत </option>           
+                                <option value="सेल डीड" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">सेल डीड </option>           
+                                <option value="कन्व्हेंन्स डीड" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">कन्व्हेंन्स डीड </option>           
+                                <option value="ट्रान्सफर डीड" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">ट्रान्सफर डीड </option>           
+                                <option value="असाईनमेंट+B45 डीड" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">असाईनमेंट+B45 डीड </option>           
+                                <option value="असाईनमेंट डीड" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">असाईनमेंट डीड </option>           
+                                </select> 
                         </div>
                         <!-- Input Field 4 -->
-                        <div class="col-span-1">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Date of Birth</label>
-                            <input type="date" name="dob" class="border p-2 w-full" required>
+                        <div class="col-span-2">                         
+
+                              <label for="property_consideration_price"  class="block text-sm font-medium text-gray-700 mb-2">माेबदला - किंमत /Consideration - Price</label>
+                              <input id="property_consideration_price" name="property_consideration_price" type="number" class="border p-2 w-full" >
                         </div>
+
+                        <div class="col-span-2">                         
+
+                              <label for="property_consideration_price"  class="block text-sm font-medium text-gray-700 mb-2">धार्मिक घाेष वाक्य /Religious slogans</label>
+                              <input id="religious_slogan" name="religious_slogan" type="number" class="border p-2 w-full" >
+                        </div>
+
+                         <div class="col-span-2">                         
+
+                              <label for="property_consideration_price"  class="block text-sm font-medium text-gray-700 mb-2">दस्त निष्पादनाचा दिनांक /Doc Execution Date</label>
+                              <input id="document_execution_date" name="document_execution_date" type="date" class="border p-2 w-full" >
+                        </div>
+
+                        <div class="col-span-2">                         
+
+                              <label for="property_consideration_price"  class="block text-sm font-medium text-gray-700 mb-2">धार्मिक चिन्ह (फाेटाे) /Religious Symbols (Image)</label>
+                              <input id="religious_symbol" name="religious_symbol" type="file" class="border p-2 w-full" >
+                        </div>
+
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+
                     </div>
                     <div class="flex justify-end mt-4">
                         <button type="button" class="next-step bg-blue-500 text-white p-2 mt-4 rounded">Next</button>
@@ -104,20 +148,69 @@
 
                 <!-- Step 2 -->
                 <div class="wizard-content hidden" data-step="2">
-                    <h2 class="text-lg font-bold">Step 2: Address</h2>
+                    <h2 class="text-lg font-bold">पक्षकार संपूर्ण माहीती / Party Details</h2>
                     <div class="grid grid-cols-4 gap-4 mt-4">
                         <!-- Input Field 1 -->
-                        <div class="col-span-1">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Street Address</label>
-                            <input type="text" name="address" class="border p-2 w-full" required>
+                        <div class="col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">पक्षकार क्रमांक</label>
+                            <input id="party_number" name="party_number" type="text" value="1" class="border p-2 w-full" disabled>
                         </div>
                         <!-- Input Field 2 -->
-                        <div class="col-span-1">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">City</label>
-                            <input type="text" name="city" class="border p-2 w-full" required>
+                        <div class="col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">पक्षकार</label>
+                            <select name="party_type" id="party_type" class="form-control w-full mt-2" >
+                                <option value="" disabled selected hidden>पक्षकार निवडा</option>
+                                <option value="लिहून देणार" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">लिहून देणार</option>
+                                <option value="लिहून घेणार" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">लिहून घेणार</option>
+                                <option value="मान्यता देणार" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">मान्यता देणार</option>
+                                <option value="पाॅवर ऑफ ऑटर्नि हाेल्डर / जनरल मुखत्यार/ स्पेशल मुखत्यार" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">पाॅवर ऑफ ऑटर्नि हाेल्डर / जनरल मुखत्यार/ स्पेशल मुखत्यार</option>
+                        </select>
+                        </div>
+
+
+                        <div class="col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">पक्षकाराचा प्रकार</label>
+                            <select name="party_sub_type" id="party_sub_type" class="form-control w-full mt-2" >
+                               <option value="" disabled selected hidden>पक्षकाराचा प्रकार निवडा</option>
+                                <option value="वैयक्तिक / स्वतंत्र" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">वैयक्तिक / स्वतंत्र</option>
+                                <option value="प्राेप्रायटरी फर्म" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">प्राेप्रायटरी फर्म</option>
+                                <option value="भागिदारी संस्था" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">भागिदारी संस्था</option>
+                                <option value="लिमीटेड लायबीलीटी पार्टनरशिप (LLP)" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">लिमीटेड लायबीलीटी पार्टनरशिप (LLP)</option>
+                                <option value="पब्लीक लिमीटेड कंपनी" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">पब्लीक लिमीटेड कंपनी</option>
+                                <option value="प्रायव्हेट लिमीटेड कंपनी" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">प्रायव्हेट लिमीटेड कंपनी</option>
+                                <option value="जाॅईंट व्हेंचर" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">जाॅईंट व्हेंचर</option>
+                                <option value="ट्रस्ट" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">ट्रस्ट</option>
+                                <option value="सहकारी संस्था / काेऑपरेटिव्ह साेसायटी" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">सहकारी संस्था / काेऑपरेटिव्ह साेसायटी</option>
+                                <option value="एच.यू.एफ" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">एच.यू.एफ</option>
+                                <option value="बॅँक" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">बॅँक</option>
+                                <option value="महामंडळ" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">महामंडळ</option>
+                                <option value="महानगरपालिका, नगरपालिका, नगरपरिषद, ग्रामपंचायत, जिल्हा परिषद तर्फे" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">महानगरपालिका, नगरपालिका, नगरपरिषद, ग्रामपंचायत, जिल्हा परिषद तर्फे</option>
+                                <option value="महाराष्ट्र शासन तर्फे" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">महाराष्ट्र शासन तर्फे</option>
+                            </select>
+                        </div>
+
+                        <div class="col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">तर्फे</label>
+                            <select name="party_tarfe" id="party_tarfe" class="form-control w-full mt-2" disabled>
+                                <option value="" disabled selected hidden>तर्फे</option>
+                                <option value="अधिकृत व्यक्ती" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">अधिकृत व्यक्ती</option>
+                                <option value="व्यवस्थापकीय संचालक" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">व्यवस्थापकीय संचालक</option>
+                                <option value="अधिकृत भागिदार" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">अधिकृत भागिदार</option>
+                                <option value="नियुक्त व्यक्ती" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">नियुक्त व्यक्ती</option>
+                                <option value="अध्यक्ष" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">अध्यक्ष</option>
+                                <option value="विश्वस्त" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">विश्वस्त</option>
+                                <option value="मालक" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">मालक</option>
+                                <option value="सचिव" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">सचिव</option>
+                                <option value="सदस्य" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">सदस्य</option>
+                                <option value="एच.यु.एफ. कर्ता" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">एच.यु.एफ. कर्ता</option>
+                                <option value="अधिकृत संचालक" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">अधिकृत संचालक</option>
+                                <option value="आयुक्त" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">आयुक्त</option>
+                                <option value="मुख्याधिकारी" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">मुख्याधिकारी</option>
+                                <option value="अधिकारी" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">अधिकारी</option>
+                            </select>
                         </div>
                         <!-- Input Field 3 -->
-                        <div class="col-span-1">
+                        <div class="col-span-1.5">
                             <label class="block text-sm font-medium text-gray-700 mb-2">State</label>
                             <input type="text" name="state" class="border p-2 w-full" required>
                         </div>
@@ -175,6 +268,17 @@
 @include('include.footer_assets');
 
 <script>
+    $(document).ready(function() {
+    // Listen for changes in the party_sub_type dropdown
+    $('#party_sub_type').on('change', function() {
+        // Get the index of the selected option
+        var selectedIndex = $(this).prop('selectedIndex');
+
+        // Set the selected index in the party_tarfe dropdown
+        $('#party_tarfe').prop('selectedIndex', selectedIndex);
+    });
+});
+
     $(document).ready(function () {
         let currentStep = 1;
 
@@ -182,8 +286,7 @@
         const form = $('#wizard-form').validate({
             rules: {
                 name: {
-                    required: true,
-                    minlength: 3
+                    required: true,                    
                 },
                 email: {
                     required: true,

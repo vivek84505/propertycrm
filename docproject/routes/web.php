@@ -51,7 +51,7 @@ Route::middleware(['loginmiddleware', 'manage.product.session'])->group(function
     // Document Routes
     Route::get('/marathidocument', 'MarathiDocumentControlller@index')->name('marathidocument');
     Route::get('/marathidocument_old', 'MarathiDocumentControlller@marathidocument_old')->name('marathidocument_old');
-    Route::post('/marathidoc_stepone_submit', 'MarathiDocumentControlller@marathidoc_stepone_submit')->name('marathidoc_stepone_submit');
+    Route::post('/marathidoc_submit', 'MarathiDocumentControlller@marathidoc_submit')->name('marathidoc_submit');
 
 });
 

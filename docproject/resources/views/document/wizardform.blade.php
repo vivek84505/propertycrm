@@ -122,13 +122,13 @@
 
                         <div class="col-span-2">                         
 
-                              <label for="property_consideration_price"  class="block text-sm font-medium text-gray-700 mb-2">धार्मिक घाेष वाक्य /Religious slogans</label>
-                              <input id="religious_slogan" name="religious_slogan" type="number" class="border p-2 w-full" >
+                              <label for="religious_slogan"  class="block text-sm font-medium text-gray-700 mb-2">धार्मिक घाेष वाक्य /Religious slogans</label>
+                              <input id="religious_slogan" name="religious_slogan" type="text" class="border p-2 w-full" >
                         </div>
 
                          <div class="col-span-2">                         
 
-                              <label for="property_consideration_price"  class="block text-sm font-medium text-gray-700 mb-2">दस्त निष्पादनाचा दिनांक /Doc Execution Date</label>
+                              <label for="document_execution_date"  class="block text-sm font-medium text-gray-700 mb-2">दस्त निष्पादनाचा दिनांक /Doc Execution Date</label>
                               <input id="document_execution_date" name="document_execution_date" type="date" class="border p-2 w-full" >
                         </div>
 
@@ -325,7 +325,44 @@
             },
             unhighlight: function (element) {
                 $(element).removeClass('border-red-500'); // Remove error class
-            }
+            },
+            submitHandler: function(form, e) {
+            e.preventDefault();
+
+            // Create a FormData object to include the file
+            var formData = new FormData(form); // Automatically includes all form fields
+
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('marathidoc_submit') }}",
+                data: formData,  // Send FormData object
+                processData: false,  // Prevent jQuery from converting the data to a query string
+                contentType: false,  // Set the content type to false as jQuery will tell the server it's a multipart request
+                beforeSend: function() {
+                    $("#loader").show();
+                },
+                success: function(result) {
+                    // result = JSON.parse(result);
+                    console.log('form result===>',result);
+                    if (result.status === 'success') {
+                        alertify.success(result.returnmsg);
+                    } else if (result.status === 'fail') {
+                        alertify.error(result.returnmsg);
+                    }
+
+                    $('#wizard-form')[0].reset();
+                    
+                },
+                complete: function() {
+                    $("#loader").hide();
+                },
+                error: function(error) {
+                    console.log("Error:", error);
+                }
+            });
+
+            return false;
+          }
         });
 
         // Function to show the correct step content and update sidebar

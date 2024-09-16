@@ -10,12 +10,12 @@ use DB;
 use Hash;
 
 
-class DocumentModel extends Authenticatable
+class DocumentPartyModel extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    protected $table = 'document_master';
-    protected $primaryKey = 'documentid';
+    protected $table = 'document_party_master';
+    protected $primaryKey = 'partyid';
  
   
 
@@ -51,7 +51,7 @@ class DocumentModel extends Authenticatable
 
     public function getuserbyid($payload){
         $res = [];
-        $user = new DocumentModel();  
+        $user = new DocumentPartyModel();  
        
         $query = DB::table('document_master');
 
@@ -103,7 +103,7 @@ class DocumentModel extends Authenticatable
 
        
         $res = [];
-        $user = new DocumentModel();  
+        $user = new DocumentPartyModel();  
        
         $query = DB::table('document_master');
 
@@ -160,7 +160,7 @@ class DocumentModel extends Authenticatable
     $Modelresponse = [];
 
     // Assuming you're using a Document model.
-    $document = new DocumentModel();
+    $document = new DocumentPartyModel();
     
     // Use insertGetId() to insert data and get the last inserted ID
     $lastInsertId = $document->insertGetId($payload);
@@ -178,7 +178,31 @@ class DocumentModel extends Authenticatable
 }
 
 
- 
+  public function documentPartyAdd($payload)
+{
+    $response = [];
+
+    // Assuming you're using a Document model.
+    $document = new DocumentPartyModel();
+
+    // echo "<pre>";
+    // print_r($payload);
+    // die;
+    
+    // Use insertGetId() to insert data and get the last inserted ID
+    $lastInsertId = $document->insertGetId($payload);
+
+    if (!$lastInsertId) {
+        $response['status'] = 'fail';
+        $response['returnmsg'] = 'Something Went Wrong';
+    } else {
+        $response['status'] = 'success';
+        $response['returnmsg'] = 'Document Created Successfully.';
+        $response['last_insert_id'] = $lastInsertId; // Return the last insert ID
+    }
+
+    return $response;
+}
 
 
 
@@ -198,7 +222,7 @@ class DocumentModel extends Authenticatable
     //  public function getuserpassword($documentid){
 
     //     $response = [];
-    //     $user = new DocumentModel();   
+    //     $user = new DocumentPartyModel();   
        
     //       $userdata =  User::select('*')->where('documentid', $documentid)->first();
        

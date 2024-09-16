@@ -75,6 +75,36 @@ class MarathiDocumentControlller extends Controller
         
       $response = $document->documentAdd($payload);
 
+      //Pakshakar Data Add Start
+      if(!empty($response['last_insert_id'])){
+        
+        
+        $partylength = count($data['party_type']);
+        $documentid = $response['last_insert_id'];
+
+        for($i = 0; $i < $partylength; $i++){
+
+          $party_payload = [];
+
+          $party_payload['documentid'] = $documentid;
+          
+          if(!empty($data['party_type'][$i])){
+
+             $party_payload['party_type']  = $data['party_type'][$i];
+          }
+          
+
+
+          echo $data['party_type'][$i];
+        }
+
+      }
+      // echo "<pre>";
+      // print_r($data);
+      die;
+
+      //Pakshakar Data Add End
+
     return response()->json($response); 
 
     //    if ($request->hasFile('religious_symbol')) {

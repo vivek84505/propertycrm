@@ -51,7 +51,7 @@
     <div class="card-text h-full">
        
     
-      <!-- wizard form start -->
+   <!-- wizard form start -->
 <div class="container mx-auto mt-12">
     <div class="flex">
         <!-- Sidebar -->
@@ -76,7 +76,9 @@
                 <div class="wizard-content" data-step="1">
                     <h2 class="text-lg font-bold">दस्तसाठी आवश्यक माहिती</h2>
                     <div class="grid grid-cols-4 gap-4 mt-4">
-                        <!-- Input Field 1 -->
+                        <!-- Input Fields for Step 1 -->
+                        <!-- All inputs same as your original HTML -->
+                          <!-- Input Field 1 -->
                         <div class="col-span-2">
                             <label class="block text-sm font-medium text-gray-700 mb-2">दस्ताचा प्रकार /Document Article</label>
                              <select name="document_type" id="document_type" class="form-control w-full mt-2">
@@ -139,7 +141,6 @@
                         </div>
 
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-
                     </div>
                     <div class="flex justify-end mt-4">
                         <button type="button" class="next-step bg-blue-500 text-white p-2 mt-4 rounded">Next</button>
@@ -149,49 +150,55 @@
                 <!-- Step 2 -->
                 <div class="wizard-content hidden" data-step="2">
                     <h2 class="text-lg font-bold">पक्षकार संपूर्ण माहीती / Party Details</h2>
-                    <div class="grid grid-cols-4 gap-4 mt-4">
-                        <!-- Input Field 1 -->
-                        <div class="col-span-2">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">पक्षकार क्रमांक</label>
-                            <input id="party_number" name="party_number" type="text" value="1" class="border p-2 w-full" disabled>
-                        </div>
-                        <!-- Input Field 2 -->
-                        <div class="col-span-2">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">पक्षकार</label>
-                            <select name="party_type" id="party_type" class="form-control w-full mt-2" >
-                                <option value="" disabled selected hidden>पक्षकार निवडा</option>
-                                <option value="लिहून देणार" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">लिहून देणार</option>
-                                <option value="लिहून घेणार" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">लिहून घेणार</option>
-                                <option value="मान्यता देणार" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">मान्यता देणार</option>
-                                <option value="पाॅवर ऑफ ऑटर्नि हाेल्डर / जनरल मुखत्यार/ स्पेशल मुखत्यार" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">पाॅवर ऑफ ऑटर्नि हाेल्डर / जनरल मुखत्यार/ स्पेशल मुखत्यार</option>
-                        </select>
-                        </div>
+                    <div id="party-details-container" class="space-y-4">
+                        <!-- Party Group Template (Cloned Dynamically) -->
+                        <div class="party-group">
+                            <div class="grid grid-cols-4 gap-4 mt-4">
+                                <!-- Input Fields for Party Group -->
+                                <div class="col-span-2">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">पक्षकार क्रमांक</label>
+                                    <input id="party_number" name="party_number[]" type="text" value="1" class="border p-2 w-full" disabled>
+                                </div>
+                                
+
+                                        <!-- Input Field 2 -->
+                                <div class="col-span-2">
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">पक्षकार</label>
+                                    <select name="party_type[]" id="party_type" class="form-control w-full mt-2" >
+                                        <option value="" disabled selected hidden>पक्षकार निवडा</option>
+                                        <option value="लिहून देणार" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">लिहून देणार</option>
+                                        <option value="लिहून घेणार" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">लिहून घेणार</option>
+                                        <option value="मान्यता देणार" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">मान्यता देणार</option>
+                                        <option value="पाॅवर ऑफ ऑटर्नि हाेल्डर / जनरल मुखत्यार/ स्पेशल मुखत्यार" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">पाॅवर ऑफ ऑटर्नि हाेल्डर / जनरल मुखत्यार/ स्पेशल मुखत्यार</option>
+                                </select>
+                                </div>
 
 
-                        <div class="col-span-2">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">पक्षकाराचा प्रकार</label>
-                            <select name="party_sub_type" id="party_sub_type" class="form-control w-full mt-2" >
-                               <option value="" disabled selected hidden>पक्षकाराचा प्रकार निवडा</option>
-                                <option value="वैयक्तिक / स्वतंत्र" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">वैयक्तिक / स्वतंत्र</option>
-                                <option value="प्राेप्रायटरी फर्म" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">प्राेप्रायटरी फर्म</option>
-                                <option value="भागिदारी संस्था" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">भागिदारी संस्था</option>
-                                <option value="लिमीटेड लायबीलीटी पार्टनरशिप (LLP)" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">लिमीटेड लायबीलीटी पार्टनरशिप (LLP)</option>
-                                <option value="पब्लीक लिमीटेड कंपनी" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">पब्लीक लिमीटेड कंपनी</option>
-                                <option value="प्रायव्हेट लिमीटेड कंपनी" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">प्रायव्हेट लिमीटेड कंपनी</option>
-                                <option value="जाॅईंट व्हेंचर" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">जाॅईंट व्हेंचर</option>
-                                <option value="ट्रस्ट" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">ट्रस्ट</option>
-                                <option value="सहकारी संस्था / काेऑपरेटिव्ह साेसायटी" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">सहकारी संस्था / काेऑपरेटिव्ह साेसायटी</option>
-                                <option value="एच.यू.एफ" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">एच.यू.एफ</option>
-                                <option value="बॅँक" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">बॅँक</option>
-                                <option value="महामंडळ" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">महामंडळ</option>
-                                <option value="महानगरपालिका, नगरपालिका, नगरपरिषद, ग्रामपंचायत, जिल्हा परिषद तर्फे" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">महानगरपालिका, नगरपालिका, नगरपरिषद, ग्रामपंचायत, जिल्हा परिषद तर्फे</option>
-                                <option value="महाराष्ट्र शासन तर्फे" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">महाराष्ट्र शासन तर्फे</option>
-                            </select>
-                        </div>
 
+                            <div class="col-span-2">
+                                <label class="block text-sm font-medium text-gray-700 mb-2">पक्षकाराचा प्रकार</label>
+                                <select name="party_sub_type[]" id="party_sub_type" class="form-control w-full mt-2" >
+                                <option value="" disabled selected hidden>पक्षकाराचा प्रकार निवडा</option>
+                                    <option value="वैयक्तिक / स्वतंत्र" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">वैयक्तिक / स्वतंत्र</option>
+                                    <option value="प्राेप्रायटरी फर्म" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">प्राेप्रायटरी फर्म</option>
+                                    <option value="भागिदारी संस्था" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">भागिदारी संस्था</option>
+                                    <option value="लिमीटेड लायबीलीटी पार्टनरशिप (LLP)" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">लिमीटेड लायबीलीटी पार्टनरशिप (LLP)</option>
+                                    <option value="पब्लीक लिमीटेड कंपनी" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">पब्लीक लिमीटेड कंपनी</option>
+                                    <option value="प्रायव्हेट लिमीटेड कंपनी" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">प्रायव्हेट लिमीटेड कंपनी</option>
+                                    <option value="जाॅईंट व्हेंचर" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">जाॅईंट व्हेंचर</option>
+                                    <option value="ट्रस्ट" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">ट्रस्ट</option>
+                                    <option value="सहकारी संस्था / काेऑपरेटिव्ह साेसायटी" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">सहकारी संस्था / काेऑपरेटिव्ह साेसायटी</option>
+                                    <option value="एच.यू.एफ" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">एच.यू.एफ</option>
+                                    <option value="बॅँक" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">बॅँक</option>
+                                    <option value="महामंडळ" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">महामंडळ</option>
+                                    <option value="महानगरपालिका, नगरपालिका, नगरपरिषद, ग्रामपंचायत, जिल्हा परिषद तर्फे" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">महानगरपालिका, नगरपालिका, नगरपरिषद, ग्रामपंचायत, जिल्हा परिषद तर्फे</option>
+                                    <option value="महाराष्ट्र शासन तर्फे" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">महाराष्ट्र शासन तर्फे</option>
+                                </select>
+                        </div>
+                        
                         <div class="col-span-2">
                             <label class="block text-sm font-medium text-gray-700 mb-2">तर्फे</label>
-                            <select name="party_tarfe" id="party_tarfe" class="form-control w-full mt-2" disabled>
+                            <select name="party_tarfe[]" id="party_tarfe" class="form-control w-full mt-2" disabled>
                                 <option value="" disabled selected hidden>तर्फे</option>
                                 <option value="अधिकृत व्यक्ती" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">अधिकृत व्यक्ती</option>
                                 <option value="व्यवस्थापकीय संचालक" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">व्यवस्थापकीय संचालक</option>
@@ -209,18 +216,154 @@
                                 <option value="अधिकारी" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">अधिकारी</option>
                             </select>
                         </div>
+
                         <!-- Input Field 3 -->
-                        <div class="col-span-1.5">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">State</label>
-                            <input type="text" name="state" class="border p-2 w-full" required>
+                        <div class="col-span-2">
+                            <label for="party_sirname" class="block text-sm font-medium text-gray-700 mb-2">आडनांव</label>
+                            <input type="text" name="party_sirname[]" id="party_sirname" class="border p-2 w-full" >
                         </div>
                         <!-- Input Field 4 -->
-                        <div class="col-span-1">
-                            <label class="block text-sm font-medium text-gray-700 mb-2">Postal Code</label>
-                            <input type="text" name="postal_code" class="border p-2 w-full" required>
+                        <div class="col-span-2">
+                            <label for="party_firstname" class="block text-sm font-medium text-gray-700 mb-2">नांव</label>
+                            <input type="text" id="party_firstname" name="party_firstname[]" class="border p-2 w-full" >
                         </div>
+
+                        <div class="col-span-2">
+                            <label for="party_firstname" class="block text-sm font-medium text-gray-700 mb-2">वडिलांचे / पतिचे नांव</label>
+                            <input type="text"  id="party_middlename" name="party_middlename[]" class="border p-2 w-full" >
+                        </div>
+
+                        <div class="col-span-1">
+                            <label for="party_firstname" class="block text-sm font-medium text-gray-700 mb-2">जन्म दिनांक (वय)</label>
+                            <input type="date"  id="party_birthdate" name="party_birthdate[]" class="border p-2 w-full" >
+                        </div>
+
+                        <div class="col-span-1">
+                            <label for="party_gender" class="block text-sm font-medium text-gray-700 mb-2">स्त्री / पुरुष</label>
+                            <select name="party_gender[]" id="party_gender" class="form-control w-full mt-2" >
+                                <option value="" disabled selected hidden>निवडा</option>
+                                <option value="male" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">पुरुष</option>
+                                <option value="female" class="py-1 inline-block font-Inter font-normal text-sm text-slate-600">स्त्री</option>
+                        </select>
+                        </div>
+
+                          <div class="col-span-2">
+                            <label for="party_profession" class="block text-sm font-medium text-gray-700 mb-2">व्यवसाय</label>
+                            <input type="text"  id="party_profession" name="party_profession[]" class="border p-2 w-full" >
+                        </div>
+
+                         <div class="col-span-2">
+                            <label for="party_pancard" class="block text-sm font-medium text-gray-700 mb-2">पॅन नंबर</label>
+                            <input type="text"  id="party_pancard" name="party_pancard[]" class="border p-2 w-full" >
+                        </div>
+
+                          <div class="col-span-2">
+                            <label for="party_adharcard" class="block text-sm font-medium text-gray-700 mb-2">आधार नंबर</label>
+                            <input type="text"  id="party_adharcard" name="party_adharcard[]" class="border p-2 w-full" >
+                        </div>
+
+                          <div class="col-span-2">
+                            <label for="party_cin" class="block text-sm font-medium text-gray-700 mb-2">CIN</label>
+                            <input type="text"  id="party_cin" name="party_cin[]" class="border p-2 w-full" >
+                        </div>
+
+                          <div class="col-span-2">
+                            <label for="party_registration_number" class="block text-sm font-medium text-gray-700 mb-2">Registration No</label>
+                            <input type="text"  id="party_registration_number" name="party_registration_number[]" class="border p-2 w-full" >
+                        </div>
+
+                         <div class="col-span-2">
+                            <label for="party_registration_date" class="block text-sm font-medium text-gray-700 mb-2">Registration Date</label>
+                            <input type="date"  id="party_registration_date" name="party_registration_date[]" class="border p-2 w-full" >
+                        </div>
+
+     
+                        <div class="col-span-2">
+                            <label for="party_registration_number" class="block text-sm font-medium text-gray-700 mb-2">Registration No</label>
+                            <input type="text"  id="party_registration_number" name="party_registration_number[]" class="border p-2 w-full" >
+                        </div>
+
+                        <div class="col-span-2">
+                            <label for="party_mobile" class="block text-sm font-medium text-gray-700 mb-2">माेबाईल नंबर</label>
+                            <input type="text"  id="party_mobile" name="party_mobile[]" class="border p-2 w-full" >
+                        </div>
+
+                        <div class="col-span-2">
+                            <label for="party_email" class="block text-sm font-medium text-gray-700 mb-2">ई-मेल आय.डी</label>
+                            <input type="text"  id="party_email" name="party_email[]" class="border p-2 w-full" >
+                        </div>
+ 
+                        
+                                
+                            </div> 
+                            <!-- div 4 end -->
+
+                        <h2 class="text-sm font-semibold mt-8 mb-4"><u> संपूर्ण पत्ता/Party Address </u> </h2>
+
+                         <div class="grid grid-cols-4 gap-4 mt-4">
+
+                     <div class="col-span-2">
+                            <label for="party_address_buildingname" class="block text-sm font-medium text-gray-700 mb-2">ईमारतीचे नांव</label>
+                            <input type="text"  id="party_address_buildingname" name="party_address_buildingname[]" class="border p-2 w-full" >
                     </div>
+
+                    <div class="col-span-2">
+                            <label for="party_address_flatno" class="block text-sm font-medium text-gray-700 mb-2">फ्लॅट / घर क्रं.</label>
+                            <input type="text"  id="party_address_flatno" name="party_address_flatno[]" class="border p-2 w-full" >
+                    </div>
+
+                    <div class="col-span-2">
+                            <label for="party_address_floorno" class="block text-sm font-medium text-gray-700 mb-2">मजला क्रमांक</label>
+                            <input type="text"  id="party_address_floorno" name="party_address_floorno[]" class="border p-2 w-full" >
+                    </div>
+
+                     <div class="col-span-2">
+                            <label for="party_address_road" class="block text-sm font-medium text-gray-700 mb-2">राेड / रस्ता / लेन नंबर</label>
+                            <input type="text"  id="party_address_road" name="party_address_road[]" class="border p-2 w-full" >
+                    </div>
+
+                     <div class="col-span-2">
+                            <label for="party_address_location" class="block text-sm font-medium text-gray-700 mb-2">लाेकेशन</label>
+                            <input type="text"  id="party_address_location" name="party_address_location[]" class="border p-2 w-full" >
+                    </div>
+
+                    <div class="col-span-2">
+                            <label for="party_address_pincode" class="block text-sm font-medium text-gray-700 mb-2">पीन काेड</label>
+                            <input type="text"  id="party_address_pincode" name="party_address_pincode[]" class="border p-2 w-full" >
+                    </div>
+
+                    <div class="col-span-2">
+                            <label for="party_address_state" class="block text-sm font-medium text-gray-700 mb-2">राज्य / स्टेट</label>
+                            <input type="text"  id="party_address_state" name="party_address_state[]" class="border p-2 w-full" >
+                    </div>
+
+                    <div class="col-span-2">
+                            <label for="party_address_district" class="block text-sm font-medium text-gray-700 mb-2">जिल्हा</label>
+                            <input type="text"  id="party_address_district" name="party_address_district[]" class="border p-2 w-full" >
+                    </div>
+
+                      <div class="col-span-2">
+                            <label for="party_lihun_ghenar_hissa" class="block text-sm font-medium text-gray-700 mb-2">लिहून घेणार यांचा हिस्सा (%)</label>
+                            <input type="text"  id="party_lihun_ghenar_hissa" name="party_lihun_ghenar_hissa[]" class="border p-2 w-full" >
+                    </div>
+
+
+
+
+                    </div>
+
+
+                            <!-- Remove Button (Hidden for first party group) -->
+                            <button type="button" class="remove-party bg-red-500 text-white p-2 mt-4 rounded hidden">Remove Party</button>
+                        </div>
+
+
+
+
+                    </div>
+
                     <div class="flex justify-end mt-4 space-x-2">
+                        <button type="button" id="add-party" class="bg-green-500 text-white p-2 mt-4 rounded">Add New Party</button>
                         <button type="button" class="previous-step bg-blue-500 text-white p-2 mt-4 rounded">Previous</button>
                         <button type="button" class="next-step bg-blue-500 text-white p-2 mt-4 rounded">Next</button>
                     </div>
@@ -238,8 +381,9 @@
     </div>
 </div>
 
-
 <!-- wizard form end -->
+
+
  
     </div>
   </div>
@@ -266,6 +410,84 @@
 
 </main>
 @include('include.footer_assets');
+
+
+<!-- JavaScript to handle add/remove functionality -->
+<script>
+     document.addEventListener('DOMContentLoaded', function () {
+    // Navigation between steps
+    const nextButtons = document.querySelectorAll('.next-step');
+    const prevButtons = document.querySelectorAll('.previous-step');
+
+    nextButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const currentStep = this.closest('.wizard-content');
+            const nextStep = currentStep.nextElementSibling;
+            currentStep.classList.add('hidden');
+            nextStep.classList.remove('hidden');
+        });
+    });
+
+    prevButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const currentStep = this.closest('.wizard-content');
+            const prevStep = currentStep.previousElementSibling;
+            currentStep.classList.add('hidden');
+            prevStep.classList.remove('hidden');
+        });
+    });
+
+    // Dynamically add new party group
+    const partyContainer = document.getElementById('party-details-container');
+    const addPartyButton = document.getElementById('add-party');
+
+    addPartyButton.addEventListener('click', function () {
+        const partyGroups = partyContainer.querySelectorAll('.party-group');
+        const newPartyGroup = partyGroups[0].cloneNode(true);
+
+        // Reset form fields
+        newPartyGroup.querySelectorAll('input').forEach(input => {
+            input.value = '';
+            input.removeAttribute('disabled'); // Reset the disabled field
+        });
+
+        // Update party number
+        const partyNumberInput = newPartyGroup.querySelector('input[name="party_number[]"]');
+        partyNumberInput.value = partyGroups.length + 1;
+
+        // Show the remove button for the new group
+        const removeButton = newPartyGroup.querySelector('.remove-party');
+        removeButton.classList.remove('hidden');
+
+        partyContainer.appendChild(newPartyGroup);
+
+        // Attach remove event to the new remove button
+        removeButton.addEventListener('click', function () {
+            this.closest('.party-group').remove();
+            updatePartyNumbers();
+        });
+    });
+
+    // Remove party group
+    document.querySelectorAll('.remove-party').forEach(button => {
+        button.addEventListener('click', function () {
+            this.closest('.party-group').remove();
+            updatePartyNumbers();
+        });
+    });
+
+    // Update party numbers after removing a group
+    function updatePartyNumbers() {
+        const partyGroups = partyContainer.querySelectorAll('.party-group');
+        partyGroups.forEach((group, index) => {
+            const partyNumberInput = group.querySelector('input[name="party_number[]"]');
+            partyNumberInput.value = index + 1;
+        });
+    }
+});
+
+</script>
+
 
 <script>
     $(document).ready(function() {

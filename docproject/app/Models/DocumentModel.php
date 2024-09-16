@@ -155,29 +155,28 @@ class DocumentModel extends Authenticatable
     }
 
 
-    public function documentAdd($payload){
-       
-        $Modelresponse = [];
-        $existing_userdata = [];
+  public function documentAdd($payload)
+{
+    $Modelresponse = [];
 
-         $document = new DocumentModel();
-         $res= $document->insert($payload);
-           
-            if(!$res){
+    // Assuming you're using a Document model.
+    $document = new DocumentModel();
+    
+    // Use insertGetId() to insert data and get the last inserted ID
+    $lastInsertId = $document->insertGetId($payload);
 
-                $Modelresponse['status'] = 'fail';
-                $Modelresponse['returnmsg'] = 'Something Went Wrong';
-            }
-            else{
-                
-                $Modelresponse['status'] = 'success';
-                $Modelresponse['returnmsg'] = 'Document Created Succesfully.';
-            }
-       
-        return $Modelresponse;
-        
-
+    if (!$lastInsertId) {
+        $Modelresponse['status'] = 'fail';
+        $Modelresponse['returnmsg'] = 'Something Went Wrong';
+    } else {
+        $Modelresponse['status'] = 'success';
+        $Modelresponse['returnmsg'] = 'Document Created Successfully.';
+        $Modelresponse['last_insert_id'] = $lastInsertId; // Return the last insert ID
     }
+
+    return $Modelresponse;
+}
+
 
 
 
